@@ -1,0 +1,1097 @@
+Received October 22, 2021, accepted November 29, 2021, date of publication January 5, 2022, date of current version January 14, 2022.
+Digital Object Identifier 10.1109/ACCESS.2022.3140181
+
+
+
+
+Systematic Literature Review on Security Risks
+and Its Practices in Secure Software Development
+RAFIQ AHMAD KHAN 1 , SIFFAT ULLAH KHAN                                           1,   HABIB ULLAH KHAN                    2,
+
+AND MUHAMMAD ILYAS 1
+1 Software   Engineering Research Group, Department of Computer Science & IT, University of Malakand, Chakdara 18800, Pakistan
+2 Department   of Accounting and Information Systems, College of Business and Economics, Qatar University, Doha, Qatar
+Corresponding authors: Habib Ullah Khan (habib.khan@qu.edu.qa) and Rafiq Ahmad Khan (rafiqahmadk@gmail.com)
+This work was supported in part by the Qatar National Library, Doha, Qatar; in part by the Qatar University Internal Grant under
+Grant QUHI-CBE-21/22-1; and in part by the Department of Computer Science & IT, University of Malakand, Pakistan.
+
+
+
+
+  ABSTRACT Security is one of the most critical aspects of software quality. Software security refers to
+  the process of creating and developing software that assures the integrity, confidentiality, and availability
+  of its code, data, and services. Software development organizations treat security as an afterthought issue,
+  and as a result, they continue to face security threats. Incorporating security at any level of the Software
+  Development Life Cycle (SDLC) has become an urgent requirement. Several methodologies, strategies, and
+  models have been proposed and developed to address software security, but only a few of them give reliable
+  evidence for creating secure software applications. Software security issues, on the other hand, have not
+  been adequately addressed, and integrating security procedures into the SDLC remains a challenge. The
+  major purpose of this paper is to learn about software security risks and practices so that secure software
+  development methods can be better designed. A systematic literature review (SLR) was performed to classify
+  important studies to achieve this goal. Based on the inclusion, exclusion, and quality assessment criteria, a
+  total of 121 studies were chosen. This study identified 145 security risks and 424 best practices that help
+  software development organizations to manage the security in each phase of the SDLC. To pursue secure
+  SDLC, this study prescribed different security activities, which should be followed in each phase of the
+  SDLC. Successful integration of these activities minimizing effort, time, and budget while delivering secure
+  software applications. The findings of this study assist software development organizations in improving
+  the security level of their software products and also enhancing their security efficiency. This will raise the
+  developer’s awareness of secure development practices as well.
+
+
+  INDEX TERMS Software security, SDLC, security risks and practices, secure software development, secure
+  software engineering, systematic literature review.
+
+
+I. INTRODUCTION                                                                                 today’s fast-paced and technology-oriented world. Software
+Secure Software Engineering (SSE) has become a signif-                                          and technology have become such an inseparable part of
+icant paradigm in the development of secure software for                                        our lives that it’s virtually impossible to imagine a sector
+the software industry in recent years as security problems in                                   that doesn’t employ them in its day-to-day operations. The
+the SDLC are difficult to address. Information and Commu-                                       world in every aspect has been modernized by an immense
+nication Technology (ICT) has undeniably changed human                                          use of software systems. Software security ensures that the
+lives, communications, the digital economy, socialization,                                      CIA (Confidentiality, Integrity, and Availability) of data and
+and entertainment. Similarly, the market for internet-enabled                                   services are not compromised [1], [2]. This can only be done
+applications is increasingly increasing. Therefore, there is an                                 if the security is considered during all SDLC phases [1], [2].
+ever-growing demand for trusted software applications. Soft-                                        To incorporate security into the software engineering
+ware security is the key to the software’s success, especially in                               paradigm, it should be considered from the start of the
+                                                                                                SDLC [3], [4]. Secure software engineering (SSE) is the
+   The associate editor coordinating the review of this manuscript and                          process of designing, building, and testing software so that
+approving it for publication was Luca Cassano.                                                  it becomes secure, this includes secure SDLC processes
+
+                      This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see https://creativecommons.org/licenses/by/4.0/
+5456                                                                                                                                                                   VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+and secure software development (SSD) methods [5]–[7].                              in the early stages during the design phase [23]. This reduces
+Most businesses view security as a post-development pro-                            the risk of overlooking critical security requirements or intro-
+cess [8]. Security isn’t considered at some point in the pre-                       ducing security flaws throughout the implementation process.
+development phase [9]. A simple error sometimes can end                                SDLC is a process for producing high-quality, low-cost
+up causing millions of dollars of losses in today’s business                        applications in the shortest amount of time. It offers a well-
+process. But unfortunately, many software development com-                          structured step flow that assists enterprises in easily produce
+panies do not follow best practices to incorporate in SDLC                          high-quality, well-tested, and ready-to-use production of soft-
+[10], [11]. This negligence includes lack of awareness, fear                        ware. The common phases of SDLC include requirement,
+of time and cost overrun, teams, are always in a hurry, use                         design, coding, testing, deployment, and maintenance [24].
+of third-party components and, lack of qualified profession-                        All these phases are dependent on each other are of equal
+als, etc. Rapid developments in information and commu-                              importance. If security is not incorporated during all phases
+nication technologies (ICTs) have made software security                            of SDLC then the resultant product will not be vulnerable to
+a key concern, such as the Internet of Things (IOT) and                             security threats. This is only possible if a secure SDLC pro-
+the Internet of Every Things, the advancement of Internet-                          cess is followed, secure SDLC ensures that security-related
+based software systems, cloud computing, social network-                            activities are an integral part of the overall development
+ing, and location-based services; also besides, new business                        effort [20], [22], [25].
+paradigms, versatile customers’ requirements, rapid advance-                           Researchers in the literature [26]–[30] have introduced and
+ment in ICTs, and new regulations are constantly making a                           practitioners in the software industry have adopted a wide
+software application evolve accordingly [12], [13]. As soft-                        variety of software security practices, approaches, and meth-
+ware development becomes more complex, distributed, and                             ods. In addition, several companies have created maturity
+concurrent, security issues have an ever-greater influence on                       models and frameworks to assess the degree of maturity of
+software quality [14]. Insecure software harms an organi-                           their software security practices. On the other hand, none
+zation’s reputations with customers, partners, and investors;                       of these models or structures are specifically committed to
+it increases costs, as companies are forced to repair unre-                         recognizing security risks/threats and their practices in the
+liable applications; and it delays other development efforts                        SDLC. As a result, they fall short of covering all aspects and
+as limited resources are assigned to address current soft-                          activities of a secure SDLC. Because of the importance of
+ware deficiencies [14]. The majority of software programs                           a secure SDLC, it’s critical to recognize the security threats
+are designed and deployed without attention to protection                           that vendor organizations face while developing secure appli-
+desires [15], [16]. Hidden attacking risks within or outside                        cations, as well as risk mitigation strategies. This will enable
+the organization are emerging day-by-day, results in huge                           software development vendors to assess their maturity and
+financial loss, as well as confidentiality and credibility losses                   assurance levels, as well as improve their secure SDLC per-
+by putting the availability and integrity of organizational data                    formance. It will also raise the level of awareness among
+at risk [17], [18]. Various approaches to software quality                          software engineers.
+have been developed, such as CMMI, ‘‘Microsoft Software                                Therefore, to assess and find out security threats and their
+Development Life Cycle (MS-SDL),’’ ‘‘Misuse case model-                             practices in SDLC phases, we have studied the existing liter-
+ing,’’ ‘‘Abuse case modeling,’’ ‘‘Knowledge Acquisition for                         ature on finding software security threats/risks in SDLC and
+Automated Specification,’’ ‘‘System Security Engineering-                           highlighted the security practices that need to be incorporated
+Capability Maturity Model (SSE-CMM),’’ ‘‘OWASP,’’ and                               in SDLC phases to strengthen the security of the software
+‘‘Secure Tropos Methodology’’ [19]. However, there exists                           development process.
+no explicit solution for incorporating security into all phases                        The remainder of this paper is structured as follows:
+of SDLC.                                                                            Section II provides context information and related work.
+   One of the critical reasons for widespread vulnerabili-                          Research methodology is presented in Section III. The results
+ties is not making security a key priority [2]. Even diligent                       of this study are presented in Section IV. A conclusion and
+businesses use the ‘‘fix and penetrate’’ technique in which                         future studies are presented in Section V. Finally, Section VI
+security is accessed after completing the project [2]. The                          discusses the study limitations.
+drawback of this is that the application users do not apply
+these patches. Further, attackers might plan and penetrate new
+vulnerabilities [20]. Traditional security mechanisms mainly                        II. BACKGROUND
+focus on network systems, and they spent a huge amount                              Software security is a hot subject both in academia and
+of money to make their network secure. These mechanisms                             industry, as it has made an important contribution to this
+include IDS (Intrusion detection system), firewalls, encryp-                        research field over the last two decades. Secure software is
+tion, antivirus, and antispyware [5], [21]. Building secure                         software that cannot be accessed, updated, or targeted by
+software means building software that functions properly                            an unauthorized user. Software that has no vulnerabilities is
+even under malicious attacks [22]. This requires addressing                         considered highly stable, whereas software that has at least
+the security challenges through the whole SDLC, especially                          one vulnerability is considered vulnerable [20], [31].
+
+
+VOLUME 10, 2022                                                                                                                                5457
+                                                              R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+A. SOFTWARE SECURITY BASIC CONCEPTS                                     and security design is given to the implementation team as
+This section describes some of the security terminolo-                  input, there is no assurance that the result will be safe [35].
+gies [26], [31], [32] used in this paper:                                  This section discusses the different methodologies for
+  •    ‘‘Software security is the idea of engineering software          incorporating security into the SDLC phases, as well as
+       that continues to function correctly under malicious             the security practices that are commonly used in these
+       attack [4], [33].’’                                              methodologies:
+  •    ‘‘Software security is the process of discussing an                 McGraw [36], [37] recommends seven touchpoint oper-
+       application to discover risks and vulnerabilities of the         ations (‘‘Abuse cases, Security requirements, Architectural
+       application and its data [34].’’                                 risk analysis, code review and repair, Penetration testing,
+  •    Asset: ‘‘is anything that has value to the organization,         and security operations’’) for creating secure software, all
+       its business operations and their continuity, including          of which are connected to software development artifacts.
+       information resources that support the organization’s            Microsoft developed the Microsoft Trustworthy Computing
+       mission.’’                                                       Security Development Lifecycle [38] adds a set of security
+  •    Vulnerability: ‘‘A weakness in the design, operation,            practices to each step of its software development process,
+       implementation or any process in the system which                as follows: during requirement phase, the security feature
+       expose the system to a threat defined it as a weakness           requirements are defined based on the customer demands,
+       of an asset or group of assets that can be exploited by          in the design phase the MS SDL suggests a set of activities to
+       one or more attacker.’’                                          be performed such as threat modeling for security risk identi-
+  •    Threat: ‘‘A possible danger that may result in harm to           fication, identifying components that are critical to security or
+       systems and organization.’’                                      needs special attention during testing, in the implementation
+  •    Attack: ‘‘An actual event done by a person; attacker to          phase, use of static analysis code-scanning tools and code
+       harm as an asset of the software through exploiting a            reviews, after completing implementation, the complete soft-
+       vulnerability.’’                                                 ware is tested focusing on the security-critical components
+  •    Risk: ‘‘A potential for loss, damage, or destruction of an       of the software during the testing phase, a final code review
+       asset as a result of a threat exploiting a vulnerability.’’      of new as well as legacy code is used during the verification
+  •    Software Security Requirement: ‘‘is a non-functional             phase, and finally, during the release phase, a Final Security
+       requirement that elicits a control, constraint, safeguard        Review is conducted by the Central Microsoft Security team.
+       or countermeasure to avoid or remove security vulnera-              TSP Secure (Team Software Process for Secure Software
+       bilities from requirements, design or code.’’                    Development) [39] is developed specifically for software
+  •    Confidentiality: ‘‘means to disclose information to peo-         teams to help them create a high-performance team and
+       ple or programs that are authorized to have access to that       prepare their work to produce the best results. The TSP
+       information.’’                                                   Secure focuses directly on the security of software in three
+  •    Integrity: ‘‘assures that a system performs its intended         ways: planning, development and management, and training
+       function in an unimpaired manner, free from delib-               for developers about security-related aspects and other team
+       erate or inadvertent unauthorized manipulation of the            members. In the initial phase; planning, the team identifies
+       system.’’                                                        security risks, security requirements, secure design, code
+  •    Availability: ‘‘assures that systems work promptly, and          review, use of static analysis tools, unit tests, and Fuzz testing,
+       service is not denied to authorized users.’’                     and produces a detailed plan to be used in the develop-
+  •    Process: ‘‘is an instance of a computer program that is          ment phase during a series of meetings. Next, the plan is
+       being executed.’’                                                executed, and the team ensures that all the security activ-
+  •    Secure Software Process: ‘‘is a set of activities used to        ities are taken place. Secure Software Development Pro-
+       develop and deliver a secure software solution.’’                cess Model (S2D-ProM) [40] is a strategy-oriented process
+                                                                        model that offers guidance and support to developers and
+                                                                        software engineers at all level, from beginners to experts,
+B. SECURE SDLC PROCESSES                                                to build secure software. Niazi et al. [2], conducted a system-
+Software security is threatened at different points during              atic literature review (SLR) to pinpoint the required practices
+SDLC phases, both through inadvertent and malicious acts                for developing secure software. This paper also amended
+by insiders and outsiders with no association with the com-             Somerville’s requirement engineering practices. After iden-
+pany. The most efficient technique to eliminate software                tifying best requirement practices, a framework for secure
+bugs/vulnerabilities is to incorporate security and other non-          requirement engineering named Requirements Engineering
+functional standards into all phases of the SDLC. Over the              Security Maturity Model (RESMM) was developed. Ques-
+years, there has been a lot of research into ‘‘high integrity,’’        tionnaires and case studies were used to test the suggested
+and researchers and practitioners have worked hard to con-              framework. The findings demonstrate that the proposed
+struct secure software systems. Despite all of the efforts,             framework is practical and adaptable.
+software that offers high standards of security integrity is               Comprehensive, Lightweight Application Security Pro-
+uncommon. Even when security is a specified, requirement                cess (CLASP) [41] is a straightforward process that
+
+5458                                                                                                                                   VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+consists of 24 high-level security activities that can be com-                              SDLC phases to make the development process more
+pletely or partially integrated into software during the SDLC.                              secure.
+In CLASP threat modeling and risk analysis is performed
+during requirement and design phase. In the design and                              III. RESEARCH METHODOLOGY
+implementation phase, it suggests secure design guidelines                          A systematic literature review (SLR) was selected as the
+and secure coding standards [42]. Inspections, static code                          research method for this study. ‘‘An SLR is a type of
+analysis, and security testing are performed in the assurance                       secondary study in which primary studies are examined
+phase [43]. Correctness by Construction is a technique for                          impartially and iteratively to define, interpret, and discuss
+developing high integrity software [44]. The following are the                      evidence relevant to the research questions’’ [49]. According
+seven main principles of Correctness by Construction [44]:                          to Kitchenham [49], [50], an SLR has three main phases:
+expect requirements to change, know why you are testing,                            planning, conducting and reviewing the review, as shown in
+eliminate errors before testing, write software that is easy                        Table 1. Researchers have used the SLR process in several
+to verify, develop incrementally, some aspects of software                          domains [2], [51]–[55].
+development are just plain hard, the software is not use-                              The authors of this work completed all three phases of the
+ful by itself. AEGIS (Appropriate and Effective Guidance                            SLR. Inter-rate reliability analyses were undertaken during
+for Information Security) first evaluating device assets and                        the initial and final selection phases of the SLR to reduce
+their relationships, then moves on to risk analysis, which                          inter-person bias. The findings of the inter-rater reliability
+defines weaknesses, threats, and risks [45]. According to                           review are discussed in Section 3.2. We followed all of the
+Subedi et al. [46], security protection is not considered in                        processes in the three phases of the SLR, as stated in Table 1.
+the overall system development lifecycle due to which a
+lot of security breaches occur. This paper presents a secure                        TABLE 1. SLR phases.
+paradigm that is an extension of security development prac-
+tices in agile methodology to overcome this problem in web
+application development.
+   The Secure Software Development Model (SSDM) secu-
+rity training provides stakeholders in software development
+with adequate security education [47]. During the require-
+ments process of SSDM, a threat model is used to iden-
+tify and their capabilities. The security specification must
+be specialized by specifying the guidelines for achieving
+security. Penetration monitoring is the only SSD operation
+in the security assurance process that checks the software’s
+ability to avoid the attack. Security Quality Requirements                          A. PHASE 1: PLANNING THE REVIEW
+Engineering (SQUARE) methodology allows for elicitation,                            1) RESEARCH QUESTIONS
+classification, and prioritization of security specifications                       The current study conducted an SLR to identify security
+for information technology systems and applications [48].                           threats/risks in SDLC and highlighted the security best prac-
+Al-Matouq et al. [20], conducted a Multi-vocal literature                           tices that need to be incorporated in SDLC phases to make
+review to identify the best practices for designing secure soft-                    the development process more secure. The following research
+ware. Based on identified best practices, a framework Secure                        questions were answered in this study:
+Software Design Maturity Model (SSDMM) was developed.                                  RQ1: What are the security risks that vendor firms should
+The framework was evaluated using case studies, and the                                avoid while designing secure software applications, accord-
+results show that SSDMM helps measure the maturity level                               ing to the literature?
+of software development organizations.                                                 RQ2: What are the best practices for vendor firms to follow
+   • It is obvious from the above discussion that incorporat-                          when designing secure software applications, as identified
+      ing security in different phases of SDLC is inevitable                           in the literature?
+      for quality software. There exist various studies that
+      discuss the importance of incorporating security in                           2) DATA SOURCES
+      SDLC, however, still there exists space for further                           In this study, the data is gathered by an automated search.
+      research in this area. To address the security risks at                       The automated search technique uses an optimized search
+      all stages of SDLC, there is a dire need to identify                          string to find the most relevant literature [56]. As a result
+      security risks and introduce secure specialized practices                     of our research experience and the recommendations of
+      in SDLC. Therefore, to assess and measure security                            Chen et al. [57], a total of six digital repositories were chosen.
+      threats and vulnerabilities in SDLC phases, we have                           The following are the digital sources that were chosen:
+      conducted a systematic literature review in this paper                           • IEEE Xplore
+      to identify security risks in SDLC and highlighted the                           • ACM Digital Library
+      security best practices that need to be incorporated in                          • Sciencedirect
+
+VOLUME 10, 2022                                                                                                                                  5459
+                                                            R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+   •   Springer Link                                                  6) STUDY QUALITY ASSESSMENT
+   •   Wiley Online Library                                           The final selected publications’ data extraction and quality
+   •   Google Scholar (Search Engine)                                 assessment (QA) were done at the same time. We established
+                                                                      a checklist to objectively and subjectively assess the primary
+3) SEARCH STRING                                                      studies that were chosen. The checklist was generated using
+We generate an efficient search string based on the submitted         the guidelines given in [61] (Table 2). We have designed
+study questions for retrieving relevant literature from the           seven questions on the QA checklist (QA1-QA7). For each
+selected digital sources. Zhang et al. [56] following the crite-      question, the following assessment was made:
+ria of the search strings were developed using the main search           • We gave an article a score of 1 if it answered the checklist
+words used in the research questions and their alternatives.               question fully.
+To concatenate the keywords into search strings, we used                 • For a partial answer, we gave it a score of 0.5.
+the Boolean ‘‘OR’’ and ‘‘AND’’ operators. The following                  • If it did not cover the question on the defined checklist,
+string was used to scan the digital repositories: ((‘‘Risk’’ OR            we gave it a score of 0.
+‘‘Threat’’ OR ‘‘Issue’’ OR ‘‘Challenge’’ OR ‘‘Practice’’ OR           The quality evaluation aims to see how well selected primary
+‘‘Solution’’ OR ‘‘Mitigation’’) AND (‘‘Software Security’’            studies can be used to answer study research questions. As a
+OR ‘‘Secure Software’’ OR ‘‘Secure Software Engineering’’             result, Appendix contains the score assigned to each primary
+OR ‘‘Software Privacy’’ OR ‘‘Software Development Life                study. The credibility, integrity, and relevance to answering
+cycle’’ OR ‘‘SDLC’’ OR ‘‘Global Software Development’’)).             the study questions were used to evaluate the quality of the
+                                                                      studies.
+4) INCLUSION CRITERIA
+                                                                      B. PHASE 2: CONDUCTION THE REVIEW
+For data inclusion, we adopted the following guidelines
+                                                                      1) PRIMARY STUDY SELECTION
+based on parameters used by other researchers [11], [32], [55],
+[58]–[61]:                                                            The tollgate method suggested by Afzal et al. [62] was used
+  • Articles related to the domain of Secure Software
+                                                                      to refine the research articles found during primary study
+     Engineering.                                                     collection. There are five steps to this method (see Table 3):
+  • Papers were published between 2000 and 2020.
+                                                                         Phase 1: Using search terms to find related articles.
+  • Papers must provide at least one risk or practice relevant
+                                                                         Phase 2: Inclusion and exclusion of articles based on titles
+     to software development process security specifications,         and abstracts.
+     design, code, testing, and maintenance security.                    Phase 3: Inclusion and exclusion of articles based on
+                                                                      introduction and conclusion section.
+  • Papers were peer-reviewed in conferences and journals.
+                                                                         Phase 4: Inclusion and exclusion of articles based on the
+                                                                      full-text reading.
+TABLE 2. Study quality assessment criteria.                              Phase 5: Final collection of primary studies for inclusion
+                                                                      in the SLR based on study quality assessment criteria.
+                                                                         Initially, the developed search string and on the
+                                                                      base of inclusion and exclusion criteria was used to
+                                                                      retrieve 12114 papers from the selected online databases.
+                                                                      The tollgate method [62] yielded a shortlist of 121 papers for
+                                                                      consideration in the primary study. Finally, the quality assess-
+                                                                      ment requirements were applied to the shortlisted papers.
+                                                                      Appendix contains a list of the primary studies that were
+                                                                      chosen.
+
+                                                                      2) DATA EXTRACTION AND SYNTHESIS
+5) EXCLUSION CRITERIA                                                 The primary (first) author extracted all of the data in this
+For data exclusion, we followed the guidelines based on               publication by using the inclusion and exclusion criteria as
+parameters used by other researchers [11], [32], [55],                well as the study quality assessment research questions. The
+[58]–[61]:                                                            other authors, on the other hand, evaluated the categories
+  • Papers that don’t deal with secure software development           and subcategories of security risks, as well as their meth-
+     and aren’t related to the research questions.                    ods, by dispersing them throughout the SDLC phases. Inter-
+  • Papers that do not describe software security risks and           rater reliability analyses were used to eliminate inter-person
+     practices in detail.                                             bias. Three external reviewers from the Software Engineering
+  • Publications are not peer-reviewed and do not conform             Research Group (SERG UOM) randomly selected fifteen
+     to a complete book’s abstract, an editorial, or a letter.        papers from the first phase of the tollgate process and
+  • Paper that is not in English.                                     applied the tollgate process selection phases (phases 2–5)
+  • Duplicate papers were not considered.                             as well as the quality assessment criteria. We calculated
+
+5460                                                                                                                                 VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 3. Selection of articles using tollgate approach.                             TABLE 4. Software security risks in requirement engineering phase.
+
+
+
+
+the nonparametric Kendall’s coefficient of concordance to
+examine inter-rater agreement among the reviewers (W) [63]
+values. The reviewer’s rate W on a scale of 0 to 1, with 0
+indicating complete disagreement and 1 indicating perfect
+agreement. W = 0.78 for fifteen publications chosen at ran-
+dom, showing a high level of agreement between the authors
+and the external reviewers. To acquire the results against the
+research questions, all of the collected data was arranged by
+rephrasing the security threats and practices according to the
+study questions.
+
+C. PHASE 3: REPORTING THE REVIEW
+1) QUALITY ASSURANCE OF PRIMARY SELECTED STUDIES
+The overall score for each QA question was determined and
+is presented in Appendix. The QA score for each primary
+sample was determined using the seven QA questions in
+Appendix. According to the data, about 88 percent of the
+primary studies received a score of >57 percent on the QA                           amongst all the identified security risks. Existing literature on
+questions, implying that the primary studies chosen are rele-                       requirement security has highlighted different security risks
+vant to the study research questions.                                               that might occur if security is not incorporated from the begin-
+                                                                                    ning. Some common security risks that might occur during
+IV. RESULTS                                                                         the requirement phase of SDLC are listed [2], [24], [64]–[67]
+In this section, the results of the SLR study are discussed:                        in Table 4.
+
+A. SOFTWARE SECURITY RISKS (ANSWER RQ1)                                             2) LACK OF PROPER ATTENTION TO SECURITY ISSUES
+This section aims to present security risks/threats to assist                       DURING THE DESIGN PHASE
+software development organizations to avoid these risks when                        The stages of the SDLC where the security aspect is con-
+designing secure software development. We have obtained a                           sidered, according to our findings, can differ from study to
+list of 156 software security risks using the SLR methodol-                         study. Design flaws are one of the most common sources
+ogy. The identified security risks, along with the frequencies                      of security threats in software systems [20], [68]. It has
+are discussed in the following subsections:                                         been observed, that in most cases, software bugs are found
+                                                                                    during the design process of the SDLC [69]. The design
+1) LACK OF PROPER ATTENTION TO SECURITY ISSUES                                      process of the SDLC serves as the foundation for designing
+DURING THE REQUIREMENT ENGINEERING (RE) PHASE                                       a secure software system [70]. Reducing risks in this step
+The findings of this study show that security risks in the                          can reduce the effort needed in subsequent phases [19], [32].
+RE phase of the SDLC are a highly rated factor, in the                              As it can be observed from the findings of this study, security
+development of secure software. It stands on the top (97.5%)                        risks are reported more frequently in the design phase of
+
+VOLUME 10, 2022                                                                                                                                          5461
+                                                          R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+SDLC. Table 5, presents some of the most common security            TABLE 6. Software security risks in coding phase.
+problems that occur during software design [6], [20], [68],
+[71]–[73]:
+
+TABLE 5. Software security risks in design phase.
+
+
+
+
+3) LACK OF SECURE DEVELOPMENT OR CODING
+The selection of appropriate coding language and classifica-
+tion of modules is a challenging task. Each phase of the SDLC
+must include a variety of appropriate security protections,
+analyses, and countermeasures that result in more secure code
+being released [74], [75]. Table 6 presents, software security
+issues during the coding phase of SDLC [11], [74], [76]–[78]:
+   Improper authentication and authorization mechanisms
+refer to the erroneous implementation of authentication func-
+tions and access-control policies [79]. Authentication and
+authorization are critical components of basic security pro-
+cesses, and they are particularly important in the production
+of secure software [80]. Microsoft uses STRIDE to model
+threats to their systems; threats are defined by looking into
+
+
+
+5462                                                                                                                               VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 6. (Continued.) Software security risks in coding phase.                      TABLE 8. Software security risks in deployment phase.
+
+
+
+
+TABLE 7. Software security risks in testing phase.
+
+
+
+
+                                                                                    TABLE 9. Software security risks in maintenance phase.
+
+
+
+
+the possibilities of spoofing identity, tampering with data,
+repudiation, information leakage, denial of services, and ele-
+vation in the given situation [71]. The present study identi-
+fied 63 articles to discuss authentication and authorization
+are essential parts of security in the development of secure
+software. Spoofing, tampering, repudiation, information dis-
+closure, denial of services, elevation of privilege and failure
+to restrict URL access are some of the most common security
+issues that hamper the process of secure authorization and
+authentication [31], [64], [71], [72], [81].
+   Incorrect input validation refers to the lack of or incorrect
+validation of input provided by a user via the application’s                        POST change requests for GET, POST directives with inval-
+user interface. Injection attacks take advantage of the lack                        idated parameters, and accessible database are injection vul-
+of input validation controls to allow malicious inputs to be                        nerabilities from the literature [5], [11], [79], [83], [84].
+passed in, which can be used to obtain elevated rights, alter                          The vulnerabilities in software systems include outdated
+data, or crash a system [82]. Code injection attacks can breach                     software/firmware, default usernames and password, pass-
+data security, cause a loss of services, and harm thousands of                      word conjuncture, and the inability to run software updates
+users’ systems [83]. This study identified; Cross-site script-                      or change usernames and passwords, are leveraged to gain
+ing, Cross-site request forgery, format string problems, code                       initial access to systems of corporate targets which then can
+and command injection, autocomplete attribute not enabled,                          be further exploited [6], [85], [86].
+
+VOLUME 10, 2022                                                                                                                              5463
+                                                             R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 10. Secure requirement engineering practices (SREP).
+
+
+
+
+5464                                                                                                                                  VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 10. (Continued.) Secure requirement engineering practices (SREP).
+
+
+
+
+VOLUME 10, 2022                                                                             5465
+                                                                  R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 10. (Continued.) Secure requirement engineering practices (SREP).
+
+
+
+
+   The majority of security attacks are possible due to imple-              most time-consuming, complicated, and costly process of the
+mentation flaws such as improper input validation, improper                 SDLC [92]. This phase is an important component of improv-
+authentication, and authorization mechanisms, improper ses-                 ing the efficiency of software development projects [32].
+sion management, and other vulnerabilities (Session-Id vul-                 While it is an essential part of software development, rigorous
+nerable or theft, logout incorrectly implemented, lock failed               testing is not always a focus of software engineering educa-
+attempts per browser session, peer-user session restriction,                tion [93]. As a result of this shortcoming, software developers
+and log replay feature) that compromise the application’s                   often regard software testing as a liability, lowering overall
+intended functionality [5], [79], [87].                                     software quality. Threat modeling is a systematic method for
+   In MITRE’s Common Vulnerabilities Exposures database,                    identifying threats that may compromise security, and it is
+the latest classification of common defects by type is provided             considered a well-known accepted practice by the software
+in Common Vulnerability Enumeration [88], a list of regis-                  testing industry [94]. This phase aims to find possible bugs
+tered vulnerabilities. As a consequence, the most common                    and errors in the system and remove them. The present study
+forms of security vulnerabilities are weak encryption, explicit             identified 64 papers to discuss software security risks during
+password storage, insecure communication, and synchroniza-                  software testing phase of SDLC. Some common security risks
+tion errors [88]. Invalidated redirects and forwards, improper              involved in this phase are as follows [5], [22], [95]–[98]:
+use of secure APIs, weak encryption, insecure communica-
+tion, man in the middle, and bandwidth usage are some of the                5) SOFTWARE SECURITY RISKS IN DEPLOYMENT PHASE
+most common security issues that hamper the communication                   Developing secure software systems involves many chal-
+and encryption processes [85], [88], [89].                                  lenging problems, e.g., designing authentication proto-
+   Software security is concerned with protecting data, facil-              cols, improper configuration management, building strong
+ities, and applications from harm caused by various types of                cryptosystems, devising effective trust models and secu-
+malware attacks (e.g., password sniffing, viruses, hijacking)               rity policies [99]. Configuration management is an impor-
+that may be mounted by various types of attackers (e.g., hack-              tant component in the secure maintenance and operation
+ers, crackers, domestic cyber-terrorists, industrial spies, inter-          phase [100]. This study identified (see Table 8), some of
+national military, and so on) [87], [89]. This study identified             the common software security risks which affect deploy-
+some of the most common malware attacks (various kinds of                   ment phase of the SDLC in the development of secure
+viruses, malware, trojan virus, brute force attack, DNS hijack-             software [5], [78], [99]–[102].
+ing, replay attack flaws, attacker denies services to the appli-
+cation by opening thousands of connections but does nothing                 6) SOFTWARE SECURITY RISKS IN THE MAINTENANCE
+with them, BPEL state deviation and flooding attacks, send                  PHASE
+fake seismic parameters, the bulleting is modified before and
+                                                                            Vulnerability-oriented architectural research provides a sys-
+during sending, the bulletin is not delivered or delivered to
+                                                                            tematic and thorough approach to evaluating a wide vari-
+the fake place, blocking of E-mail notification by a mali-
+                                                                            ety of possible vulnerabilities, but it is time-consuming and
+cious user, the attacker shuts down the user’s process, slicing
+                                                                            costly [91]. For estimating the severity and cost of security
+attacks, and cookie poisoning) which affect the processes of
+                                                                            threats, Table 9 presents, some maintenance and stakeholder
+secure software development [87], [89]–[91].
+                                                                            considerations may be considered [78], [91], [103].
+                                                                               Software development iterations are of limited time, often
+4) LACK OF PROPER ATTENTION TO SECURITY TESTING                             few weeks, which makes fitting security activities (e.g., secu-
+ANALYSIS                                                                    rity requirement elicitation) challenging because they are
+The testing phase of the SDLC aims to make sure that all                    often time-consuming’’ [65]. Furthermore, defining secu-
+the system components provide their required functionality                  rity policies takes time and raises the cost of software
+alone and as part of the whole system. Software testing is the              development [65]. Some of the common issues due to
+
+5466                                                                                                                                       VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 11. Secure design practices (SDP).
+
+
+
+
+VOLUME 10, 2022                                                                             5467
+                                                             R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 11. (Continued.) Secure design practices (SDP).
+
+
+
+
+time pressure in the secure software development process               2) BEST PRACTICES FOR DESIGNING SECURE SOFTWARE
+are [65], [83], [101]:                                                 The design phase is one of the most creative stages of
+    i. Organizations compromise security activities to accom-          the SDLC, which is one of the reasons it is impor-
+       modate the accelerated releasing schedule                       tant from the viewpoint of security [32], [69]. 50%, soft-
+   ii. Timing attacks                                                  ware defects are identified and detected during the design
+ iii. Insufficient time for the teams to get used to the security      stage of the SDLC [32], [69]. The security design archi-
+       activities                                                      tecture specifies design methods such a strongly typed
+  iv. The pressure to deliver to tight deadlines.                      programming, least privilege, develop threat modeling, ana-
+                                                                       lyze and minimize attack surface [14]. The software devel-
+B. PRACTICES FOR DEVELOPING SECURE SOFTWARE                            oper must consider security best practices during design to
+(ANSWER RQ2)                                                           complete this phase in a manner that is appropriate and
+In all phases of the Software Development Life Cycle                   secure. Table 11 presents some of the most widely used
+(SDLC), the focus on secure software development has grad-             design security practices, these should be followed when
+ually grown over the last two decades. To produce secure               designing secure software [14], [22], [31], [32], [68], [69],
+software, security awareness, guidelines, principles, and              [71]–[73], [105], [107].
+practices are very important during all the stages of SDLC.
+The purpose of this section is to describe software security
+                                                                       3) BEST PRACTICES FOR IMPLEMENTING SECURE CODE
+practices to help software development firms better specify
+                                                                       80 percent of system penetration is due to coding errors in
+the criteria for secure software development. To answer RQ2,
+                                                                       commercial software. This is surely a matter of national secu-
+we must go through the following subsections:
+                                                                       rity. Increased bugs, security issues, and costs are all associ-
+                                                                       ated with bad code. Good code pays off in the long run [14].
+1) BEST PRACTICES FOR SECURE REQUIREMENT
+                                                                       Due to time-to-market pressures, software developers are
+ENGINEERING (SRE)
+                                                                       passed to meet the deadline, lack security expertise, and fail
+The requirement stage in the SDLC is the primary stage                 to follow secure code guidelines. Furthermore, they make
+where the initial plan for software is made. It necessi-               the mistake of assuming that perimeter security is sufficient
+tates a set of initial specifications, which are collected             to protect applications. Security code reviews, which can
+from a variety of sources. Various methods such as brain-              be conducted while the code is being checked for function-
+storming, group sessions, and interviews are used to gather            ality, whether manual or automated, are required to verify
+requirements. Secure requirement engineering (SRE) is dif-             the fundamental tenets of software security [22], [108]. The
+ferent; the aim is to provide complete security by implement-          programmer must be aware of implementation-level vulnera-
+ing basic security functions, such as confidentiality, integrity,      bilities when writing secure code [14]. Programmers can use
+and availability [25]. SRE is usually done during the first            the documentation and guidelines created in earlier stages
+stage of the SDLC, and the success of this phase leads                 to help them write secure code. Table 12 shows prescriptive
+towards a better software product. Further, handling security          actions to increase security during the coding phase of SDLC
+in this phase assists software development organizations to            [5], [14], [22], [98], [105], [109]–[111].
+save rework and additional costs. SRE has proved to be
+a difficult task over time. The main activities involved in
+this stage are security requirements identification and incep-         4) BEST PRACTICES FOR SECURE SOFTWARE TESTING
+tion, documentation, elicitation, analysis and negotiation,            Software testing is the most time-consuming, complex, and
+mapping, verification and validation, prioritization and man-          costly phase of the SDLC [92]. This phase aims to identify
+agement, authentication, and authorization [2], [64], [104].           and fix any bugs or errors in the system. ‘‘To detect potential
+Various researchers and industry practitioners have empha-             attacks and the consequences of successful attacks, security
+sized the importance of considering SRE from the start                 testers typically use misuse cases, threat models, and design
+of the secure software development process. We list down               documents’’ [14]. Following the completion of security test-
+(See Table 10) the commonly used best practices for han-               ing, test documents containing security test cases and a pri-
+dling security issues during the requirement stage of SDLC             oritized list of vulnerabilities resulting from automated and
+[2], [22], [24], [59], [64], [67], [90], [104]–[106].                  manual dynamic analysis are created [14]. Table 13 shows
+
+
+5468                                                                                                                                  VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 12. Secure coding practices (SCP).
+
+
+
+
+VOLUME 10, 2022                                                                             5469
+                                                        R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 12. (Continued.) Secure coding practices (SCP).
+
+
+
+
+5470                                                                                                                             VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 12. (Continued.) Secure coding practices (SCP).
+
+
+
+
+prescriptive actions to increase security during the testing                        mitigation practices. Software security is now a primary need
+phase of SDLC [5], [22], [25], [95]–[98], [105], [112], [113].                      for secure software development (SSD) at every phase of
+                                                                                    the SDLC. We conclude from the preceding discussion that
+5) BEST PRACTICES FOR DEPLOYING SECURE SOFTWARE                                     securing software systems in the post-development phases is
+After the software is deployed into its operational envi-                           insufficient, and better ways and means of securing software
+ronment, it is important to monitor responses to flaws and                          systems are urgently required. To summarize, software secu-
+vulnerabilities of the system to check for new evolved secu-                        rity is an important feature that should be given top priority.
+rity patterns [66], [91]. After identifying new security pat-                       Many software projects have failed in the past due to a lack of
+terns, the same should bed included in the requirement stage                        attention on the security factor. Testing software for security
+for further security improvements in subsequent releases                            after it has been developed is not only time-consuming and
+[66], [91]. Static analysis and peer review are two use-                            difficult, but it also adds to the project’s complexity and
+ful procedures for mitigating or minimizing newly discov-                           more cost. Secure software engineering (SSE) believes that
+ered vulnerabilities [14]. Final security reviews and audits                        software security is a critical factor that should be assessed
+are performed during the secure deployment phase [14].                              early in the SDLC process [119]. To build and deploy a secure
+At this phase, customer satisfaction is also very important.                        software system, we need to integrate security features into
+Table 14 presents prescriptive actions to increase security                         our application development life cycle and adapt the latest
+during the deployment phase of SDLC [5], [14], [98], [105],                         SSE practices [3], [4].
+[114], [115].                                                                          Backward compatibility will be harmed if security is added
+                                                                                    after deployment since it will change functionality and/or
+6) BEST PRACTICES FOR MAINTAINING SECURE SOFTWARE                                   application interfaces. Because adding security takes more
+Before deploying software, administrators must first under-                         time and money than doing it from the beginning, it is less
+stand the software’s security stance. Some of the identified                        likely to be done effectively or with care. In view of the
+faults that were not addressed previously will be revisited,                        necessity of incorporating security into the development life-
+prioritized, and corrected after deployment. New threats are                        cycle, the authors of this study endeavored to establish a
+tracked during this phase. The software can never be 100 per-                       methodology that addresses security across the SDLC.
+cent secure, and new threats emerge regularly phase [14].                              The purpose of this article is to identify security issues and
+As a result, efforts must be made to secure the software.                           to give a set of development techniques, guidelines, activities,
+The maintenance team should keep track of new threats that                          principles, and rules to help developers create more secure
+the system encounters to address them promptly and prevent                          software. In the light of the importance of software security,
+security breaches [83], [116]. Table 15 presents prescriptive                       we conducted a thorough systematic literature review and
+actions to increase security during the maintenance phase of                        identified 145 security risks and 424 security practices for
+SDLC [14], [65], [105], [114], [117], [118].                                        managing security in the SDLC to integrate security into the
+                                                                                    overall development cycle. This study is prescriptive and can
+V. CONCLUSION AND FUTURE WORK                                                       provide software developers with simple security guidelines
+The above discussion has highlighted the brief details of                           at each stage of the SDLC. It covers a six-phase SDLC and the
+SDLC phases along with the security issues and their                                prescriptive activities that must be completed at each stage.
+
+
+VOLUME 10, 2022                                                                                                                                 5471
+                                                            R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 13. Secure testing practices (STP).
+
+
+
+
+The software development stages are Requirement, Design,              systems [32]. We conclude that ‘‘lack of developing threat
+Coding, Testing, Deployment, and Maintenance.                         modeling,’’ ‘‘improper secure design documentation,’’ and
+   The findings of this study show that security risks in the RE      ‘‘lack of attention to follow security design principles’’ are
+phase of the SDLC are a highly rated factor, in the develop-          the three topmost security issues in the design phase. To mit-
+ment of secure software. It stands on the top (97.5%) amongst         igate the risks in the design phase, Table 5 presents that
+all the identified security risks. We conclude that many soft-        ‘‘enumerate threats and prioritize the threat based on the
+ware security issues stem from insufficient or incorrect iden-        potential impact,’’ ‘‘follow least privilege design principle,’’
+tification, documentation, analysis, mapping, prioritization,         ‘‘implement a defense-in-depth policy which includes mul-
+specification, and availability of security requirements. The         tilevel security,’’ ‘‘revise or review design implementation,’’
+importance of identifying non-functional security require-            and ‘‘implement security design decisions: (security crypto-
+ments should be stressed more because it aids in the reduction        graphic protocols, standards, services, and mechanisms)’’ are
+or elimination of software vulnerabilities [2], [61], [100].          the most highlighted security practices in the design phase.
+Misuse cases are similar to use cases in that they specify               The antivirus, intrusion detection mechanisms, and fire-
+what a system should not do, and they are a great way to get          walls are not enough to reduce the risk in the coding phase of
+security requirements [97], [100]–[102].                              the SDLC. It needs further various suitable security defenses,
+   Section IV-A shows that software security risks were high-         practices, analysis, and countermeasures that result in further
+lighted in the design phase of the SDLC in 64 percent of              secure the released code [74], [75]. The findings of this study
+the studies in our SLR. This is because design-level flaws            show that ‘‘software security often fail because their devel-
+are the most common sources of security risks in software             opment is generally based on ad-hoc foundations or follow
+
+
+5472                                                                                                                                 VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 14. Secure deployment practices (SDeP).
+
+
+
+
+traditional development processes,’’ ‘‘lack of using secure                         existing environment can be difficult. Patches are developed
+coding practices,’’ ‘‘lack of security awareness, training,’’                       to address the flaws, but the software remains vulnerable to
+‘‘messy code, code bad smells, dead code,’’ and ‘‘buffer and                        a variety of security threats. In this stage, it is important to
+array overflow’’ are the topmost security risks in the coding                       monitor responses to flaws and vulnerabilities of the system
+phase. To mitigate these risks, software development orga-                          to check for newly evolved security threats. ‘‘After identify-
+nizations need to ‘‘perform code review,’’ ‘‘provide security                       ing new security risks, the same should be included in the
+knowledge and training to software developers,’’ ‘‘implement                        requirement stage for further security improvements in sub-
+static code analysis’’ and ‘‘secure code writing’’ during the                       sequent releases’’ [66], [91]. Static analysis and peer review
+secure design phase.                                                                are two useful procedures for mitigating or minimizing
+   Section IV-A portrays that software security was consid-                         newly discovered vulnerabilities [14]. Final security reviews
+ered in the testing phase of the SDLC in 53 percent of the                          and audits are performed during the secure deployment
+studies. The security testing approach is one of the most                           phase [14].
+important, efficient, and widely used methods for improving                            Similarly, we aimed to discover any security-related risks
+software security, as it is used to detect vulnerabilities and                      and their practices in the software maintenance phase of
+ensure security functionality. Threat modeling is a systematic                      the SDLC. The maintenance team should keep track of new
+method for identifying threats that may compromise security,                        threats that the system encounters. We conclude that ‘‘per-
+and it is considered a well-known accepted practice by the                          form static analysis,’’ ‘‘perform final security review to find
+software testing industry [94]. We conclude that ‘‘lack of                          any remaining security flaws,’’ ‘‘perform security assessment
+static, dynamic, penetration, and vulnerability analysis secu-                      and secure configuration,’’ ‘‘establish a plan to review to
+rity testing,’’ ‘‘lack of secure test cases’’ and ‘‘lack of security                reduce the time and resources’’ and ‘‘analyze the overall state
+test documentations’’ are the topmost security risks in the                         of the software’’ are the most cited practices for the secure
+testing phase of the SDLC. Table 13 presents that ‘‘perform                         maintenance of software.
+penetration, static and dynamic analysis, fuzz testing, and                            Based on the foregoing discussion, we conclude that
+vulnerability scanning testing,’’ ‘‘develop threat models: it                       securing software systems in the post-development phases
+helps to develop test cases or test plans’’ and ‘‘use manually                      is insufficient and that better ways and means of securing
+reviewing the code’’ are the most highlighted security prac-                        software systems in the early stages are urgently required.
+tices for secure testing.                                                           To incorporate security in the overall SDLC, we have done
+   The deployment stage deals with release and change man-                          a detailed literature review and identified 145 security risks
+agement. The software is installed in its real environment at                       and 424 best practices that help software development orga-
+this stage. It may appear easy, but integrating software into an                    nizations to manage the security in each phase of the SDLC.
+
+VOLUME 10, 2022                                                                                                                                5473
+                                                            R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 15. Secure maintenance practices (SMP).
+
+
+
+
+The important activities to follow during the development                RQ1: According to the industrial survey, what are the secu-
+lifecycle to build secure software were specified in this study.      rity threats to the development of secure software products
+The specified actions are successfully incorporated into each         that GSD vendor organizations should avoid?
+phase of the SDLC, reducing effort, time, and budget while               RQ2: What are the mitigation practices that GSD vendor
+delivering secure software. This effort should aid software           organizations can use to create secure software products,
+development companies in increasing the security level of             as identified during the industrial survey?
+their goods and improving their security performance. This               RQ3: Is the proposed software security assurance model
+will raise the developer’s understanding of secure develop-           capable of assisting GSD vendor organizations in determin-
+ment methods as well.                                                 ing their readiness to develop secure software?
+   In the future, we intend to develop a software secu-
+rity assurance model [19] for global software develop-                 VI. THREATS TO VALIDITY
+ment (GSD) vendor organizations. This model will assist               The study’s validity is concerned with the reliability of its
+GSD vendors to determine their readiness for secure soft-             findings. The following are the limitations for this systematic
+ware development. We will develop the model using the                 literature review:
+results of this study, industrial survey, case study, super-
+visor inputs, and lessons learned from the existing studies               •   Construct Validity
+( [2], [5], [20], [51], [64], [100]). The model will gener-           To broaden the scope of the study, we conducted a systematic
+ate several assessment reports, including a list of security          search using a wide range of words in the sample. The study’s
+risks/threats and their practices that GSD vendor organiza-           keywords were included after thorough discussions and sug-
+tions will use in each phase of the SDLC. In the future, we aim       gestions by the two authors to ensure the validity of the study
+to answer the following research questions (RQs) to achieve           and to include as much relevant literature as possible. Another
+the above-mentioned objectives:                                       threat to build validity was the use of digital libraries for the
+
+5474                                                                                                                                 VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 16. Selected studies and quality assessment score.
+
+
+
+
+VOLUME 10, 2022                                                                             5475
+                                                                   R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 16. (Continued.) Selected studies and quality assessment score.
+
+
+
+
+5476                                                                                                                                        VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 16. (Continued.) Selected studies and quality assessment score.
+
+
+
+
+VOLUME 10, 2022                                                                             5477
+                                                                   R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+TABLE 16. (Continued.) Selected studies and quality assessment score.
+
+
+
+
+studies. This threat was mitigated by identifying six digital                 APPENDIX
+libraries as key sources in such a domain.                                   See Table 16.
+  •    Internal Validity
+                                                                              ACKNOWLEDGMENT
+Internal validity threats have been reduced to the point                     The authors appreciate all of the critiques and ideas from the
+where all interested readers are encouraged to view the data                 Software Engineering Research Group at the University of
+extracted from the papers of the studies displayed without                   Malakand (SERG UOM).
+restrictions.
+  •    Conclusion Validity                                                    REFERENCES
+                                                                                [1] M. Tatam, B. Shanmugam, S. Azam, and K. Kannoorpatti, ‘‘A review of
+To minimize the threats, each step of the data collection,                          threat modelling approaches for APT-style attacks,’’ Heliyon, vol. 7, no. 1,
+extraction, and analysis was checked through a systematic                           Jan. 2021, Art. no. e05969.
+                                                                                [2] M. Niazi, A. M. Saeed, M. Alshayeb, S. Mahmood, and S. Zafar,
+process and periodic reviews by the participating authors. The                      ‘‘A maturity model for secure requirements engineering,’’ Comput. Secur.,
+rationale for this move was that the same method has been                           vol. 95, Aug. 2020, Art. no. 101852.
+used in the literature for similar studies.                                     [3] M. Zhang, X. D. C. D. Carnavalet, L. Wang, and A. Ragab, ‘‘Large-scale
+                                                                                    empirical study of important features indicative of discovered vulnerabil-
+  •    External Validity                                                            ities to assess application security,’’ IEEE Trans. Inf. Forensics Security,
+                                                                                    vol. 14, no. 9, pp. 2315–2330, Sep. 2019.
+External validity includes how much it is possible to general-                  [4] G. McGraw, ‘‘Six tech trends impacting software security,’’ Computer,
+                                                                                    vol. 50, no. 5, pp. 100–102, May 2017.
+ize the outcomes of this study. To reduce this issue, the ratio
+                                                                                [5] J. C. S. Nunez, A. C. Lindo, and P. G. Rodriguez, ‘‘A preventive secure
+of security risks and their practices have been included in this                    software development model for a software factory: A case study,’’ IEEE
+work.                                                                               Access, vol. 8, pp. 77653–77665, 2020.
+
+5478                                                                                                                                           VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+  [6] S. Von Solms and L. A. Futcher, ‘‘Adaption of a secure software develop-       [30] S. Rafi, W. Yu, M. A. Akbar, A. Alsanad, and A. Gumaei, ‘‘Prioritization
+      ment methodology for secure engineering design,’’ IEEE Access, vol. 8,              based taxonomy of DevOps security challenges using PROMETHEE,’’
+      pp. 125630–125637, 2020.                                                            IEEE Access, vol. 8, pp. 105426–105446, 2020.
+  [7] M. Z. Gunduz and R. Das, ‘‘Cyber-security on smart grid: Threats               [31] A. Hudaib, M. Alshraideh, O. Surakhi, and M. Alkhanafseh, ‘‘A survey
+      and potential solutions,’’ Comput. Netw., vol. 169, Mar. 2020,                      on design methods for secure software development,’’ Int. J. Comput.
+      Art. no. 107094.                                                                    Techol., vol. 16, pp. 7047–7064, Dec. 2017.
+  [8] J. Li, Y. Zhang, X. Chen, and Y. Xiang, ‘‘Secure attribute-based data          [32] R. A. Khan, S. U. Khan, H. U. Khan, and M. Ilyas, ‘‘Systematic mapping
+      sharing for resource-limited users in cloud computing,’’ Comput. Secur.,            study on security approaches in secure software engineering,’’ IEEE
+      vol. 72, pp. 1–12, Jan. 2018.                                                       Access, vol. 9, pp. 19139–19160, 2021.
+  [9] A. Sharma and M. P. Kumar, ‘‘Aspects of enhancing security in software         [33] G. McGraw, ‘‘From the ground up: The DIMACS software security
+      development life cycle,’’ Adv. Comput. Sci. Technol., vol. 10, no. 2,               workshop,’’ IEEE Secur. Privacy, vol. 1, no. 2, pp. 59–66, Mar. 2003.
+      pp. 203–210, 2017.                                                             [34] R. M. Parizi, K. Qian, H. Shahriar, F. Wu, and L. Tao, ‘‘Benchmark
+ [10] W. Khreich, S. S. Murtaza, A. Hamou-Lhadj, and C. Talhi, ‘‘Combining                requirements for assessing software security vulnerability testing tools,’’
+      heterogeneous anomaly detectors for improved software security,’’ J. Syst.          in Proc. 42nd Annu. Comput. Softw. Appl. Conf. (COMPSAC), Jul. 2018,
+      Softw., vol. 137, pp. 415–429, Mar. 2018.                                           pp. 825–826.
+ [11] S. Hosseinzadeh, S. Rauti, S. Laurén, and J.-M. Mäkelä, ‘‘Diversification      [35] P. R. Khan, ‘‘Secure software development: A prescriptive framework,’’
+      and obfuscation techniques for software security: A systematic literature           Comput. Fraud Secur., vol. 2011, pp. 12–20, Jan. 2011.
+      review,’’ Inf. Softw. Technol., vol. 104, pp. 72–93, Dec. 2018.                [36] B. Potter and G. McGraw, ‘‘Software security testing,’’ IEEE Security
+ [12] E. K. Szczepaniuk, H. Szczepaniuk, T. Rokicki, and B. Klepacki, ‘‘Infor-            Privacy, vol. 2, no. 5, pp. 81–85, Sep. 2004.
+      mation security assessment in public administration,’’ Comput. Secur.,         [37] D. Verdon and G. McGraw, ‘‘Risk analysis in software design,’’ IEEE
+      vol. 90, Mar. 2020, Art. no. 101709.                                                Security Privacy, vol. 2, no. 4, pp. 79–84, Jul. 2004.
+ [13] M. A. Akbar, A. Alsanad, S. Mahmood, and A. Alothaim, ‘‘A multicriteria        [38] S. Lipner, ‘‘The trustworthy computing security development lifecycle,’’
+      decision making taxonomy of IoT security challenging factors,’’ IEEE                in Proc. 20th Annu. Comput. Secur. Appl. Conf., 2004, pp. 2–13.
+      Access, vol. 9, pp. 128841–128861, 2021.                                       [39] S. Gupta, M. Faisal, and M. Husain, ‘‘Secure software development
+ [14] R. Khan, ‘‘Secure software development: A prescriptive framework,’’                 process for embedded systems control,’’ Int. J. Eng. Sci. Emerg. Technol.,
+      Comput. Fraud Secur., vol. 2011, no. 8, pp. 12–20, Aug. 2011.                       vol. 4, pp. 133–143, Dec. 2012.
+ [15] A. K. Srivastava and S. Kumar, ‘‘An effective computational technique for      [40] M. Essafi, L. Jilani, and H. Ben Ghezala, ‘‘S2D-Prom: A strategy oriented
+      taxonomic position of security vulnerability in software development,’’             process model for secure software development,’’ in Proc. Int. Conf.
+      J. Comput. Sci., vol. 25, pp. 388–396, Mar. 2018.                                   Softw. Eng. Adv., Aug. 2007, pp. 24–28.
+ [16] D. Mellado, C. Blanco, L. E. Sánchez, and E. Fernández-Medina, ‘‘A sys-        [41] J. Manico, ‘‘OWASP,’’ in Proc. Appl. Secur. Verification Standard, 2016,
+      tematic review of security requirements engineering,’’ Comput. Standards            pp. 1–70.
+      Interfaces, vol. 32, no. 4, pp. 153–165, 2010.                                 [42] W. Li and T. Chiueh, ‘‘Automated format string attack prevention for
+ [17] I. Velásquez, A. Caro, and A. Rodríguez, ‘‘Authentication schemes and               Win32/X86 binaries,’’ in Proc. 23rd Annu. Comput. Secur. Appl. Conf.,
+      methods: A systematic literature review,’’ Inf. Softw. Technol., vol. 94,           Dec. 2007, pp. 398–409.
+      pp. 30–37, Feb. 2018.                                                          [43] H. Peine, ‘‘Rules of thumb for developing secure software: Analyzing
+ [18] Y. Lee and G. Lee, ‘‘HW-CDI: Hard-wired control data integrity,’’ IEEE              and consolidating two proposed sets of rules,’’ in Proc. 3rd Int. Conf.
+      Access, vol. 7, pp. 10811–10822, 2019.                                              Availability, Rel. Secur., Mar. 2008, pp. 1204–1209.
+ [19] R. A. Khan and S. U. Khan, ‘‘A preliminary structure of software security      [44] A. Hall and R. Chapman, ‘‘Correctness by construction: Developing
+      assurance model,’’ in Proc. 13th Int. Conf. Global Softw. Eng., Gothen-             a commercial secure system,’’ IEEE Softw., vol. 19, no. 1, pp. 18–25,
+      burg, Sweden, May 2018, pp. 137–140.                                                Jan. 2002.
+ [20] H. Al-Matouq, S. Mahmood, M. Alshayeb, and M. Niazi, ‘‘A maturity              [45] I. Flechais, C. Mascolo, and M. A. Sasse, ‘‘Integrating security
+      model for secure software design: A multivocal study,’’ IEEE Access,                and usability into the requirements and design process,’’ Int.
+      vol. 8, pp. 215758–215776, 2020.                                                    J. Electron. Secur. Digit. Forensic, vol. 1, no. 1, pp. 12–26,
+ [21] S. Moyo and E. Mnkandla, ‘‘A novel lightweight solo software devel-                 2007.
+      opment methodology with optimum security practices,’’ IEEE Access,             [46] B. Subedi, A. Alsadoon, P. W. C. Prasad, and A. Elchouemi, ‘‘Secure
+      vol. 8, pp. 33735–33747, 2020.                                                      paradigm for web application development,’’ in Proc. 15th RoEduNet
+ [22] N. S. A. Karim, A. Albuolayan, T. Saba, and A. Rehman, ‘‘The prac-                  Conf., Netw. Educ. Res., Sep. 2016, pp. 1–6.
+      tice of secure software development in SDLC: An investigation through          [47] A. S. Sodiya, S. A. Onashoga, and O. B. Ajayi, ‘‘Towards building
+      existing model and a case study,’’ Secur. Commun. Netw., vol. 9, no. 18,            secure software systems,’’ Issues Informing Sci. Inf. Technol., vol. 3,
+      pp. 5333–5345, Dec. 2016.                                                           pp. 635–646, 2006.
+ [23] S. R. Ahmed, ‘‘Secure software development—Identification of secu-             [48] N. Mead and T. Stehney, ‘‘Security quality requirements engineering
+      rity activities and their integration in software development lifecycle,’’          (SQUARE) methodology,’’ ACM SIGSOFT Softw. Eng. Notes, vol. 30,
+      M.S. thesis, School Eng., Blekinge Inst. Technol., Ronneby, Sweden,                 pp. 1–7, Jul. 2005.
+      2007.                                                                          [49] B. Kitchenham, O. P. Brereton, D. Budgen, M. Turner, J. Bailey, and
+ [24] S. Z. Hlaing and K. Ochimizu, ‘‘An integrated cost-effective security               S. Linkman, ‘‘Systematic literature reviews in software engineering—A
+      requirement engineering process in SDLC using FRAM,’’ in Proc. CSCI,                systematic literature review,’’ Inf. Softw. Technol., vol. 51, no. 1, pp. 7–15,
+      Dec. 2018, pp. 852–857.                                                             Jan. 2009.
+ [25] M. Khari and P. Kumar, ‘‘Embedding security in software development            [50] B. Kitchenham and C. Charters, ‘‘Guidelines for performing systematic
+      life cycle (SDLC),’’ in Proc. 3rd Int. Conf. Comput. Sustain. Global                literature reviews in software engineering,’’ Keele Univ., Keele, U.K.,
+      Develop., Mar. 2016, pp. 2182–2186.                                                 Joint Rep. EBSE 2007-001, 2007.
+ [26] N. M. Mohammed, M. Niazi, M. Alshayeb, and S. Mahmood, ‘‘Explor-               [51] R. A. Khan, M. Y. Idris, S. U. Khan, M. Ilyas, S. Ali, A. U. Din,
+      ing software security approaches in software development lifecycle:                 G. Murtaza, and A. W. Wahid, ‘‘An evaluation framework for commu-
+      A systematic mapping study,’’ Comput. Standards Interface, vol. 50,                 nication and coordination processes in offshore software development
+      pp. 107–115, Feb. 2017.                                                             outsourcing relationship: Using fuzzy methods,’’ IEEE Access, vol. 7,
+ [27] P. Silva, R. Noël, M. Gallego, S. Matalonga, and H. Astudillo, ‘‘Software           pp. 112879–112906, 2019.
+      development initiatives to identify and mitigate security threats—A sys-       [52] F. de F. S. M. Russo and R. Camanho, ‘‘Criteria in AHP: A system-
+      tematic mapping,’’ in Proc. CIbSE, 2016, pp. 257–270.                               atic review of literature,’’ Proc. Comput. Sci., vol. 55, pp. 1123–1132,
+ [28] A. S. Guinea, G. Nain, and Y. L. Traon, ‘‘A systematic review on the                Jul. 2015.
+      engineering of software for ubiquitous systems,’’ J. Syst. Softw., vol. 118,   [53] S. U. Khan, M. Niazi, and R. Ahmad, ‘‘Factors influencing clients in the
+      pp. 251–276, Aug. 2016.                                                             selection of offshore software outsourcing vendors: An exploratory study
+ [29] C. Meshram, A. Alsanad, J. V. Tembhurne, S. W. Shende, K. W. Kalare,                using a systematic literature review,’’ J. Syst. Softw., vol. 84, pp. 686–699,
+      S. G. Meshram, M. A. Akbar, and A. Gumaei, ‘‘A provably secure                      Apr. 2011.
+      lightweight subtree-based short signature scheme with fuzzy user data          [54] M. Staples and M. Niazi, ‘‘Systematic review of organizational moti-
+      sharing for human-centered IoT,’’ IEEE Access, vol. 9, pp. 3649–3659,               vations for adopting CMM-based SPI,’’ Inf. Softw. Technol., vol. 50,
+      2021.                                                                               nos. 7–8, pp. 605–620, Jun. 2008.
+
+
+VOLUME 10, 2022                                                                                                                                                    5479
+                                                                              R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+[55] A. A. Khan, J. Keung, M. Niazi, S. Hussain, and A. Ahmad, ‘‘System-                 [80] J. Li, Y. K. Li, X. Chen, P. P. C. Lee, and W. Lou, ‘‘A hybrid cloud
+     atic literature review and empirical investigation of barriers to process                approach for secure authorized deduplication,’’ IEEE Trans. Parallel
+     improvement in global software development: Client-vendor perspec-                       Distrib. Syst., vol. 26, no. 5, pp. 1206–1216, Dec. 2015.
+     tive,’’ Inf. Softw. Technol., vol. 87, pp. 180–205, Jul. 2017.                      [81] A. Apvrille and M. Pourzandi, ‘‘Secure software development by exam-
+[56] H. Zhang, M. A. Babar, and P. Tell, ‘‘Identifying relevant studies in soft-              ple,’’ IEEE Security Privacy, vol. 3, no. 4, pp. 10–17, Jul. 2005.
+     ware engineering,’’ Inf. Softw. Technol., vol. 53, pp. 625–637, Jun. 2011.          [82] M. Almorsy, J. Grundy, and A. S. Ibrahim, ‘‘Automated software archi-
+[57] L. Chen, M. A. Babar, and H. N. Zhang, ‘‘Towards an evidence-based                       tecture security risk analysis using formalized signatures,’’ in Proc. ICSE,
+     understanding of electronic data sources,’’ in Proc. Electron. Workshops                 May 2013, pp. 662–671.
+     Comput., Apr. 2010, pp. 135–138.                                                    [83] R. Cope, ‘‘Strong security starts with software development,’’ Netw.
+[58] S. Mahmood, S. Anwer, M. Niazi, M. Alshayeb, and I. Richardson, ‘‘Key                    Secur., vol. 2020, no. 7, pp. 6–9, Jul. 2020.
+     factors that influence task allocation in global software development,’’            [84] D. Kaur and P. Kaur, ‘‘Empirical analysis of web attacks,’’ Proc. Comput.
+     Inf. Softw. Technol., vol. 91, pp. 102–122, Nov. 2017.                                   Sci., vol. 78, pp. 298–306, Jan. 2016.
+[59] I. Keshta, M. Niazi, and M. Alshayeb, ‘‘Towards implementation of                   [85] A. Hazeyama, M. Saito, N. Yoshioka, A. Kumagai, T. Kobashi,
+     requirements management specific practices (SP1.3 and SP1.4) for Saudi                   H. Washizaki, H. Kaiya, and T. Okubo, ‘‘Case base for secure software
+     Arabian small and medium sized software development organizations,’’                     development using software security knowledge base,’’ in Proc. IEEE
+     IEEE Access, vol. 5, pp. 24162–24183, 2017.                                              39th Annu. Comput. Softw. Appl. Conf., Jul. 2015, pp. 97–103.
+[60] B. Kitchenham and P. Brereton, ‘‘A systematic review of systematic                  [86] M. U. A. Khan and M. Zulkernine, ‘‘On selecting appropriate develop-
+     review process research in software engineering,’’ Inf. Softw. Technol.,                 ment processes and requirements engineering methods for secure soft-
+     vol. 55, pp. 2049–2075, Dec. 2013.                                                       ware,’’ in Proc. 33rd Annu. Int. Comput. Softw. Appl. Conf., Jul. 2009,
+[61] M. Sulayman and E. Mendes, ‘‘A systematic literature review of software                  pp. 353–358.
+     process improvement in small and medium web companies,’’ in Advances                [87] D. Baca and K. Petersen, ‘‘Countermeasure graphs for software security
+     in Software Engineering. Berlin, Germany: Springer, 2009, pp. 1–8.                       risk assessment: An action research,’’ J. Syst. Softw., vol. 86, no. 9,
+[62] W. Afzal, R. Torkar, and R. Feldt, ‘‘A systematic review of search-based                 pp. 2411–2428, Sep. 2013.
+     testing for non-functional system properties,’’ Inf. Softw. Technol., vol. 51,      [88] CWE-Common Weakness Enumeration. Accessed: Mar. 18, 2021.
+     no. 6, pp. 957–976, 2009.                                                                [Online]. Available: https://cwe.mitre.org/
+[63] V. Alexander and Y. M. Eun, Analyzing Rater Agreement. Oxfordshire,                 [89] A. Masood and J. Java, ‘‘Static analysis for web service security—
+     U.K.: Taylor & Francis, 2005.                                                            Tools & techniques for a secure development life cycle,’’ in Proc. HST,
+[64] Y. Mufti, M. Niazi, M. Alshayeb, and S. Mahmood, ‘‘A readiness                           Apr. 2015, pp. 1–6.
+     model for security requirements engineering,’’ IEEE Access, vol. 6,                 [90] W. S. Al-Shorafat, ‘‘Security in software engineering requirement,’’
+     pp. 28611–28631, 2018.                                                                   in Proc. Int. Conf. Internet Technol. Secured Trans., Dec. 2013,
+[65] H. Oueslati, M. M. Rahman, and L. B. Othmane, ‘‘Literature review of                     pp. 666–673.
+     the challenges of developing secure software using the agile approach,’’            [91] G. Pedraza-Garcäa, R. Noël, S. Matalonga, H. Astudillo, and
+     in Proc. 10th Int. Conf. Availability, Rel. Secur., Aug. 2015, pp. 540–547.              E. B. Fernandez, ‘‘Mitigating security threats using tactics and patterns:
+[66] S. Yahya, M. Kamalrudin, S. Sidek, M. Jaimun, J. Yusof, A. K. Hua,                       A controlled experiment,’’ in Proc. 10th Eur. Conf. Softw. Archit.
+     and P. Gani, ‘‘A review paper: Security requirement patterns for a secure                Workshops, Copenhagen, Denmark, 2016, p. 37.
+     software development,’’ in Proc. 1st Int. Conf. Artif. Intell. Data Sci.            [92] I. Rehman and S. Malik, ‘‘The impact of test case reduction and prior-
+     (AiDAS), Sep. 2019, pp. 146–151.                                                         itization on software testing effectiveness,’’ in Proc. Int. Conf. Emerg.
+[67] P. Salini and S. Kanmani, ‘‘Survey and analysis on security require-                     Technol., Oct. 2009, pp. 416–421.
+     ments engineering,’’ Comput. Electr. Eng., vol. 38, no. 6, pp. 1785–1797,           [93] H. Mouratidis, P. Giorgini, and G. Manson, ‘‘When security meets soft-
+     Nov. 2012.                                                                               ware engineering: A case of modelling secure information systems,’’ Inf.
+[68] A. Van Den Berghe, R. Scandariato, K. Yskout, and W. Joosen, ‘‘Design                    Syst., vol. 30, no. 8, pp. 609–629, Dec. 2005.
+     notations for secure software: A systematic literature review,’’ Softw. Syst.       [94] D. Basin, J. Doser, and T. Lodderstedt, ‘‘Model driven security: From
+     Model., vol. 16, no. 3, pp. 809–831, Jul. 2017.                                          UML models to access control infrastructures,’’ ACM Trans. Softw. Eng.
+[69] V. Maheshwari and M. Prasana, ‘‘Integrating risk assessment and threat                   Methodol., vol. 15, no. 1, pp. 39–91, 2006.
+     modeling within SDLC process,’’ in Proc. ICICT, Aug. 2016, pp. 1–5.                 [95] H. Nina, J. A. Pow-Sang, and M. Villavicencio, ‘‘Systematic mapping
+[70] K. Khan, R. Ahmad, and I. Yazid, ‘‘Systematic mapping study protocol                     of the literature on secure software development,’’ IEEE Access, vol. 9,
+     for secure software engineering,’’ in Proc. AIMC, 2019, pp. 367–374.                     pp. 36852–36867, 2021.
+[71] L. Y. Banowosari and B. A. Gifari, ‘‘System analysis and design using               [96] C. Camacho, S. Marczak, and T. Conte, ‘‘On the identification of best
+     secure software development life cycle based on ISO 31000 and STRIDE.                    practices for improving the efficiency of testing activities in distributed
+     Case study mutiara ban workshop,’’ in Proc. 4th Int. Conf. Informat.                     software projects preliminary findings from an empirical study,’’ in
+     Comput. (ICIC), Oct. 2019, pp. 1–6.                                                      Proc. IEEE 8th Int. Conf. Global Softw. Eng. Workshops, Aug. 2013,
+[72] G. Pedraza-Garcia, H. Astudillo, and D. Correal, ‘‘A methodological                      pp. 1–4.
+     approach to apply security tactics in software architecture design,’’ in            [97] A. Marback, H. Do, K. He, S. Kondamarri, and D. Xu, ‘‘A threat model-
+     Proc. Colombian Conf. Commun. Comput., Jun. 2014, pp. 1–8.                               based approach to security testing,’’ Softw., Pract. Exper., vol. 43, no. 2,
+[73] T. Doan, S. Demurjian, T. C. Ting, and A. Ketterl, ‘‘MAC and UML for                     pp. 241–258, Feb. 2013.
+     secure software design,’’ in Proc. ACM workshop Formal methods Secur.               [98] Y. Tung, S. Lo, J. Shih, and H. Lin, ‘‘An integrated security testing
+     Eng., Washington DC, USA, 2004, pp. 75–85.                                               framework for secure software development life cycle,’’ in Proc. 18th
+[74] R. C. Seacord, Secure Coding in C and C++. Reading, MA, USA:                             Asia–Pacific Netw. Oper. Manage. Symp., Oct. 2016, pp. 1–4.
+     Addison-Wesley, 2013.                                                               [99] A. R. S. Farhan and G. M. M. Mostafa, ‘‘A methodology for enhancing
+[75] A. Mousa, M. Karabatak, and T. Mustafa, ‘‘Database security threats and                  software security during development processes,’’ in Proc. 21st Saudi
+     challenges,’’ in Proc. 8th Int. Symp. Digit. Forensics Secur., Jun. 2020,                Comput. Soc. Nat. Comput. Conf., Apr. 208, pp. 1–6.
+     pp. 1–5.                                                                           [100] A. Muhammad and A. Shafique, ‘‘Model driven architecture for secure
+[76] D. Kleidermacher, ‘‘Integrating static analysis into a secure soft-                      software development life cycle,’’ Int. J. Comput. Sci. Inf. Secur., vol. 14,
+     ware development process,’’ in Proc. Conf. Technol. Homeland Secur.,                     no. 6, pp. 649–661, 2016.
+     May 2008, pp. 367–371.                                                             [101] V. Suburayan, ‘‘Software development life cycle model to improve main-
+[77] H. Shirazi, ‘‘A new model for secure software development,’’ Int. J. Intell.             tainability of software applications,’’ in Proc. 4th Int. Conf. Adv. Comput.
+     Inf. Technol. Appl., vol. 3, pp. 136—143, Jan. 2009.                                     Commun., 2018, pp. 270–273.
+[78] D. Hein and H. Saiedian, ‘‘Secure software engineering: Learning from              [102] L. Catuogno, C. Galdi, and G. Persiano, ‘‘Secure dependency enforce-
+     the past to address future challenges,’’ Inf. Secur. J., Global Perspective,             ment in package management systems,’’ IEEE Trans. Dependable Secure
+     vol. 18, no. 1, pp. 8–25, Feb. 2009.                                                     Comput., vol. 17, no. 2, pp. 377–390, Oct. 2020.
+[79] G. Deepa and P. S. Thilagam, ‘‘Securing web applications from injection            [103] S. Islam and W. Dong, ‘‘Human factors in software security risk man-
+     and logic vulnerabilities: Approaches and challenges,’’ Inf. Softw. Tech-                agement,’’ in Proc. 1st Int. workshop Leadership Manage. Softw. Archit.,
+     nol., vol. 74, pp. 160–180, Jun. 2016.                                                   Leipzig, Germany, 2008, pp. 13–16.
+
+
+
+
+5480                                                                                                                                                      VOLUME 10, 2022
+R. A. Khan et al.: SLR on Security Risks and Its Practices in Secure Software Development
+
+
+
+
+[104] M. Younas, M. A. Shah, D. N. A. Jawawi, M. K. Ishfaq, M. Awais,                                          SIFFAT ULLAH KHAN received the Ph.D. degree
+      K. Wakil, and A. Mustafa, ‘‘Elicitation of nonfunctional requirements in                                 in computer science from Keele University, U.K.,
+      agile development using cloud computing environment,’’ IEEE Access,                                      in 2011.
+      vol. 8, pp. 209153–209162, 2020.                                                                            He was the Head of the Department of Software
+[105] A.-U.-H. Yasar, D. Preuveneers, Y. Berbers, and G. Bhatti, ‘‘Best prac-                                  Engineering, University of Malakand, Pakistan,
+      tices for software security: An overview,’’ in Proc. IEEE Int. Multitopic                                for three years, where he was also the Chair-
+      Conf., Dec. 2008, pp. 169–173.
+                                                                                                               person of the Department of Computer Science
+[106] R. A. Khan, S. U. Khan, M. Ilyas, and M. Y. Idris, ‘‘The state of the art on
+      secure software engineering: A systematic mapping study,’’ in Proc. Eval.                                and IT and is currently an Associate Professor
+      Assessment Softw. Eng., Trondheim, Norway, vol. 2020, pp. 487–492.                                       in computer science. He is also the Founder and
+[107] L. B. Othmane, P. Angin, H. Weffers, and B. Bhargava, ‘‘Extending                                        the Leader of the Software Engineering Research
+      the agile development process to develop acceptably secure software,’’         Group, University of Malakand. He has successfully supervised ten M.Phil.
+      IEEE Trans. Dependable Secure Comput., vol. 11, no. 6, pp. 497–509,            and four Ph.D. scholars. He has authored over 100 articles, so far,
+      Nov. 2014.                                                                     in well-reputed international conferences and journals. His research interests
+[108] H. Mumtaz, M. Alshayeb, S. Mahmood, and M. Niazi, ‘‘An empirical               include software outsourcing, empirical software engineering, agile software
+      study to improve software security through the application of code refac-      development, systematic literature review, software metrics, cloud comput-
+      toring,’’ Inf. Softw. Technol., vol. 96, pp. 112–125, Apr. 2018.               ing, requirements engineering, and green computing/IT. He received the
+[109] E. Venson, X. Guo, Z. Yan, and B. Boehm, ‘‘Costing secure software             Gold Medal (Dr. M. N. Azam Prize 2015) from the Pakistan Academy
+      development: A systematic mapping study,’’ in Proc. 14th Int. Conf.            of Sciences in recognition of his research achievements in the field of
+      Availability, Rel. Secur., Canterbury, CA, USA, 2019, p. 9.
+                                                                                     computer (software).
+[110] M. Sodanil, G. Quirchmayr, N. Porrawatpreyakorn, and A. M. Tjoa,
+      ‘‘A knowledge transfer framework for secure coding practices,’’ in Proc.
+      Int. Joint Conf. Comput. Sci. Softw. Eng., Jul. 2015, pp. 120–125.
+[111] E. Venson, R. Alfayez, M. M. F. Gomes, R. M. C. Figueiredo, and
+      B. Boehm, ‘‘The impact of software security practices on development
+      effort: An initial survey,’’ in Proc. ACM/IEEE Int. Symp. Empirical Softw.
+      Eng. Meas. (ESEM), Sep. 2019, pp. 1–12.
+[112] P. Salini and S. Kanmani, ‘‘Effectiveness and performance analysis
+      of model-oriented security requirements engineering to elicit security
+      requirements: A systematic solution for developing secure software sys-
+      tems,’’ Int. J. Inf. Secur., vol. 15, no. 3, pp. 319–334, Jun. 2016.
+[113] B. Musa Shuaibu, N. Md Norwawi, M. H. Selamat, and A. Al-Alwani,
+      ‘‘Systematic review of web application security development model,’’
+      Artif. Intell. Rev., vol. 43, no. 2, pp. 259–276, Jan. 2015.
+[114] B. De Win, R. Scandariato, K. Buyens, J. Grégoire, and W. Joosen, ‘‘On                                HABIB ULLAH KHAN received the Ph.D. degree
+      the secure software development process: CLASP, SDL and touchpoints                                   in management information systems from Leeds
+      compared,’’ Inf. Softw. Technol., vol. 51, no. 7, pp. 1152–1171, Jul. 2009.                           Beckett University, U.K. He is currently work-
+[115] S. T. Siddiqui, ‘‘Significance of security metrics in secure software devel-                          ing as a Professor of information systems with
+      opment,’’ Int. J. Appl. Inf. Syst., vol. 12, no. 6, pp. 10–15, Sep. 2017.                             the Department of Accounting and Information
+[116] R. E. Ahmed, ‘‘Software maintenance outsourcing: Issues and strategies,’’                             Systems, College of Business and Economics,
+      Comput. Electr. Eng., vol. 32, no. 6, pp. 449–453, Nov. 2006.                                         Qatar University, Qatar. He has nearly 20 years
+[117] B. Chess and B. Arkin, ‘‘Software Security in Practice,’’ IEEE Security                               of industry, teaching, and research experience.
+      Privacy, vol. 9, no. 2, pp. 89–92, Mar./Apr. 2011.                                                    His research interests include IT adoption, social
+[118] S. Al-Amin, N. Ajmeri, H. Du, E. Z. Berglund, and M. P. Singh, ‘‘Toward
+                                                                                                            media, Internet addiction, mobile commerce, com-
+      effective adoption of secure software development practices,’’ Simul.
+      Model. Pract. Theory, vol. 85, pp. 33–46, Jun. 2018.                           puter mediated communication, IT outsourcing, big data, and IT security.
+[119] L. Bracciale, P. Loreti, A. Detti, R. Paolillo, and N. B. Melazzi,
+      ‘‘Lightweight named object: An ICN-based abstraction for IoT device
+      programming and management,’’ IEEE Internet Things J., vol. 6, no. 3,
+      pp. 5029–5039, Jun. 2019.
+
+
+
+
+                          RAFIQ AHMAD KHAN received the M.Phil.
+                          degree in computer science with a specialization
+                          in software engineering from the University of
+                          Malakand, Khyber Pakhtunkhwa, Pakistan, under                                        MUHAMMAD ILYAS received the Ph.D. degree
+                          the research supervision of Dr. S. U. Khan, where                                    in computer science from the University of
+                          he is currently pursuing the Ph.D. degree under the                                  Malakand, Pakistan, where he is currently an
+                          supervision of the same supervisor.                                                  Assistant Professor with the Department of
+                             He has authored several articles in well-reputed                                  Computer Science & IT. His research interests
+                          international conferences and journals, including                                    include software outsourcing, empirical software
+                          ICGSE and IEEE ACCESS. His research interests                                        engineering, systematic literature review, cloud
+include software security, empirical software engineering, systematic liter-                                   computing, requirements engineering, and green
+ature review, requirements engineering, green computing, software testing,                                     computing/IT.
+agile software development, and global software engineering.
+
+
+
+
+VOLUME 10, 2022                                                                                                                                              5481
+

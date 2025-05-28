@@ -1,0 +1,670 @@
+Received December 10, 2019, accepted January 8, 2020, date of publication February 3, 2020, date of current version February 26, 2020.
+Digital Object Identifier 10.1109/ACCESS.2020.2971000
+
+
+
+
+A Novel Lightweight Solo Software Development
+Methodology With Optimum Security Practices
+SIBONILE MOYO                    AND ERNEST MNKANDLA
+School of Computing, University of South Africa, Florida 119172, South Africa
+Corresponding author: Sibonile Moyo (sibonile.moyo@nust.ac.zw)
+
+
+
+
+  ABSTRACT The diffusion of software into all areas of life and all forms of business, increases the demand
+  for high-quality and secure software products. Software development methodologies are designed to improve
+  the quality of software by incorporating practices that promote quality in the developed software. Software
+  security is an important facet of software quality, particularly in this era, where most software is deployed
+  for use over the Internet. Most research on developing high-quality and secure software is normally focused
+  on teams at the expense of individual developers. In trying to fill this gap, in this paper we propose an agile
+  secure-software development methodology. We design a methodology that promotes quality and security in
+  the software products of solo developers. We integrate quality practices with lightweight security practices
+  to produce agile secure software development practices. We draw quality practices from a solo software
+  development framework designed in our previous study, while security practices are drawn from existing
+  lightweight methodologies. We adapt Keramati and Mirian-Hosseinabadi’s algorithm to integrate the two sets
+  of practices, taking care to maintain an optimum degree of agility in the target methodology. We evaluate the
+  utility of the resultant methodology through a case study. Results from the case study show that our proposed
+  methodology can be used to build quality and secure software products without compromising the agility of
+  the methodology.
+
+
+  INDEX TERMS Agility degree, quality practices, security practice, software development methodology,
+  software product, software quality, software security, solo developer.
+
+
+
+I. INTRODUCTION                                                                                 number of freelance developers in the software industry. Free-
+Software security is an important characteristic of software                                    lance developers are individuals with the sole responsibility
+quality, especially in this era, where most software applica-                                   of delivering high-quality software to a client or to a target
+tions are deployed over the Internet. In this regard, devel-                                    market. In this study we also refer to these developers as solo
+oping secure software has become a topical research area                                        developers.
+among a number of authors [1]–[4], particularly for those                                          A number of lightweight solo software development meth-
+software applications that are designed to handle online trans-                                 ods (SSDMs) [9]–[12] exist. Whereas these methods have
+actions [5]–[8]. As most business applications become acces-                                    been designed with the aim to produce quality software prod-
+sible online, security problems due to code vulnerability have                                  ucts, none of the methods found in the literature address the
+increased, resulting in loss of personal and financial data to                                  security aspect of the developed software. This was shown
+both individuals and organizations [2]. Web applications in                                     in our previous work in [13]. A mapping of the quality
+particular, have been shown to be prone to SQL injection vul-                                   framework resulting from the meta-synthesis of the existing
+nerabilities, necessitating the need to design secure software                                  SSDMs against the ISO/IEC 25010 quality model defined
+development practices to counter such threats [8].                                              in [14], showed that existing methodologies lack practices to
+   Mobile and web applications tend to be popular with                                          support software security, among other quality characteris-
+freelance developers due to their small size. Their increased                                   tics. This model divides quality characteristics into high-level
+deployment in business has also seen an increase in the                                         and low-level characteristics. Low-vel characteristics are
+                                                                                                what can be measured, and high-level characteristics are what
+   The associate editor coordinating the review of this manuscript and                          is expected of the software. Table 1 summarizes the mapping
+approving it for publication was Hui Liu            .                                           of the quality practices against the quality characteristics.
+
+                      This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see http://creativecommons.org/licenses/by/4.0/
+VOLUME 8, 2020                                                                                                                                                        33735
+                                                                          S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+TABLE 1. Mapping quality practices against iso/iec 25010 quality characteristics.
+
+
+
+
+   As shown in the table, creation of product backlog, use of                      Given this background, we aim to address this shortcoming
+a requirements checklist, and creation of a work-breakdown                      of agile methods, particularly for the solo software devel-
+structure promote functional completeness, which result in                      opment environment. In designing a software development
+product suitability. Similarly, use of development standards,                   methodology (SDM) that promotes software quality in a solo
+automated code review, use of a dummy partner in reviewing                      environment, we consider the issue of resource constraints,
+code and test-driven development promote functional cor-                        which is characteristic of this environment. A befitting design
+rectness. Functional correctness also contributes to functional                 would therefore be that which embeds quality and security
+suitability. The rest of the table can be interpreted in the                    promoting practices into the SDM. Embedding secure soft-
+same manner. Table 1 shows that some quality characteristics                    ware development practices into agile methods is however not
+from the quality model are not supported by the framework.                      an easy task [15]–[17]. Adding available security promoting
+Characteristics not supported include performance efficiency,                   practices to agile methods may compromise the agility of the
+portability and security. The view of lack of secure prac-                      resultant method if appropriate measures are not taken. There
+tices in agile methods, is corroborated by several other                        is therefore a need to artfully integrate security practices with
+authors [2], [3], [15].                                                         agile quality practices without compromising the agility of
+
+
+33736                                                                                                                                    VOLUME 8, 2020
+S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+the resultant SDM. Agility is key for an SSDM as this would                     the developer holds meetings with the product owner at three-
+facilitate its uptake, especially by independent developers.                    day intervals. To evaluate the utility of Solo-Scrum, a case
+   We tackle this challenge to integrate lightweight security                   study was used. In this case study, a solo developer applied
+practices with agile quality practices to build an agile solo                   the methodology in developing a web-based application. Per-
+software development methodology. In drawing the practices,                     ceptions of both the developer and project participants were
+we restrict our consideration to the solo development environ-                  collected for the evaluation purpose.
+ment. We pose the following main question for the purpose:                         González-Sanabria,            Morente-Molinera            and
+   How can existing secure software development practices                       Castro-Romero [18] designed DeSoftIn, a methodology for
+be integrated with lightweight quality software develop-                        use by independent developers in an academic setting. The
+ment practices to build a secure solo software development                      authors synthesized quality practices from identified agile
+methodology (Secure-SSDM), without compromising the                             methods for the purposes of guiding students working on
+resulting methodology’s agility?                                                individual projects. They incorporated a number of quality
+   To help answer this main question, we further pose the                       practices including a requirements checklist that is used to
+following sub-questions:                                                        capture requirements. The checklist is color-coded during
+   Q1: What quality and lightweight security practices exist                    development to keep track of developer progress. At the
+for agile software development?                                                 implementation, stage, the developer tests the software prod-
+   Q2: How can the lightweight security practices and agile                     ucts for compliance with quality and security standards.
+quality practices be integrated into a software development                     While the authors provide quality practices for improving
+methodology without compromising the agility of the resul-                      the quality of the software products, they do not discuss
+tant practices?                                                                 security practices to be used to build security into the product.
+   Q3: How can the utility of the resulting methodology be                      They however acknowledge the importance of security in the
+evaluated?                                                                      developed software.
+   In pursuing answers to the questions above, we first derive                     Several researchers [15], [17], [19], [20] have tackled the
+SSDM core quality practices and security practices that can                     problem of improving software quality through introducing
+be executed by an individual from the literature. Then we                       traditional security practices into lightweight methods. The
+compute agility degrees for these independently. After that                     authors in [20] extend the agile development methodology
+we formulate a compatibility matrix to ease the integration                     (ADM) by incorporating security practices in the stages of
+process. We then use a modified version of Keramati and                         the methodology. In the initiation phase developers and the
+Mirian-Hosseinabadi’s algorithm [15] to integrate the secu-                     users work together to identify software security risks. For
+rity practices and the quality practices taking care to main-                   each identified risk, the probability and impact of the risk is
+tain the agility of the resultant practices. We conclude by                     derived based on the user’s perspective. This is used to rank
+evaluating the utility of the proposed Secure-SSDM through                      the risks. Goals for mitigating the risks are then formulated
+a case study. In the following sections of the paper we dis-                    and presented as security user stories. Users choose which
+cuss this process of designing and evaluating the proposed                      threats to mitigate in a given iteration. On implementing
+Secure-SSDM. Section II discusses efforts made by other                         the functional and security user stories, developers produce
+researchers to build quality and secure-lightweight method-                     software to comply with security requirements of the user.
+ologies. Section III discusses the methodology used to design                   This work is similar to ours in that we also incorporate
+the proposed Secure-SSDM and overviews the resulting                            security practices at each stage of the development process.
+methodology. Section IV evaluates the Secure-SSDM, and                          It differs in that in their case the development environment
+discusses threats to validity, while Section V presents the                     is team-based and the authors use a risk-based approach for
+conclusion and recommendations for future work.                                 security analysis, while we do not. Further, to minimize costs
+                                                                                in a solo development environment we do not perform the
+II. RELATED WORK                                                                security assurance reassessment of implemented modules at
+Solo software development has attracted the attention of a                      the end of every iteration.
+number of researchers. This stems from the increase in the                         In [19] the authors consider the possibility of introduc-
+number of software projects that can be undertaken by an                        ing traditional software development security practices into
+individual working alone [12]. In a bid to improve the quality                  agile methods. The authors analyze the compatibility of the
+of software by these developers, research has sought to design                  traditional security practices with agile practices. They con-
+lightweight methods that can be used by these individuals in                    clude that compatible and independent security practices are
+building quality into their software products. Ramingwong,                      readily integratable with existing agile methods. They recom-
+Ramingwong and Kusalaporn [12], scaled down Scrum prac-                         mend automation supported by knowledge management for
+tices to produce Solo-Scrum. In this scaled down version                        partially automatable practices. For the mismatch practices,
+the developer takes on all the Scrum roles and designs the                      they suggest designing a new set of agile security practices
+expected intermediate artefacts like the product backlog and                    or applying traditional security practices at least two times
+sprint backlog. Since the daily meetings characteristic of                      within the agile development process. We consider these
+the scrum team are not necessary in a solo environment,                         authors as some form of feasibility study. It differs from
+
+VOLUME 8, 2020                                                                                                                             33737
+                                                                     S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+ours in that we propose a method that incorporates existing               various environments in different case studies for the purpose.
+practices into the life cycle. The authors’ work is important             Similarly, the perceptions of the participants in the different
+for our purposes in that it points out the feasibility of building        case studies were collected through a survey after the case
+a secure agile software development methodology.                          study. While the responses from the participants indicated
+   Keramati and Mirian-Hosseinabadi [15] developed an                     that the methodology was difficult, participants opined that it
+algorithm that is used to identify security practices for the             was usable in their environment and they indicated that they
+purposes of integrating these with agile practices. To maintain           would use it in the future. These examples have shown the
+the agility of the resulting practices, the algorithm computes            popularity of case studies in evaluating new methods.
+an agility degree for the identified security practice, after                Case studies are used normally to evaluate an artifact in
+which the practice is integrated, if and only if, it meets a              its natural setting. They are appropriate in evaluation cases
+certain agility threshold. The team or organization wishing               where the boundary between the environment and the artifact
+to introduce security practices into its agile development                is not clear. This is true for software development methodolo-
+processes in this case determines the agility threshold. The              gies where a number of variables have an impact on the suc-
+team conducts a thorough analysis of its environment and its              cess of the software project. Evaluating a software develop-
+capabilities to handle security practices in order to come up             ment methodology in its intended setting helps to determine
+with its agility threshold value. The use of a threshold value,           the acceptability of the methodology by its intended audience.
+while not applicable as is in this paper, can be adapted to               The Secure-SSDM is evaluated in an academic using a case
+put a lower limit on the agility degrees of practices so as               study and perceptions of the student participants after using
+to determine those practices that are integratable and those              the methodology are collected through focus group discus-
+that are not. We therefore adopted these authors algorithm to             sions and document analysis. The collected data is analyzed
+integrate quality and security practices drawn from existing              qualitatively.
+methodologies to produce secure agile practices.                             Most of the works we found in the literature, particularly
+   Fisa-XP [17] is a framework designed through combining                 on secure software development concentrate on teams as can
+eXtreme Programming (XP) practices with secure develop-                   been seen in the preceding paragraphs. Our work is unique
+ment practices. The security practices are drawn from Open                in that we focus on developing a methodology targeted at
+Web Application Security Project (OWASP)’s Comprehen-                     individual software developers. We use the quality framework
+sive Lightweight Application Security Process (CLASP). The                in [13] as a source for the core quality practices of the Secure-
+authors of Fisa-XP use a modified version of the algorithm                SSDM. The security practices in [23] are used as a source for
+in [15] to identify appropriate security practices from CLASP             security practices. We consider this pool of security practices
+which they integrate with XP practices. They also devel-                  to be consensus practices in the agile environment as they are
+oped Tisa-XP, an automated tool, which they use for the                   derived through a systematic literature review. In integrating
+purposes of integrating the quality and security practices.               the identified lightweight security practices with the quality
+This automated tool serves as a knowledge base to help                    promoting practices, we identify only those security practices
+ease the integration process. Tisa-XP also provides an inbuilt            that can be performed by an individual and we systematically
+tutorial to assist developers with the integration. The utility           integrate these with the SSDM framework discussed in [13] to
+of Tisa-XP was evaluated through a case study carried out                 produce the proposed Secure-SSDM. We discuss the identifi-
+in a software development organization. After using the tool,             cation and integration process in the following methodology
+developers were asked to comment on its ease of use, time                 section.
+saving aspect of the tool and whether it was interesting to
+use. The responses were in support of the tool.
+   Case studies have been widely used in software engineer-               III. METHODOLOGY
+ing to demonstrate the usability of the resulting software                We use Design Science Research (DSR) [24] to iteratively
+development methodologies in a live setting. Besides the                  design the proposed Secure-SSDM. We deem it applicable
+authors cited in [17] above, Hamid and Weber [21] used a case             in this paper as we seek to design a satisficing solution
+study carried out in an industry setting, to evaluate their model         to integrate security and quality practices for the purposes
+driven methodology’s utility in developing secure software.               of embedding quality in the software development process.
+The authors demonstrated the feasibility of their approach                We adopt the DSR cycle of: (1) Problem identification;
+through its application in a metrology environment. Partic-               (2) Definition of solution objectives; (3) Design and devel-
+ipants perception of the methodology were collected through               opment; (4) Solution demonstration; (5) Solution evalua-
+a survey conducted at the end of the case study. An online                tion; and (6) Results communication. This paper focuses
+questionnaire was used to collect these anonymously. Percep-              on the design, demonstration and evaluation of the Secure-
+tions collected from the participants confirmed the model’s               SSDM. The problem is highlighted in our research question
+ease of use and its applicability in the industry. In addition to         cited above, as how to embed security practices into agile
+using expert evaluation, Quiñones, Rusu and Rusu [22] used a              quality practices without compromising the agility of the
+case study to show the utility of their methodology in devel-             resultant methodology. The design process is summarized in
+oping usability heuristics. The methodology was applied in                Figure 1.
+
+33738                                                                                                                               VOLUME 8, 2020
+S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+                                                                                TABLE 2. Quality and security practices.
+
+
+
+
+FIGURE 1. Methodology processes in designing the Secure-SSDM.
+
+
+
+
+   As Figure 1 shows, we derive the two different types of
+practices to be embedded in the Secure-SSDM from the
+literature. Core-SSDM quality practices are drawn from the
+SSDM quality framework discussed in [13] to create a quality
+practices list, while security practices are drawn from the
+security framework in [23]. The quality practices in the lat-
+ter framework are drawn from established secure software
+development methods, hence are considered to be acceptable
+practices in secure software development. Sub-sections A to
+D elaborate the activities in the figure.
+
+A. IDENTIFYING QUALITY AND SECURITY PRACTICES
+We identify the core development practices of the
+Secure-SSDM through selecting those practices confirmed
+by two or more authors of the SSDMs participating in the
+meta-synthesis in [13]. This way, the Secure-SSDM is built
+on development practices generally accepted in the SSDM
+                                                                                integration process. The list of quality and security practices
+community [24]. The rest of the practices in the framework
+                                                                                provide us with the answer to sub-question Q1. Having iden-
+remain as non-core practices which are executed depending
+                                                                                tified the practices, we proceed to compute their degrees of
+on the type of product under development. We also identify
+                                                                                agility independently.
+security practices from the framework in [23] to create a secu-
+rity practices list. We identify those security practices that can
+be executed by an individual, and place them in the related                     B. COMPUTING THE AGILITY DEGREES OF PRACTICES
+stage of the quality framework. Table 2 shows the list of                       In determining the degrees of agility of these two types of
+quality and security practices drawn from the literature. They                  practices, this paper adopts Qumer and Henderson-Sellers’s
+have been organized into development stages to facilitate the                   definition of agility thus:
+
+VOLUME 8, 2020                                                                                                                           33739
+                                                                   S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+   ‘‘Agility is a persistent behavior or ability of a sensi-            D. INTEGRATING QUALITY AND SECURITY PRACTICES
+tive entity that exhibits flexibility to accommodate expected           Once the agility degrees of the two sets of practices are
+or unexpected changes rapidly, follows the shortest time                computed, and the compatibility matrix is in place, prac-
+span, uses economical, simple and quality instruments in a              tices can now be integrated. We use Keramati and Mirrian-
+dynamic environment and applies updated prior knowledge                 Hosseinabadi’s adapted algorithm which we summarize in
+and experience to learn from the internal and external envi-            the steps below:
+ronment’’ [25].                                                            1. Choose a security practice with the highest degree of
+   These authors derive five features of agility from                          agility.
+this definition. These are: flexibility, swiftness, leanness,              2. Choose an agile practice with the least agility degree for
+responsiveness, and learning. We add a sixth feature, that of                  integration, if none exists, delete the security practice
+simplicity. We consider simplicity an important facet of a solo                from the list and stop, that is, go to step 6.
+development environment, since peer review is non-existent                 3. Integrate the two practices to form a new secure agile
+in this environment. We use these six features: flexibility,                   practice with agility degree computed as min (a, b)
+swiftness, leanness, responsiveness, learning and simplicity                   where a is the agility degree of the agile practice and b,
+to compute the agility degrees of each of the SSDM’s devel-                    the agility degree of the security practice.
+opment core practices and security practices. We compute                   4. Check if agility degree of secure agile practice
+these as shown in (1).                                                         >= 0.5. This is in line with the recommendation by
+                     1 Xn                                                      Qumer and Henderson-Sellers [27] to consider any
+                δ=              xt ; x ∈ (0, 1)             (1)                practice or methodology with an agility degree >= 0.5,
+                     n      t=1
+                                                                               as agile. In this case, the research therefore adopts the
+where δ is the agility degree, and x, the value of the agile                   agility values of 0 to 1 as suggested by these authors.
+feature which can hold two values, 1 for existence, 0 for non-                 The setting of a threshold of the agility degree to 0.5 is
+existence. To illustrate the use of (1) in computing the degrees               our adaptation of this algorithm.
+of agility, consider the security practice ‘‘Security awareness            5. Remove the security practice from the security prac-
+training’’.                                                                    tices list.
+   Assessing the existence of the six features in the practice,            6. Stop or go back to 1 if security practices still exist
+we assign a 1 to it for flexibility, as we deem it a flexible           To illustrate the use of this algorithm during the integration
+process, and another 1 for learning, as it promotes learning,           process, consider an example practice in the list of security
+we assign a 1 for its being a responsive practice. This is              practices, that of source code security reviews which had its
+a simple process, so we assign another 1 for this feature.              agility degree computed to be 0.83, and is the highest. this
+The process however is not fast, so we assign a 0 for speed,            practice is compatible with: coding & code review of with
+and another 0 for it not being lean since it involves some              dummy; code refactoring; code integration testing; and task
+documentation. The score for this practice is 4/6, giving an            automation. The compatible quality practice with the least
+agility degree of 0.67. The other degrees of the quality and            agility degree of 0.67 is, coding & code review with dummy.
+security practices are computed in a similar manner. It should          Combining these two gives a minimum agility degree of min
+be noted that in inferring the agility values of the agile prac-        (0.67, 083) = 0.67. As this is greater than 0.5, these two
+tices in the SSDM, we also refer to the work of [26] where the          can be combined resulting in the practice: Coding & code
+agility values of Scrum and XP are computed. This research              review, and security code review with the help of a dummy
+is similar to these authors’ in that most of the SSDM quality           partner. This is a practice in the Development with review
+practices are drawn from XP and Scrum.                                  phase. The rest of the security practices incorporated into the
+                                                                        Secure-SSDM were integrated this way. In Section IV we
+C. CREATING A COMPATIBILITY MATRIX                                      overview the resulting methodology stages.
+Having derived the agility degrees of the two sets of practices,
+we create a compatibility matrix to ease the integration pro-           IV. THE SECURE-SSDM METHODOLOGY
+cess. The SSDM core-quality practices and security practices            The Secure-SSDM is an agile methodology designed through
+can only be integrated if they are compatible [15], [16]. Two           the integration of quality practices and security practices
+practices are compatible if the developer can execute the               drawn from the literature. This gives the methodology
+two simultaneously with minimal loss of productivity. The               its intrinsic quality characteristics. The methodology is
+compatibility between two practices is mainly inferred from             organized into six stages: Stage I - Management Buy-in
+the literature and from the close analysis of each practice             and Standards adoption; Stage II - Functional and Security
+and what it takes to execute the processes simultaneously,              Requirements Elicitation; Stage III - Release and Sprint Plan-
+particularly for an individual. Table 3 shows the compatibility         ning; Stage IV - Development with Review; Stage V - Sprint
+matrix with the practices and their associated degrees of               Review and Close, and Stage VI - Evaluation. The stages
+agility. A ‘C’ in a cell in the table shows the compatibility           are summarized as shown in Figure 2. We summarize the
+between the two practices whereas ‘NC’ shows incompati-                 practices undertaken in each of these stages in the following
+bility between the practices.                                           sub-sections.
+
+33740                                                                                                                             VOLUME 8, 2020
+S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+TABLE 3. Compatibility matrix with agility degrees of practices.
+
+
+
+
+STAGE I. MANAGEMENT BUY-IN AND STANDARDS                                        using the methodology. User education in this case applies in
+ADOPTION                                                                        cases where a project has identified end users, particularly in
+A developer adopting the Secure-SSDM starts by identifying                      an organizational setting. In some cases, a software product is
+and educating users on how the project will be undertaken                       developed for a generic set of users. In this case, the developer
+
+VOLUME 8, 2020                                                                                                                             33741
+                                                                  S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+FIGURE 2. Secure-SSDM stages and main activities in each stage.
+
+
+uses their creativity to formulate requirements for the soft-          STAGE II. FUNCTIONAL AND SECURITY REQUIREMENTS
+ware. A representative set of clients may be identified to             ELICITATION
+play the role of users if possible. Identifying users at the           During requirements elicitation, the developer works with
+onset of a software project is a well-stablished concept of            users to collect both functional and security requirements.
+user involvement in software development. In addition to               This can be done through collecting user stories describing
+educating users on how the development process will pro-               the users’ expected interactions with the system. User stories
+ceed, the developer conscientizes users on issues of security.         have to be defined to be small enough so that the devel-
+During this period, the developer also adopts appropriate              oper can work on them independently. These are what users
+standards (both developmental and security) determined by              perceive as value addition activities to be obtained from the
+the type of software under development for use in the project.         system. These expected interactions are used to create use
+Developers are encouraged to refer to quality and security             case diagrams. We recommend the use of UML diagrams
+standards relevant for their software product to benchmark             in modelling use cases. At the same time the developer also
+the quality of the product under development.                          collects unexpected interactions that may be carried out by
+   It is also important at this point to carry out security            unauthorized persons on use cases. These are better identified
+analysis on identified user roles. At this point the analysis          with the help of the user as they understand the operational
+identifies security threats based on high-level user require-          environment better.
+ments. The use of an automated dashboard is recommended                   Unexpected interactions are modelled as misuse cases [28].
+here to capture and keep track of user requirements, and their         The developer should make all effort to get the user to imagine
+associated threats. Bernabé, Navia, and García-Peñalvo [10]            all circumstances that could disturb the smooth flow of their
+recommend the use of tools like Trello or Taiga for sin-               processes. One way to help the user to identify misuse cases
+gle development environments. Trello as a tool enables the             is to ask the user to imagine what an intruder would do if
+developer to organize and manage their work so that they               they accessed the system. A composite model of use cases
+can easily visualize tasks in progress, pending, done, to be           and misuse cases is created to show users’ interactions with
+reviewed and so on [10]. As a web-based tool it provides for           the system. The use cases and their associated misuse cases
+portability enabling the developer to access their dashboard           are used to create a prioritized product backlog. A priori-
+from anywhere.                                                         tized product backlog lists the user’s expected deliverables
+
+33742                                                                                                                            VOLUME 8, 2020
+S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+in each development iteration. Capturing misuse cases at                        STAGE V. SPRINT REVIEW AND CLOSE
+such an early stage helps the developer to prioritize security,                 Review and sprint close marks the end of a sprint initially
+as opposed to having to think about security at the implemen-                   set to deliver some functionality (or some component) at the
+tation and testing stages. For complex systems, the developer                   user’s site. Here the developer should review the time taken to
+may build prototypes to facilitate communication between the                    complete the sprint, against the initial time set for the purpose.
+users. This also helps the developer to understand the system.                  Any differences should be noted and used to adjust estimates
+Once the prioritized backlog is in place, and agreed on by the                  for the next sprint or future projects. The developer also
+developer and client, sprint planning may begin.                                reviews code quality against set standards. Finished task (s)
+                                                                                are moved to completed tasks and incomplete tasks are car-
+STAGE III. RELEASE AND SPRINT PLANNING                                          ried over to the next iteration. The developer also performs
+Release and sprint planning involve identifying the task at                     code integration, integration testing and security testing. The
+the top of the prioritized product backlog, and its component                   use of a version control system is highly recommended and
+tasks. Since the developer is working on their own, draw-                       so is the use of automation tools discussed in [30]. These
+ing items from an already prioritized product backlog, they                     include tools used to: quickly access all recently modified
+can use the logic of the system to order tasks in a sprint.                     code files; correct the most recent commit; delete the most
+The ordered tasks in a sprint should have time estimates                        recent commit; and divide a commit in the event the developer
+attached to them. The developer should set short iterations                     detects or suspects some conflict within code components.
+of 1 – 2 weeks, to enhance process visibility. Short iterations                 Such tools help the developer to quickly access the most
+also motivate the developer at the same time promoting                          recent work and perform corrections without taking time
+productivity. Appropriate designs for the sprint deliverable                    to browse all files. Security tests should be performed on
+should be made, together with security designs and accep-                       all code before integration. At this point the developer also
+tance tests. Sequence diagrams can be used to model the                         reviews project progress, after which they plan for next sprint
+interactions of the user with the system. Another alternative                   or close the project, if no items remain in the backlog.
+is to use class diagrams. It is advised that the developer keeps
+models as minimal as possible to enhance productivity. Key                      STAGE VI. EVALUATION
+points of intruder interceptions should be indicated so as to                   The last stage, Evaluation, concludes the project. This
+enable the developer to design means to counter these.                          involves evaluation of product deliverables against the user’s
+                                                                                expectation as well as standards adopted at project onset.
+STAGE IV. DEVELOPMENT AND REVIEW                                                This process may be conducted through carrying out a system
+Development with review builds the software product. The                        acceptance test. The system is tested for both user require-
+                                                                                ments and security requirements fulfilment. At this point
+developer produces code for the tasks taking care to adhere
+                                                                                the developer should update their development knowledge
+to coding and security standards adopted at the onset of the
+                                                                                base as well as security repository. The security repository
+project. We recommend the use of version/change control
+tools to keep track of any code changes. To minimize code                       captures practices to build security into the software. This
+defects, we recommend that the developer performs code                          knowledge management promotes learning in this environ-
+and source level security reviews with the help of a dummy                      ment. The developer is also recommended to identify pro-
+                                                                                cesses or tasks for automation. These are recurring activities
+partner. Identifying errors in the code helps to ensure that
+                                                                                within the project life cycle. Automating development pro-
+only safe and correct code is integrated into the live envi-
+                                                                                cesses improves developer productivity [10], [11]. Although
+ronment. A dummy partner is any object that the devel-
+oper may obtain to explain code to. This may also mean                          most of the Secure-SSDM stages are illustrated as sequential,
+practicing self-dialogue. Here the developer runs through                       it should be noted that this is an iterative process, and some
+                                                                                tasks may be executed in parallel depending on the size and
+all sections of code and explains their functionality to the
+                                                                                complexity of the tasks at hand. Table 4 shows the practices in
+dummy. This helps to identify errors in code. All identified
+                                                                                each stage with associated tools recommended for executing
+errors should be fixed before the code is integrated into the
+baseline.                                                                       the practice. This is meant to address the need of novice
+   In producing code, secure coding practices such as avoid-                    developers as was observed with student participants in a case
+ance of unsafe functions discussed in [29] should be adopted.                   study designed to evaluate the utility of the methodology.
+                                                                                Since quality and security are usually not a key concern with
+These include the avoidance of the use of the strcpy,
+                                                                                most solo developers, we provide here recommended tools
+strncpy, and strcat families of functions from C and C++
+                                                                                for use in executing the practices. We have placed the tools
+programming languages, among others. Instead developers
+should explore safer versions of functions in their develop-                    adjacent to the practices to assist the developers.
+ment environments and adopt these. The code at this stage
+should be secure, with minimal, if not free of coding errors.                   V. EVALUATION OF THE SECURE-SSDM
+This is ready for installation at the user’s site in the next                   The success of DSR is premised on the successful demonstra-
+stage.                                                                          tion of the utility of the resulting artefact in addressing the
+
+VOLUME 8, 2020                                                                                                                              33743
+                                                                      S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+TABLE 4. Secure-ssdm and recommended tools, techniques and standards.
+
+
+
+
+problem for which the artefact is designed [24], [31], [32].                  To that effect the Secure-SSDM has gone through a number
+The Secure-SSDM is designed to improve the quality and                     of iterations to evaluate its utility. During the first iteration,
+in particular security of software products designed by indi-              the SSDM quality framework and its quality practices was
+vidual developers. This is done through the addition of the                presented to participants at a Computing post graduate aca-
+security practices to those quality practices that were shown              demic seminar for analysis and feedback. The quality prac-
+to be existent in the current SSDMs. These were functional                 tices and how they build quality into the framework were
+suitability, maintainability, usability, reliability, and satisfac-        explained to the participants. The participants confirmed the
+tion. The resultant Secure-SSDM is therefore expected to                   quality practices with few suggestions for improvement. The
+promote functional suitability, maintainability, usability, reli-          highlights for improvement were used to refine the SSDM
+ability, satisfaction and security in the developed software               quality framework. The refined SSDM quality framework
+products.                                                                  was also subjected to blind peer review through a conference
+
+33744                                                                                                                                VOLUME 8, 2020
+S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+paper. Reviewers’ comments were used to further refine the                      attached to the class captured responses to the questions
+framework.                                                                      posed by the moderator. Questions posed were divided into
+    This refined quality framework is discussed in [13], and                    three sections; General comments on the usability of the
+was used as a basis for the design of the Secure-SSDM                           methodology; Comments on the practices in each phase; and
+discussed in this paper. Since the Secure-SSDM is built on                      Suggestions for improvement. A pre-formulated template to
+consensus practices, its quality can also be inferred [24].                     capture responses per question was used for the purpose.
+To evaluate the utility of the Secure-SSDM in developing                        Responses were captured against questions posed. At the end
+quality and secure software, an academic case study was used.                   of the discussion the first author went through the captured
+A case study is cited as one of the means that can be used to                   data corroborating what they had captured with what the
+demonstrate the utility of an artefact designed through DSR.                    assistant had captured.
+In section II we heighted a number of authors that have used                       Associated project documentation for the software prod-
+the case study in evaluating the usability of a methodology.                    ucts was also reviewed for models recommended at each and
+A case study was deemed appropriate in this paper as it allows                  every stage. This was to verify methodology adherence by
+us to evaluate the methodology in a socio-technical setting.                    the students. Besides checking methodology adherence from
+    Thirty-nine participants (undergraduate students studying                   the participants in their documentation, we also extracted
+towards a four-year degree in Computer Science) participated                    strengths and weaknesses of the methodology as perceived
+in the study. This lot of students were doing their second year                 by the participants. Data from the focus group discussion and
+of a four-year honors degree. This group of participants were                   documentation was extracted into a spreadsheet. This enabled
+chosen due to their accessibility to the first author. The author               sorting and color coding of the themes emanating from the
+taught the group of students for a semester long course in                      data.
+Societal computing. This was the third time that the author                        During the focus group discussions participants acknowl-
+took the course. The course lasted for three months beginning                   edged the importance of analyzing the security aspect of soft-
+January 2019 up to March 2019. In this course students are                      ware products in collaboration with users. As one participant
+normally expected to identify a problem in the community,                       put it:
+to which they can provide a computerized solution. Using this                      ‘‘I had never thought I could model a system from an
+requirement of the course, we deemed this group appropriate                     intruder’s perspective indicating what these could do to hin-
+for the case study. Since the author had access to the partici-                 der the smooth use of the system. After realizing the actions,
+pants, it was easy to monitor progress as participants worked                   the intruder could perform on the system, I was forced to
+on their individual progress.                                                   think of how to counter them, instead of just using the log-on
+    Prior to the case study, clearance was sought with the uni-                 password as a security measure.’’
+versity gate keeper, as well as an ethical clearance to conduct                    Another participant marveled at the idea of the use of a
+the study. At the beginning of the semester, the methodology                    dummy as a peer review partner. Putting it in their own words:
+was explained to the class. Invitation to participate in the case                  ‘‘At first I thought this was crazy, but after getting down to
+study was extended to the class. Those who volunteered to                       performing the practice, I noted I was able to discover flaws
+participate were asked to use the Secure-SSDM to design                         in my system.’’
+and implement software products of their own choice as                             The data that we had extracted to Microsoft Excel was
+expected from the course. Software products were designed                       analyzed for themes and patterns. We organized these into
+in the areas of Education, Health, Government, Environment                      strengths, weaknesses and suggestions for improvement.
+and Business. The areas of application were allocated to the                    These were drawn from our questions and the data.
+students through a raffle, where each participant was made                         Table 5 summarizes the participants’ comments on the
+to blindly pick a piece of paper with an application area on                    utility of the Secure-SSDM, captured both from the focus
+it. These application areas were chosen based on the partic-                    group discussion as well as the methodology section of their
+ipants’ course outline. We did not change the areas, as we                      project documentation. As shown in the table, while partici-
+deemed these varied enough to test the various capabilities of                  pants indicated more strengths of the methodology, they also
+the methodology.                                                                pointed out some weaknesses. The weaknesses were mainly
+    The methodology stages were explained to the participants,                  associated with the multiple skills that the developer has to
+together with the main quality and security practices. Partici-                 possess to successfully use the methodology. As a recom-
+pants were also given copies of the methodology for constant                    mendation to deal with the lack of secure development skills
+reference. They were then asked to follow the methodology                       participants suggested sub-contracting some practices such
+practices in designing their software products. Feedback on                     as security testing. This however might increase develop-
+the utility of the methodology was collected through a focus                    mental costs, and subsequently erode the developer’ profits.
+group discussion and document analysis. At the end of the                       For critical systems, developers may have to consider the
+semester a focus group discussion was held to collect par-                      suggestion.
+ticipants feedback on the usability of the methodology to                          Some participants also noted that executing the security
+build quality and secure products. The first author moder-                      practices took some considerable time, particularly for those
+ated the focus group discussion, while a teaching assistant                     practices that were new to them. This is acceptable from these
+
+VOLUME 8, 2020                                                                                                                             33745
+                                                                    S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+TABLE 5. Themes emanating from student participants’ comments on the secure-SSDM.
+
+
+
+
+participants as they had limited knowledge of secure coding              difficult to generalize the results of the case study. The student
+practices.                                                               participants have limited time (in this case study 12 weeks,
+   On reviewing the associated models of the software prod-              which also have to accommodate other courses), and limited
+ucts that participants built, we noted most participants had             resources, as in some cases students fail to find real clients
+produced the models that were anticipated for their types of             and end up hypothesizing most of the requirements. To deal
+products. Most participants had managed to model misuse                  with this threat we emphasized that the participants choose
+cases associated with all their use cases. Based on the use              projects that could be handled within their normal class times
+cases and misuse cases, participants managed to come up                  of four hours per week. This also made it easy for us to
+with design models showing the flow of the system, together              track their progress. We are also currently evaluating the
+with counter measures to deal with identified threats. A few             Secure-SSDM through a multiple industry case study.
+participants, however after coming up with their misuse cases,
+failed to come up with appropriate designs to counter identi-            VI. CONCLUSION
+fied intruder actions. Such practice is common among stu-                We have proposed a Secure-SSDM for individual developers
+dents to fail to follow adopted methodologies as they pace               that can be used to build quality, and in particular security
+towards the finishing line [33]. We have since improved on               into software products. The introduction of security promot-
+the methodology by adding tools required to support the                  ing practices to the existing quality practices is our main
+desired quality practices, particularly security practices.              contribution to the solo software development environment.
+                                                                         From a Design science perspective, our contribution to the-
+A. THREATS TO VALIDITY                                                   ory is the addition of security practices into the solo soft-
+The case study setting for our evaluation is an academic                 ware development knowledge base. Using an adapted version
+setting made up of students with varied backgrounds. Some                of Keramati and Mirian-Hosseinabadi’s algorithm we have
+students enroll for the Computer Science course after doing              concentrated on incorporating those lightweight practices
+some courses in software development. Such students might                that are executable by an individual with minimum effort.
+have used other practices to develop their software, thereby             Our contribution to practice, is the proposed Secure-SSDM,
+not giving a clear picture of the utility of the Secure-SSDM.            a methodology that can be used by an individual in developing
+To deal with this threat the first author consistently checked           small to medium-sized software products. We have success
+development progress of each participant and their adherence             fully demonstrated the utility of the Secure-SSDM in building
+to the practices suggested. We had progress reports conducted            high-quality and secure software applications in the areas of
+fortnightly to check the participants’ progress, so that each            Education, Health, Government and Business. This in turn
+participant could indicate at what stage of the software devel-          should help improve the quality of mobile and web-based
+opment process they were in. We also reviewed their project              applications which are popular with solo developers in these
+documentation for the expected deliverables of each stage.               application areas.
+   The other threat to validity is the fact that the academic               As future work we recommend the addition of other quality
+setting is quite different from the industry setting, making it          practices to our methodology to address the characteristics of
+
+33746                                                                                                                              VOLUME 8, 2020
+S. Moyo, E. Mnkandla: Novel Lightweight Solo Software Development Methodology
+
+
+
+
+performance efficiency, compatibility, and portability. These                           [22] D. Quiñones, C. Rusu, and V. Rusu, ‘‘A methodology to develop
+are the quality properties in addition to security that were                                 usability/user experience heuristics,’’ Comput. Standards Int., vol. 59,
+                                                                                             pp. 109–129, Aug. 2018.
+identified not to be supported by the existing SSDMs after                              [23] K. Rindell, S. Hyrynsalmi, and V. Leppänen, ‘‘Busting a myth: Review
+we compared the derived quality framework in [13] with the                                   of agile security engineering methods,’’ in Proc. Availability, Rel. Secur.
+ISO/IEE 25010 [14] quality model high-level characteristics.                                 (ARES), 2017, pp. 1–10.
+                                                                                        [24] K. Peffers, T. Tuunanen, M. A. Rothenberger, and S. Chatterjee, ‘‘A design
+                                                                                             science research methodology for information systems research,’’ J. Man-
+REFERENCES                                                                                   age. Inf. Syst., vol. 24, no. 3, pp. 45–77, Dec. 2007.
+                                                                                        [25] A. Qumer and B. Henderson-sellers, ‘‘Crystallization of agility: Back to
+ [1] D. S. Cruzes, M. Felderer, T. D. Oyetoyan, M. Gander, and I. Pekaric,                   basics,’’ in Proc. Int. Conf. Softw. Technol., 2006, pp. 121–126.
+     ‘‘How is security testing done in agile teams? A cross-case analysis of            [26] A. Qumer and B. Henderson-Sellers, ‘‘Measuring agility and adoptability
+     four software teams,’’ in Agile Processes in Software Engineering and                   of agile methods?: A 4-dimensional analytical tool,’’ in Proc. IADIS Int.
+     Extreme Programming (Lecture Notes in Business Information Process-                     Conf. Appl. Comput., Jan. 2006, pp. 503–507.
+     ing), vol. 283. Cham, Switzerland: Springer, 2017, pp. 201–216.                    [27] A. Qumer and B. Henderson-Sellers, ‘‘An evaluation of the degree of
+ [2] A. Firdaus, I. Ghani, and S. R. Jeong, ‘‘Secure feature driven development              agility in six agile methods and its applicability for method engineering,’’
+     (SFDD) model for secure software development,’’ Procedia Social Behav.                  Inf. Softw. Technol., vol. 50, no. 4, pp. 280–295, 2008.
+     Sci., vol. 129, pp. 546–553, May 2014.                                             [28] G. Sindre and A. L. Opdahl, ‘‘Eliciting security requirements with misuse
+ [3] I. Ghani, Z. Azham, and S. R. Jeong, ‘‘Integrating software security                    cases,’’ Requirements Eng., vol. 10, no. 1, pp. 34–44, 2005.
+     into agile-Scrum method,’’ KSII Trans. Internet Inf. Syst., vol. 8, no. 2,         [29] M. Belk, ‘‘Fundamental practices for secure software development,’’
+     pp. 646–663, 2014.                                                                      in Proc. Softw. Assurance Forum Excellence Code (SAFECode), 2011,
+ [4] B. Musa and S. Norita, ‘‘Systematic review of Web application security,’’               pp. 1–51.
+     Artif. Intell. Rev., pp. 259–276, 2015.                                            [30] V. Driessen. (Nov. 8, 2018). Git Power Tools For Daily Use. Accessed:
+ [5] S. Al-Amin, N. Ajmeri, H. Du, E. Z. Berglund, and M. P. Singh, ‘‘Toward                 Nov. 16, 2018. [Online]. Available: https://nvie.com/posts/git-power-tools/
+     effective adoption of secure software development practices,’’ Simul.              [31] R. J. Wieringa, Design Science Methodology for Information Systems and
+     Model. Pract. Theory, vol. 85, pp. 33–46, Jun. 2018.                                    Software Engineering. Berlin, The Netherlands: Springer-Verlag, 2014.
+ [6] H. Homaei and H. R. Shahriari, ‘‘Athena: A framework to automatically              [32] P. Kotzé, A. Van Der Merwe, and A. Gerber, ‘‘Design science research as
+     generate security test oracle via extracting policies from source code and              research approach in doctoral studies,’’ in Proc. 21st Amer. Conf. Inf. Syst.,
+     intended software behaviour,’’ Inf. Softw. Technol., vol. 107, pp. 112–124,             2015, pp. 1–14.
+     Mar. 2019.                                                                         [33] D. Strode and J. Clark, ‘‘Methodology in software development capstone
+ [7] C. Wijayarathna and N. A. G. Arachchilage, ‘‘Why Johnny can’t develop                   projects,’’ in Proc. 20th Annu. Conf. (NACCQ), Nelson, New Zealand,
+     a secure application? A usability analysis of java secure socket extension              2007, pp. 243–251.
+     API,’’ Comput. Secur., vol. 80, pp. 54–73, Jan. 2019.
+ [8] J. Zhu, J. Xie, H. R. Lipford, and B. Chu, ‘‘Supporting secure programming
+     in Web applications through interactive static analysis,’’ J. Adv. Res., vol. 5,                            SIBONILE MOYO received the B.Sc. degree
+     no. 4, pp. 449–462, Jul. 2014.                                                                              from the University of Zimbabwe, in 1992, and
+ [9] R. Agarwal and D. Umphress, ‘‘Extreme programming for a single person                                       the M.Sc. degree in computer science from the
+     team,’’ in Proc. 46th Annu. Southeast Regional Conf., 2008, pp. 82–87.                                      National University of Science and Technology,
+[10] R. B. Bernabé, Á. Navia, and J. García-Peñalvo, ‘‘Faat: Freelance as a                                      Bulawayo, Zimbabwe, in 2005. She is currently
+     team,’’ in Proc. 3rd Int. Conf. Technol. Ecosyst. Enhancing Multiculturality                                pursuing the Ph.D. degree in computer science
+     (TEEM), 2015, pp. 687–694.                                                                                  with the Department of Computer Science, School
+[11] Y. Dzhurov, I. Krasteva, and S. Ilieva, ‘‘Personal extreme programming—                                     of Computing, University of South Africa.
+     An agile process for autonomous developers,’’ in Proc. Int. Conf. Softw.,                                      She is currently a Lecturer with the Department
+     Services Semantic Technol. (S3T), 2009, pp. 252–259.                                                        of Computer Science, National University of Sci-
+[12] L. Ramingwong, S. Ramingwong, and P. Kusalaporn, ‘‘Solo scrum in                   ence and Technology (NUST), Zimbabwe. She has taught undergraduate
+     bureaucratic organization: A case study from thailand,’’ in IT Conver-             courses in software engineering, software development and database sys-
+     gence and Security, K. J. Kim, H. Kim, and N. Baek, Eds. Singapore:                tems at NUST for the past 15 years. Her research interests are in software
+     Springer-Verlag, 2017, pp. 341–348.
+                                                                                        engineering, software development methodologies, and developing quality
+[13] S. Moyo and E. Mnkandla, ‘‘A metasynthesis of solo software development
+                                                                                        software.
+     methodologies,’’ in Proc. Int. Multidisciplinary Inf. Technol. Eng. Conf.
+     (IMITEC), 2019, pp. 353–359.
+[14] Systems and Software Engineering-System and Software Product Qual-                                           ERNEST MNKANDLA received the degree
+     ity Requirements and Evaluation(SQauRE)-System and Software Quality                                          (Hons.) in electrical engineering, in 1992,
+     Models, document ISO/IEC FCD 25010, 2010.                                                                    the M.Sc. degree in computer science in 1997,
+[15] H. Keramati and S.-H. Mirian-Hosseinabadi, ‘‘Integrating software devel-                                     the Ph.D. degree in electrical engineering, in 2008,
+     opment security activities with agile methodologies,’’ in Proc. IEEE/ACS
+                                                                                                                  and the master’s degree in open and distance
+     Int. Conf. Comput. Syst. Appl., Mar. 2008, pp. 749–754.
+                                                                                                                  learning, in 2016.
+[16] Sonia and A. Singhal, ‘‘Integration analysis of security activities from the
+                                                                                                                     He is currently a Professor with the Department
+     perspective of agility,’’ in Proc. Agile India, Feb. 2012, pp. 40–47.
+                                                                                                                  of Computer Science, School of Computing, Uni-
+[17] Sonia, A. Singhal, and H. Banati, ‘‘FISA-XP: An agile-based integration
+                                                                                                                  versity of South Africa. He has taught in engineer-
+     of security activities with extreme programming,’’ SIGSOFT Softw. Eng.
+     Notes, vol. 39, no. 3, pp. 1–14, Jun. 2014.                                                                  ing, computer science, information technology,
+[18] J. S. González-Sanabria, J. A. Morente-Molinera, and A. Castro-Romero,             and information systems at various universities in and outside South Africa
+     ‘‘DeSoftIn: Methodological proposal for individual software develop-               for more than two decades and has supervised many M.Sc. and Ph.D.
+     ment,’’ Rev. Fac. Ing., vol. 26, no. 45, pp. 23–32, May 2017.                      students. He is a rated Researcher in South Africa and has passion in the
+[19] K. Beznosov and P. Kruchten, ‘‘Towards Agile Security Assurance,’’ in              development of quality software and believes in the betterment of humanity
+     Proc. New Secur. Paradigms Workshop, 2004, pp. 47–54.                              through the provision of quality software technologies and seamless synergy
+[20] L. B. Othmane, P. Angin, H. Weffers, and B. Bhargava, ‘‘Extending the              between humans and machines. He hopes for a future where there is a balance
+     agile development process to develop acceptably secure software,’’ IEEE            between new technology innovations and ethics. He therefore researches
+     Trans. Dependable Secure Comput., vol. 11, no. 6, pp. 497–509, Nov. 2014.          and publishes extensively in software engineering and artificial intelligence.
+[21] B. Hamid and D. Weber, ‘‘Engineering secure systems: Models, pat-                  He has provided consultancy to industry in software development and
+     terns and empirical validation,’’ Comput. Secur., vol. 77, pp. 315–348,            information technology.
+     Aug. 2018.
+
+VOLUME 8, 2020                                                                                                                                                      33747
+

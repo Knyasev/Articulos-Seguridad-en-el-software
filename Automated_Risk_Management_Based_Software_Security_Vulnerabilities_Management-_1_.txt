@@ -1,0 +1,718 @@
+Received 28 March 2022, accepted 13 June 2022, date of publication 21 June 2022, date of current version 1 September 2022.
+Digital Object Identifier 10.1109/ACCESS.2022.3185069
+
+
+
+
+Automated Risk Management Based Software
+Security Vulnerabilities Management
+RAGHAVENDRA RAO ALTHAR 1,2 , DEBABRATA SAMANTA                                                    3,   (Member, IEEE),
+MANJIT KAUR 2 , (Senior Member, IEEE), DILBAG SINGH                                              2,   (Senior Member, IEEE),
+AND HEUNG-NO LEE 2 , (Senior Member, IEEE)
+1 DataScience Department, CHRIST University, Bangalore, Karnataka 560029, India
+2 QMS,  First American India Private Ltd., Bangalore, Karnataka 560038, India
+3 Department  of Computer Science, CHRIST University, Bangalore, Karnataka 560029, India
+4 School of Electrical Engineering and Computer Science, Gwangju Institute of Science and Technology, Gwangju 61005, South Korea
+
+Corresponding author: Heung-No Lee (heungno@gist.ac.kr)
+This work was partly supported by Institute of Information & communications Technology Planning & Evaluation (IITP) grant funded by
+the Korea government (MSIT) (No.2019-0-01842, Artificial Intelligence Graduate School Program (GIST)) and This research was
+supported by the MSIT(Ministry of Science and ICT), Korea, under the ITRC (Information Technology Research Center) support program
+(IITP-2021-0-01835) supervised by the IITP(Institute of Information & Communications Technology Planning & Evaluation).
+
+
+
+
+  ABSTRACT An automated risk assessment approach is explored in this work. The focus is to optimize
+  the conventional threat modeling approach to explore software system vulnerabilities. Data produced in
+  the software development processes are better leveraged using Machine Learning approaches. A large
+  amount of industry knowledge around security vulnerabilities can be leveraged to enhance current threat
+  modeling approaches. Work done here is in the ecosystem of software development processes that use
+  Agile methodology. Insurance business domain data are explored as a target for this study. The focus is
+  to enhance the traditional threat modeling approach with a better quantitative approach and reduce the
+  biases introduced by the people who are part of software development processes. This effort will help
+  bridge multiple data sources prevalent across the software development ecosystem. Bringing these various
+  data sources together will assist in understanding patterns associated with security aspects of the software
+  systems. This perspective further helps to understand and devise better controls. Approaches explored so
+  far have considered individual areas of software development and their influence on improving security.
+  There is a need to build an integrated approach for a total security solution for the software systems.
+  A wide variety of machine learning approaches and ensemble approaches will be explored. The insurance
+  business domain is considered for the research here. CWE (Common Weaknesses Enumeration) mapping
+  from industry knowledge are leveraged to validate the security needs from the industry perspective. This
+  combination of industry and company data will help get a holistic picture of the software system’s security.
+  Combining the industry and company data helps lay down the path for an integrated security management
+  system in software development. The risk management framework with the quantitative threat modeling
+  process is the work’s uniqueness. This work contributes toward making the software systems secure and
+  robust with time.
+
+  INDEX TERMS Quantitative threat modeling, software security, machine learning, quantitative risk
+  assessment, integrated security management system.
+
+I. INTRODUCTION                                                                                of threat modeling are studied to build a quantitative threat
+Threat modeling is one of the prominent parts of software                                      modeling approach with less dependency on the experts.
+development processes. A large part of the exercise includes                                   The paper is organized to explore some of the related work
+expert judgment in practice. There is a need to make this                                      in the field. The study’s objective is to enable a more
+exercise as quantitative as possible. In this paper, constructs                                extensive system of smart security in software development
+                                                                                               [1], [2]. This smart security system is discussed in detail in
+   The associate editor coordinating the review of this manuscript and                         the earlier work by the author [3], [4]. Threat modeling and
+approving it for publication was Muhammad Ali Babar                .                           its constructs are described. Exploration of risk assessment
+
+                     This work is licensed under a Creative Commons Attribution 4.0 License. For more information, see https://creativecommons.org/licenses/by/4.0/
+VOLUME 10, 2022                                                                                                                                                       90597
+                                                  R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+methodology for threat modeling is conducted. Data collec-              companies. The primary focus of our work is on applying data
+tion and modeling for threat prediction are covered. Paper              analytics in threat modeling, and risk assessment approaches
+wraps up with the recommendations and future work. The                  and proposing an integrated approach.
+focus of the work is automating the security vulnerability                 The paper starts with exploring the literature for work done
+risk assessment approach and threat modeling approach with              on threat modeling for software development and machine
+the machine learning approach. Both exercises are optimally             learning approaches used to learn the security needs from the
+combined for better outcomes. Machine learning classifica-              various data sources across the industry. Focus areas of the
+tion approaches are leveraged to get visibility into possible           paper are discussed in the next section, followed by the under-
+security vulnerabilities.                                               standing of threat modeling. The application of risk assess-
+                                                                        ment with threat modeling is explored in the next section. The
+A. MOTIVATION                                                           data collection-related process is discussed in the subsequent
+This work is motivated by the lack of focus on software                 section. Experiments are built on understanding how threat
+vulnerabilities threat modeling. Though this exercise is con-           prediction can be introduced into the conventional threat
+ducted, it is restricted due to the manual intervention involved        modeling approach. The outcome of these experiments is
+by experts and the time involved. Multiple efforts focus on             validated with the available best approaches and their results.
+the security vulnerability discovery but are happening in               The Paper is wrapped up with a discussion on weaknesses in
+silos. This state motivates to bring together the efforts into a        the work and possible future prospective areas.
+common framework. With fast-paced progress in the security
+threat and its impact, it is essential to develop these systems.        II. LITERATURE REVIEW
+                                                                        In work [5], neural networks, deep learning techniques, and
+B. OBJECTIVE                                                            ensembles were explored in cyber security. Cyber security
+This work intends to quantify the security threats and help             areas of intrusion detection, prediction of cyber-attacks, and
+focus as needed. Connecting the knowledge prevalent in the              malware identification are targeted areas. This paper provides
+industry with the needs of the software development industry            a reference point for cyber security professionals in deep
+is the focus area. Utilizing the historical knowledge of the            learning. This work highlights the need for further explo-
+organization for better visibility into future operations is            ration to make the algorithms more efficient based on the spe-
+given prominence in the study. The flexible threat modeling             cific data under study [6], [7]. Challenges in data collection
+approach targets the critical security areas as per the area            are also highlighted as the area that needs focus. This paper
+prioritized under study. Getting the confidence of the soft-            explores a variety of the deep learning approach in the space
+ware development stakeholders with predictable and secure               of cyber security. However, these approaches are not covered
+software systems.                                                       by software development processes. We leverage some of the
+                                                                        learning from this paper and explore them for software devel-
+C. CONTRIBUTION                                                         opment processes in our work. In work, [8], machine learning
+Paper contributes an approach to making threat modeling a               and deep learning approaches are explored to tackle the secu-
+data-based quantitative process, by reducing the manual inter-          rity issues bothering big data. Due to considerable growth in
+vention of the experts. This approach reduced the dependency            data volumes, there are vulnerabilities for the security threats
+on the security experts. With reduced dependency on experts             to hamper the system. In [9] and [10], an exploration of
+and human intervention, this approach can be extensively                taxonomy around the threat modeling approach was achieved
+used when needed. The proposed approach will help build a               with the machine learning and deep learning approaches.
+knowledge system that will get better over time by including            However, the practical implementation in software develop-
+knowledge from across the industry and within the company.              ment eco-systems was not achieved. In [11], the growing
+This proposed system helps bridge the gap between security              application of machine learning and the possible vulnerabil-
+experts, software development teams, and software system                ities introduced into the system were explored. The study
+users. This work is part of a comprehensive Software Security           covers the threat model for machine learning and explores
+Management system envisioned by the authors.                            the attack involved and the defenses that would be needed.
+   Paper also contributes to the Information Security domain            This paper takes away some of the learning around threat
+by helping reconcile the data available across industry and             modeling. Work attempts to bring perspective around model
+companies for the benefit of software development teams.                accuracy, complexities, and resilience that needs attention
+The ideas presented in this paper are noble and essential               based on its operating environment [12], [13].
+in ensuring a common approach to threat modeling in an                     Work [14] explores machine learning capabilities for cyber
+organizational setting. An integrated model for detecting               security. Machine learning capabilities to identify advanced
+security threats in an organizational setting will help the soft-       threats and targets in infrastructure vulnerabilities, organiza-
+ware development teams explore security flaws effectively.              tion profiling, and other exploits are explored. With the inabil-
+This approach would be of immense use as it standardizes                ity of the traditional malware handling approaches, these new
+threat detection in software system development. It will serve          capabilities come in handy. From this work, we take away
+as a knowledge management tool for software development                 the key insights of applying machine learning in the cyber
+
+90598                                                                                                                              VOLUME 10, 2022
+R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+security space and re-use and test it in the software devel-                    Deep learning approaches to the exploration of software
+opment space. Work [15] focuses on providing insights into                      development space need more effort. Deeper work is needed
+threat modeling. Exploration done on Microsoft’s threat mod-                    on addressing security issues in software development. Soft-
+eling is used as a base to offer insights into an effective threat              ware system threat modeling automation needs more focus.
+modeling approach. Work [16], [17] explores threat modeling                     Deeper work is needed on associating context and domain
+applications in agile software development processes with                       knowledge for modeling the information. A stronger asso-
+Microsoft’s STRIDE approach. Practical challenges facing                        ciation of risk assessment and threat modeling good prac-
+the industry are explored and validated with the challenges                     tices would be important to leverage the power of both the
+highlighted in the literature. Some of the key challenges are                   framework.
+seen during the identification of assets stage and how the post-
+threat modeling exercise is implemented.                                         IV. KEY THEMES OF THE STUDy
+   In [17], a variety of vulnerabilities were studied. IT helped                In work [3], we have outlined an efficient system that can
+to understand the granular details of the vulnerability. This                   facilitate information management in software development
+knowledge helps to build the datasets for our experiments.                      processes. The intent is various sources of the software devel-
+This knowledge also helps to enhance the construction of                        opment process data and ways to model them to supply it as
+machine learning experiments. In work, [18], automation of                      helpful information [23], [24]. The overall objective of this
+threat modeling is focused. The focus is to reduce the effort                   integrated information system is to combine the information
+involved in the threat modeling by leveraging the available                     in the areas of customer conversation, industry best prac-
+data [19], [20]. This work helps to understand the thought                      tices, and internal software development processes. Figure 1
+process behind the threat modeling framework. This learning                     depicts the system outline of the conceptualized Integrated
+helped build the threat modeling framework that can work                        Information Management system to tackle security vulnera-
+with other security-related frameworks. Lack of context is                      bilities.
+another challenge faced by the prediction models. This lack
+of context is due to the lack of domain knowledge being
+considered in the modeling process. Authors try to bring in
+an ontology framework to improve the conceptual model-
+ing. In work [21], authors introduce threat identification as
+part of the software development lifecycle. The idea here
+is to reduce the need for educating software development
+experts on security knowledge. The proposed approach looks
+at analyzing the design of the software to explore risks and                    FIGURE 1. Conceptualized Integrated Information Management system to
+threats to the system. Authors introduce an identification                      handle security vulnerabilities.
+tree named a new data structure approach for detection of
+threats to [22]. The mitigation tree approach is utilized for                      Under the module of industry knowledge modeling, threat
+the description of countermeasures. These methods provide                       modeling concepts are studied. This study will reduce the
+a guided approach for risk assessment across the software                       inefficiencies prevalent in the threat modeling exercise.
+development lifecycle.                                                          Machine learning approaches are explored to build pre-
+                                                                                dictability into the exercise. The information available in
+III. RESEARCH GAPS                                                              the industry around the threats and vulnerabilities can be
+Based on the literature review done, we see that there are                      leveraged to provide the information needed when it matters.
+the following research gaps. Focus on learning the structure                    A combination of vulnerability identification from customer
+of customer requirements in agile development methodology                       conversation, internal software development processes, and
+from a security perspective which is missing now. Utilizing                     industry knowledge will help build a robust information
+the construct of security categories from the industry data                     system.
+to derive the implicit security needs of the customer. These
+elements are essential to bridge the conventional threat mod-                    V. THREAT MODELING APPROACH
+eling, and risk assessment approaches with machine learning                     Cyber security risks that challenge the software system make
+capabilities. Integrating the customer, industry, and software                  it essential for the industry to take a proactive step towards
+processes data sources to learn the security needs is not                       tackling it effectively. The complexity of threat modeling
+addressed appropriately and needs deeper exploration. This                      makes it less effective when it is implemented. The best
+approach helps to have a comprehensive view of the proposed                     approach is to start with simple steps and build it [25], [26].
+framework’s security vulnerabilities.                                           Constructing the software systems boils down to the require-
+   Deep learning advancements in cyber security are another                     ments that specify the features needed, acceptance crite-
+area that needs attention. Improvisation of algorithms based                    ria from the customer, and a technical breakdown of the
+on the data eco-system can provide good leverage for the                        requirements. A specific standardized approach to threat
+research in software development practices improvisation.                       modeling is missing which makes the situation harder [27].
+
+VOLUME 10, 2022                                                                                                                               90599
+                                                   R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+Technical risks would be a good starting point as they are par-          section and subsequent sections, we propose our approach.
+ticular to the software system, like the ones around missing             In the first stage of this risk assessment approach-based
+security control in the software. Since the software system’s            threat modeling, all the components of the software system
+structure is well within the control, it will be easier to handle.       and processes are to be listed. For example, network and
+Making risk identification a collaborative effort goes a long            communication-related components, software components,
+way in maintaining effectiveness in the system [26]. Agile               and other similar areas. In the next phase, impact analysis is
+methodology has a nice setup of the team structure where                 conducted. To start with this exercise, initial impact analysis
+the product owner, system analyst, developer, tester, architect,         can be expert judgment-based. Later a database can be set
+and scrum master form a scrum team that intends to deliver               up to track the events that will feed into automated impact
+the value-based product to the customer. This mix of expertise           analysis [33]. Impact analysis includes three components,
+across the value chain can be a good setup for collaborative             what is the result of compromise on the confidentiality of the
+threat assessment. Cyber security risks go beyond ticking the            data, integrity of the data, and availability of the data. We have
+checklist and making sure the business risks are kept under              used this approach of risk assessment based on confiden-
+check [28], [29].                                                        tiality, integrity, and availability in our company and have
+   Breaking the system into smaller components to start the              observed that it provides a comprehensive view of the security
+analysis will be a good starting place. This specific focus              risks and their impact. Based on these three components,
+helps to take action more frequently and see the progress. This          impact value can be derived. The organizational database can
+iterative approach of threat modeling will help get everyone’s           be created to collate the experience and events, which will
+involvement rather than a complex analysis done at the begin-            help understand the impact of compromise of data from all
+ning of the project [30], [31]. Exploration, brainstorming of            three perspectives referred to [34]. This database can be an
+the threats, and prioritizing and fixing the threats are the sim-        ongoing repository that helps build the knowledge base for
+ple starting points to implement. Deciding on the stakehold-             impact analysis. Impact value of confidentiality, availability,
+ers needed for the threat exploration is essential. Frequency            and integrity can be provided with a range of values based on
+to be agreed upon for the threat exploration session. It is              their impact on the customer. Based on the combination of
+always better to have a face-to-face session with the people             values of these three parameters, the final impact value can
+involved rather than an online session. This aspect has been             be arrived at in this work [35].
+our experience while conducting brainstorming sessions with                 Data collected in the organizational database can predict
+the software development team for threat modeling analysis.              the impact value. All the attributes associated with the iden-
+Figure 2 shows the simple format to identify the threat in the           tified components can be put together to model the impact
+system.                                                                  based on confidentiality, integrity, and availability. Alterna-
+   As discussed earlier, prioritizing, and taking up the impor-          tively, any other parameters would help build a threat model-
+tant work to time box the exercise is essential. This focus              ing system. Impact value can also be directly derived from the
+helps to maintain the healthy progress on threat modeling                attributes associated with the target components. In the next
+exercise. The latest features that are worked upon, any identi-          stage, based on the categories of the components, possible
+fied security feature, services that are collaborating with other        threats and vulnerabilities that would impact the components
+services, and technical security debt are good areas to start            can be listed. This listing can be based on the organization’s
+focusing upon [32].                                                      historical data or industry knowledge. To build a historical
+                                                                         experience-based list, it is essential to have a process that
+VI. COMBINING RISK ASSESSMENT APPROACH                                   helps capture all the threats that have hampered software
+AND THREAT MODELING                                                      system components and vulnerability in the system that has
+The risk assessment approach that we have been practicing in             led the threat to exploit. If we take the technical failure of
+our company is based on information security assets. We look             the software components as the threat, it would be caused by
+at confidentiality, integrity, and data availability as a primary        vulnerabilities like inadequate business continuity manage-
+focus areas for our security risk assessment. Based on the               ment, inadequate system monitoring, insufficient user testing,
+probability of occurrence of events that compromise these                and others. Using industry data, we can model the threat and
+three factors and their impact, we arrive at the risk level.             vulnerabilities based on the information related to software
+Based on these risk levels, risk mitigation actions are devised.         system failures and the causes.
+Risk mitigation will be around security controls needed                     The next part of the information needed is the probabil-
+to manage those risks. Threat modeling for security risks                ity of occurrence of these vulnerabilities. This information
+focuses on the technical risks involved in software systems.             will help to assess the risk level of the failures further. The
+It focuses on all phases of the software development lifecycle,          probability of occurrence can be provided on a high, medium,
+including requirements gathering, design, construction, and              or low scale based on the number of times those events
+testing. Threats and vulnerabilities hampering the software              have occurred in the past. This tracking needs a system to
+systems are used as a base in this assessment. We integrate              capture all the events associated with the software system
+the risk assessment and threat modeling approach with data               deficiencies from related to confidentiality, integrity, and
+analytics approaches in our work. In the further part of this            availability. As discussed earlier, these three factors or any
+
+90600                                                                                                                               VOLUME 10, 2022
+R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+                   FIGURE 2. Depiction of simple threat modeling.
+
+
+
+
+other factors that are relevant to the system can be considered.                ALM (Application Life-cycle Management) tool. Test cases
+While modeling the threats is done in this approach, impact                     are created to cover all the expected testing scenarios. Any
+evaluation and occurrence evaluation can be combined to                         issues identified during the software development are tracked
+obtain the final risk levels of the components. The final risk                  as defects and addressed.
+level is a combination of impact value and probability of                           Tasks are linked to the user stories; test cases are also linked
+occurrence of the vulnerabilities in the past. Components can                   to the user stories. Any defects found during testing are linked
+be subjected to the study of controls needed based on the risk                  to test cases. These linkages help to maintain traceability.
+level. Controls needed can be based on the threat type and                      Leveraging these work items’ traceability, requirements can
+its vulnerabilities type. Control information can be derived                    be mapped to defects that are related to security; additional
+from industry knowledge databases. Control refinement can                       security-related issues can be traced to the CWE. Expert
+be carried out based on the residual risks after implementing                   involvement is needed to map the security issues to CWE.
+the control. So, the system can be made in real-time where it                   Required training and knowledge sharing must be enabled
+captures all the information periodically and recalibrates the                  for this process. Building a model around the patterns of
+system for its risk value and controls applied. Based on future                 software requirements, to security issues to associated CWE
+events, this system calibrates itself and provides direction for                will help understand the possible threats that would hamper
+further strengthening. Figure 3 depicts the outline of a risk                   the software system. In this data collection approach, linkages
+assessment-based approach for threat modeling. We consider                      between these work items are leveraged. CWE mapping done
+Impact value = Iv , Impact factors identified = Tf , Risk                       with the involvement of software development experts is
+value-Rv , Probability of occurrence = PO .                                     leveraged for the modeling. The idea is to build a prediction
+                                                                                engine that can predict possible CWEs that would get resulted
+                            Iv = Avg(Tf ).                             (1)
+                                                                                when a customer requirement is being worked on. This identi-
+                            Rv = Iv ∗ PO .                             (2)      fication provides an opportunity for the software development
+                                                                                teams to engage the security controls much earlier in the
+VII. DATA COLLECTION                                                            process.
+Threat modeling for the software development processes can                          All the work items from TFS are extracted, including user
+be done concerning the information captured in the soft-                        stories, tasks, test cases, and defects. All the work items that
+ware development processes. Threat categories will have                         have reference to CWE are selected. Parents’ work items for
+multiple CWE (Common Weaknesses Enumeration) under                              these work items are also collected to trace back to original
+them. CWE is a community-developed list of software and                         requirements. CWE ids are separated from the text content,
+hardware weakness types [36]. In the software development                       which will act as a label for the text descriptions. All the
+processes with the Agile framework, requirements are docu-                      information available across work items in the form of their
+mented in the form of user stories, which are further broken                    title and description with CWE being referred are extracted
+down into tasks. TFS (Team Foundation Server) is used as                        to create a data source that has text description and the CWE
+
+
+
+VOLUME 10, 2022                                                                                                                               90601
+                                                       R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+                     FIGURE 3. Risk assessment-based threat modeling.
+
+
+
+mapping. From the data extracted, 1458 text data descriptions                TABLE 2. Model results with parameter details.
+are available that are mapped to 64 different categories of
+CWEs.
+
+VIII. PREDICTION MODEL FOR THREAT ASSESSMENT
+The prediction model intends to categorize the customer
+requirements into respective CWE categories. Once the
+model is built around this content, it will be possible to map
+the new requirements coming from customers to their possi-
+ble CWE and predict the potential threats that may hamper
+the software system. Based on the CWEs mapped, security
+controls can be devised to tackle threats to software systems.
+
+A. MULTI-CLASS CLASSIFICATION APPROACHES
+In the first phase of this exercise, a text description is sub-
+jected to TF-IDF (Term Frequency Inverse Document Fre-
+quency) for the vectorization process. Logistic regression,
+Random forest classifier, Multinomial NB (Naïve Bayes), and
+Linear SVC (Support Vector Classifier) are used for clas-
+sification modeling. Random forest classifier is tuned with
+n_estimator of 200 and max_depth of 3. Cross-validation of
+5 is chosen for the modeling. Table 1 shows the results of the                  In this section, we try to build ensemble models. Pre-
+first round of modeling. Table 1 shows the results of the first              processing of the data is conducted with Beautiful Soup
+round of modeling.                                                           and tqdm libraries. Also, TensorFlow Kera’s preprocessor
+                                                                             is used to tokenize the natural language data used as input.
+TABLE 1. Results of first round of modeling.                                 The text-to-sequence method is used for this purpose. Input
+                                                                             data is split into train and test components with 80% data
+                                                                             for training and 20% data for testing. This round tries the
+                                                                             Random Forest Classifier, XGB (XG Boost) classifier, and
+                                                                             Logistic Regression classifier. All three models’ outputs are
+                                                                             averaged in this method to obtain better performance from the
+                                                                             ensemble model. Table 2 shows the performance of various
+  Linear SVC showed a precision of 51%, recall of 48%, and                   models in terms of F1 score and the parameters that are
+F1 score of 46% on a weighted average scale. Performance is                  used. This experiment shows that XGB is the best among
+not up to mark.                                                              all the parameters but not good enough. Further ensemble
+
+90602                                                                                                                                   VOLUME 10, 2022
+R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+methods are explored based on the feasibility study of the
+software development work items and the details of the
+domain experimented on. Multinomial NB (Naïve Bayes),
+Decision Tree Classifier, K Neighbors Classifier, Linear SVC
+(Support Vector Classifier), and Random Forest Classifier are
+used. These algorithms are started with averaging methods
+prediction. The F1 score metric is used for the evaluation
+of performance. Table 3 shows the performance of various
+models in terms of F1 score and the parameters used.
+   Table 4 lists out the parameters chosen when all the mod-
+els were run together. Since Random Forest Classifier and
+KNeighbors Classifier were relatively better, they were run
+                                                                                FIGURE 4. Training and hold-out set performance trend over epoch in
+together under averaging method, but their actual perfor-                       terms of the loss in case of CNN-static.
+mance was reduced by 3%. Under the max voting method
+also the performance is only about 31%.
+   In this section, ensemble, deep learning models that are
+appropriate to model the data from software development
+processes focusing on the security of the software are short-
+listed. An attempt has been to classify the content captured
+in software development work items into security-related
+content mapped to respective CWE. This mapping will help
+to call out the possible threats hidden in the system. Spacy
+library from NLP (Natural Language Processing) is used
+for data processing. Training and testing data of 70% and
+30% are constructed for the experiment. Kera’s preprocessing
+library text tokenizer and pad sequencer are applied. A pre-
+trained model glove with 200 dimensions is utilized for the
+                                                                                FIGURE 5. Training and hold-out set performance trend over epoch in
+generation embedding matrix used for training the model.                        terms of the loss in case of CNN-dynamic.
+
+B. CNN (CONVOLUTIONAL NEURAL NETWORK) STATIC
+CNN static algorithm architecture includes layers of
+CONV1D, BatchNormalization, Activation, and GlobalMax-                          show a performance of 31.76%. Performance on training
+Pool1D being concatenated. Dropout is kept at 50%, followed                     and holdout data set over the epochs in terms of the loss is
+by a dense layer of 512 units and ‘relu’ activation. The                        depicted in figure 5. Though the holdout data set is close to
+output layer is a dense layer with a ‘softmax’ activation                       training dataset performance on loss. Overall, they cannot do
+function. CNN static model is compiled with loss function of                    better compared to CNN- Static.
+‘categorical_crossentropy,’ optimizer ‘adam,’ and batch_size
+of 128 with a function written to compute top three accura-                     D. DATA PROCESSING, TRANSFORMATION,
+cies. CNN static model is created with the ‘Model’ function                     AND MODELING
+from Keras.model library. This model is further run with                        In this section, data pre-processed with NLP’s spacy library
+‘‘fit_generator’’ to feed data in sequential mode. The top                      is used. Tfidf (Term frequency-inverse document frequency)
+3 accuracies show a performance of 50.68%. Performance on                       vectorizer is used for the data vectorization process. Now
+training and hold-out data set over the epochs in terms of the                  the data is subjected to models Logistic Regression, Random
+loss is depicted in figure 4. The hold-out set cannot close on                  Forest Classifier, and Linear SVC. A cross-validation value
+the training dataset in terms of the loss value. 80% and 20%                    of 5 is chosen for the processing. Random Forest uses
+split of training data is a general guideline. In ensemble and                  ‘‘n_estimators’’ of 300 and ‘‘max_depth’’ of 3. Accuracies
+deep learning models, we want to experiment with different                      of the models are shown in figure 6.
+training and testing data spilled. However, this did not make                      Table 5 depicts model performance in terms of accuracy.
+much of a difference at the end of the experiment.                              Even modifications in the data processing models do not sig-
+                                                                                nificantly improve their performance. Based on the literature
+C. CNN DYNAMIC                                                                  review, some models that have shown good performances
+To make the CNN network dynamic, in the embedding_layer                         for the classification problems will be explored here. Explo-
+creation, the parameter ‘trainable’ is kept to ‘True’ so that                   ration will look for compatibility of these models for the data
+the training happens dynamically. The architecture of the                       used here, coming from software development processes that
+network remains the same as the CNN-Static network. Model                       follow Agile methodology and serve the insurance domain
+building and compilation stay the same. The top 3 accuracies                    business.
+
+VOLUME 10, 2022                                                                                                                                 90603
+                                                          R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+TABLE 3. Model performance and parameter details.
+
+
+
+
+TABLE 4. Parameters chosen for various models used during ensemble run of all models.
+
+
+
+
+                                                                                TABLE 5. Model performance in terms of accuracy.
+
+
+
+
+                                                                                from levels 0 and 1. The logistic regression model is used as
+                                                                                a level 1 model, and the rest are configured as a level 0 model.
+                                                                                Data processing is kept to raw data being processed with the
+                                                                                Tfidf vectorizer.
+                                                                                   Repeated Stratified KFold method from sklearn’s model
+FIGURE 6. Accuracies of the models run in this section.                         selection library is used to configure the ‘cv’ parameter for
+                                                                                the modeling. Parameter set for ‘RepeatedStratifiedKFold’
+                                                                                are ‘n_splits of 10 and ‘n_repeats’ of 3. ‘cross_val_score’
+   Naïve Bayes, KNearest Neighbor, Support Vector                               method from sklearn’s model selection library is used to gen-
+Machine, Random Forest, Decision Tree, and ensemble clas-                       erate scores to evaluate the model. This method uses param-
+sifiers are the ones to be explored. There was no significant                   eters, ‘model,’ ‘input data,’ ‘label data,’ ‘scoring methods,’
+improvement in the performance so raw data will be used                         and ‘cv’ value. The scoring method used is accuracy, and the
+directly without the NLP space-based processing done in                         cv value gets generated from the ‘RepeatedStratifiedKFold’
+the previous section. Tfidf vectorizer will be used on this                     method. Performance of various models with their parameter
+data for vectorization purposes. The cross-validation value                     configuration is provided in table 7.
+is maintained at 5. Table 6 shows the model parameters and                         In the first round of stacking with all models, accu-
+their performance.                                                              racy was poor at 0.2%. As per the literature review, deci-
+   Except for the improvement of the Linear SVC model,                          sion tree, neighbors, and Logistics regression has performed
+where accuracy improved to 47.61%, the rest of the models                       well in a similar setup. The stacking of these models
+are still not doing well. Ensembling the best models among                      improved the performance to 44.6%. Individual model per-
+these will be explored for the data used here. Stacking ensem-                  formances of Logistic Regression, Decision Tree classi-
+ble modeling is tried in the next section. There will be level                  fier, and Support Vector Classifier show better performance.
+0 and 1 models; a stacking classifier combines the models                       However, removing KNeighbors and adding a Support Vector
+
+90604                                                                                                                                      VOLUME 10, 2022
+R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+TABLE 6. Model parameters and its performance in accuracy.
+
+
+
+
+TABLE 7. Model’s parameter configuration and performance.
+
+
+
+
+classifier reduced stacking performance back to 0.2%. This                      Logistic Regression showed the best performance with 77.7%
+performance indicates the earlier combination was best. With                    accuracy and a standard deviation of 2.5%. The decision
+the best performers, Multinomial Naïve Bayes is added, and                      tree classifier and KNeighbors were used at level 0, and the
+performance slightly improved to 44.9%, whereas Multino-                        Logistic Regression model was used at level 1 in the stacking.
+mial Naïve Bayes performed at 28.6%. XG Boost classifier                           Based on the variation of the occurrences of the CWEs
+took the performance to 49.4%, but this is computationally                      in the future, modeling must be fine-tuned to cover more
+expensive, so it would not be feasible. Logistic regression                     CWEs. Collaboration with experts is to be continued to study
+and Decision tree classifier were fine-tuned with grid search                   the outcome of the current model. The experts must validate
+CV, and performance was 50.6% and 41.3%, respectively, but                      predicted labels. Labeling of the data into appropriate CWEs
+stacking performance was reduced to 38.2%.                                      must be improved during validation. This ongoing effort will
+   The original database had data across 63 CWEs categories.                    help improve the prediction engine to a much better level.
+Many of the CWEs categories had only a few data points                             Evaluation against the state-of-art: Work [37], utilizes
+under them. This state resulted in an imbalanced dataset,                       SMOTE, SVM with RBF kernel, and logistic regression
+and models were poorly performing. The top 20 CWEs were                         approaches utilizing Recordings of meetings between devel-
+more prevalent upon discussion with application develop-                        opers and customers from a software development com-
+ment experts. These top 20 CWEs frequency of occurrence                         pany in the United States. Here they explore a classification
+was also observed to be high. Only 20 of the most occurring                     approach to figure out security vulnerabilities. They have
+CWE were shortlisted based on expert input. To improve                          recorded the results of Precision at 70.8% and Recall at
+the prediction performance, more data was collected from                        18.3%.
+across other programs in the company. Three thousand two                           Work [38] explored LDA and SVM approaches with Stack
+hundred fourteen data points from across multiple programs                      Overflow dataset for classification of the security vulnera-
+were collected for the 20 CWEs that were shortlisted. Among                     bilities from the data. The following results were produced.
+all the above experiments conducted, the stacking model                         For LDA, Precision was 70.33%, Recall was 77% [39], [40].
+of the Decision Tree classifier, KNeighbors classifier, and                     For SVM (Support Vector Machine), Precision was at 72%,
+
+
+VOLUME 10, 2022                                                                                                                         90605
+                                                  R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+and Recall was at 77% [41]. Among all the above experiments             the insurance business domain is the focus area. The title
+conducted, the stacking model of the Decision Tree classifier,          insurance business domain is unique from other branches
+K-Neighbors classifier, and Logistic Regression showed the              of the insurance business. Software development processes
+best performance with 77.7% accuracy and a standard devia-              following the agile development model also provide differ-
+tion of 2.5%. Decision Tree classifier and K-Neighbors were             ent set-ups in which security improvements can be focused.
+used at level 0, and the Logistic Regression model was used             Ongoing calibration of this system is needed to strengthen the
+at level 1 in the stacking. In comparison to these best works,          system.
+we would achieve better performance with a precision of 76%                It is essential to calibrate the data store for identifying the
+and recall of 79%.                                                      right CWEs in the software development processes. Identi-
+   Methods used in the paper are briefed by starting with               fication of all security-related events is also another crucial
+the background of existing methods. We start from the                   aspect. All these calls for appropriate education of the soft-
+‘‘Understanding threat modeling’’ section, where there is an            ware development communities on security practices.
+exploration of automating some of the sub-processes using                  These proposed systems need to adapt and learn from
+machine learning. In the next section, ‘‘Risk assessment                dynamic changes in the industry. There are new vulnerabili-
+approach for threat modeling,’’ there is an exploration of              ties that are discovered in the industry regularly. The system
+combining the conventional risk assessment method with the              and people need to be up to date on these dynamics of security
+threat modeling approach. This approach helps to leverage               issues. This work contributes to establishing an integrated and
+the best of both approaches. In the section ‘‘Threat prediction         automated approach for software threat modeling. Studies of
+modeling,’’ the core proposal of our work is detailed.                  conventional threat modeling and security risk assessment are
+   In this section, ’Data Transformation and Modeling,’ we              conducted, and the best of both are brought together with
+did a detailed study of the machine learning algorithms that            machine learning approaches. Machine learning approaches
+will fit in our architecture. Starting from basic machine learn-        are customized to get better results than other related work
+ing algorithms to more advanced algorithms were explored.               done earlier. We have demonstrated a machine learning archi-
+A comparison of the performance of various experiments was              tecture appropriate to the subject under study and one that
+conducted. Models’ parameter tuning and the best combi-                 shows promising results with available data.
+nation of the parameters are explored in detail to arrive at
+the best combination of parameters for models working well.             X. FUTURE STUDY
+Table 7 provides a comprehensive view of all the models,                This study is limited to looking at software systems without
+parameters, and performance. We also provide the best out-              looking at the category to which the software system belongs.
+come of the performance on our dataset.                                 Visibility into the class or category of the software system and
+   Some of the methods used are as follows. TF-IDF is the               study-specific to those classes can make the outcome more
+famous approach for weighing the terms in Natural Language              effective. This area is a good one for future research. Model-
+Processing. Logistic Regression, Random Forest Classifier,              ing conducted in the study is generic; exploring the machine
+and Support Vector Classifier are basic machine learning                learning models that can leverage the contextual information
+approaches used for classification problems. Beautiful Soup             from the data can make the experiments further stronger. This
+is a python library utilized for web scrapping from XML                 area must be developed in future studies. The agile software
+and HTML pages. Tensor Flow is an open-source artificial                development model and security-related controls in software
+intelligence library that uses data flow graphs to build models.        development may have varied objectives. These objectives
+Keras is a neural network library that provides high-level              are not analyzed concerning each other as part of our study.
+APIs for building and training models. XG Boost stands                  Putting these together and aligning the work will help to
+for eXtreme Gradient Boosting and is a supervised learning              optimize the framework further and needs focus in future
+library with parallel processing capabilities. CNN is an arti-          studies. Our work is also limited to building larger datasets to
+ficial neural network for processing image data. Ensemble               leverage the capabilities of the deep learning methods. This
+classifiers help to improve machine learning outcomes by                area can be a focus for future studies. Imbalanced datasets
+combining various models.                                               are another area that needs focus regarding security-related
+                                                                        data and machine learning approaches. There are many cat-
+IX. CONCLUSION                                                          egories of security threats that are less frequent, but when
+In this exploration, the focus was to build a quantitative              they occur, they will impact badly; this needs to be explored
+threat modeling approach. It is essential to use the knowledge          further. Unsupervised anomaly detection methods would help
+prevalent in the software development processes and from                bring in more efficiency in this research area and need
+across industries. The information available from the indus-            exploration.
+try has been overwhelming for the software development
+team to leverage. Approaches discussed in this paper will               XI. DECLARATIONS
+help make this information available as and when needed.                A. AVAILABILITY OF DATA AND MATERIALS
+Security challenges are faced depending on the business                 The data used to support the findings of this study are avail-
+domain in which the industry is operating. In this study title,         able from the corresponding author upon request.
+
+90606                                                                                                                              VOLUME 10, 2022
+R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+B. COMPETING INTERESTS                                                               [21] E. E. Heymann César and B. P. G. Miller Ruiz, ‘‘Automating threat
+                                                                                          modeling through the software development life-cycle,’’ XXIII Jornadas
+This article does not contain any studies with human partic-                              de Paralelismo, pp. 21–38, May 2012.
+ipants performed by any of the authors. There is no conflict                         [22] L. Williams, G. McGraw, and S. Migues, ‘‘Engineering security vulner-
+of interest between authors.                                                              ability prevention, detection, and response,’’ IEEE Softw., vol. 35, no. 5,
+                                                                                          pp. 76–80, Sep./Oct. 2018.
+                                                                                     [23] P. K. Kudjo, J. Chen, S. A. Brown, and S. Mensah, ‘‘The effect of
+REFERENCES                                                                                weighted moving windows on security vulnerability prediction,’’ in Proc.
+ [1] N. G. Eapen, A. R. Rao, D. Samanta, N. R. Robert, R. Krishnamoorthy,                 34th IEEE/ACM Int. Conf. Automated Softw. Eng. Workshop (ASEW),
+     and G. H. Lokesh, ‘‘Security aspects for mutation testing in mobile appli-           Nov. 2019, pp. 65–68.
+     cations,’’ in Cyber Intelligence and Information Retrieval (Lecture Notes       [24] D. Jie, G. Zheng, Y. Zhang, X. Ding, and L. Wang, ‘‘Spectral kurtosis
+     in Networks and Systems), J. Manuel, R. S. Tavares, P. Dutta, S. Dutta, and          based on evolutionary digital filter in the application of rolling element
+     D. Samanta, Eds. Singapore: Springer, 2022, pp. 17–27.                               bearing fault diagnosis,’’ Int. J. Hydromechatron., vol. 4, no. 1, pp. 27–42,
+ [2] P. K. Singh, ‘‘Data with non-Euclidean geometry and its characterization,’’          2021.
+     J. Artif. Intell. Technol., vol. 2, no. 1, pp. 3–8, Dec. 2021.                  [25] O. Alhazmi, Y. Malaiya, and I. Ray, ‘‘Security vulnerabilities in soft-
+ [3] R. R. Althar and D. Samanta, ‘‘The realist approach for evaluation of                ware systems: A quantitative perspective,’’ in Data and Applications
+     computational intelligence in software engineering,’’ Innov. Syst. Softw.            Security XIX (Lecture Notes in Computer Science), S. Jajodia and
+     Eng., vol. 17, pp. 17–27, Jan. 2021.                                                 D. Wijesekera, Eds. Berlin, Germany: Springer, 2005, pp. 281–294.
+ [4] A. Balakrishna and P. Mishra, ‘‘Modelling and analysis of static and modal      [26] L. Allodi, M. Cremonini, F. Massacci, and W. Shim, ‘‘Measuring the
+     responses of leaf spring used in automobiles,’’ Int. J. Hydromechatron.,             accuracy of software vulnerability assessments: Experiments with students
+     vol. 4, no. 4, pp. 350–367, 2021.                                                    and professionals,’’ Empirical Softw. Eng., vol. 25, no. 2, pp. 1063–1094,
+ [5] I. H. Sarker, ‘‘Deep cybersecurity: A comprehensive overview from neural             Mar. 2020.
+     network and deep learning perspective,’’ Social Netw. Comput. Sci., vol. 2,     [27] G. Jabeen and L. Ping, ‘‘A unified measurable software trustworthy model
+     no. 3, pp. 1–16, May 2021.                                                           based on vulnerability loss speed index,’’ in Proc. 18th IEEE Int. Conf.
+ [6] R. R. Althar, D. Samanta, D. Konar, and S. Bhattacharyya, Software Source            Trust, Secur. Privacy Comput. Commun./13th IEEE Int. Conf. Big Data
+     Code. Berlin, Germany: De Gruyter, July 2021.                                        Sci. Eng. (TrustCom/BigDataSE), Aug. 2019, pp. 18–25.
+ [7] S. C. Mondal, P. L. C. Marquez, and M. O. Tokhi, ‘‘Analysis of mechanical       [28] W. Xiong, M. Gülsever, K. M. Kaya, and R. Lagerström, ‘‘A study of
+     adhesion climbing robot design for wind tower inspection,’’ J. Artif. Intell.        security vulnerabilities and software weaknesses in vehicles,’’ in Secure IT
+     Technol., vol. 1, no. 4, pp. 219–227, Sep. 2021.                                     Systems (Lecture Notes in Computer Science), A. Askarov, R. R. Hansen,
+ [8] R. Gupta, S. Tanwar, S. Tyagi, and N. Kumar, ‘‘Machine learning models               and W. Rafnsson, Eds. Cham, Switzerland: Springer, 2019, pp. 204–218.
+     for secure data analytics: A taxonomy and threat model,’’ Comput. Com-          [29] A. Jøsang, M. Ødegaard, and E. Oftedal, ‘‘Cybersecurity through secure
+     mun., vol. 153, pp. 406–440, Mar. 2020.                                              software development,’’ in Information Security Education Across the
+ [9] R. R. Althar and D. Samanta, ‘‘Building intelligent integrated devel-                Curriculum (IFIP Advances in Information and Communication Technol-
+     opment environment for IoT in the context of statistical modeling for                ogy), M. Bishop, N. Miloslavskaya, and M. Theocharidou, Eds. Cham,
+     software source code,’’ in Multimedia Technologies in the Internet of                Switzerland: Springer, 2015, pp. 53–63.
+     Things Environment (Studies in Big Data), R. Kumar, R. Sharma, and              [30] A. Sadeghi, N. Esfahani, and S. Malek, ‘‘Mining the categorized software
+     P. K. Pattnaik, Eds. Singapore: Springer, 2021, pp. 95–115.                          repositories to improve the analysis of security vulnerabilities,’’ in Funda-
+[10] L. Li, Q. Dong, D. Liu, and L. Zhu, ‘‘The application of fuzzing in web              mental Approaches to Software Engineering (Lecture Notes in Computer
+     software security vulnerabilities test,’’ in Proc. Int. Conf. Inf. Technol.          Science), S. Gnesi and A. Rensink, Eds. Berlin, Germany: Springer, 2014,
+     Appl., Nov. 2013, pp. 130–133.                                                       pp. 155–169.
+[11] N. Papernot, P. McDaniel, A. Sinha, and M. Wellman, ‘‘Towards                   [31] J. M. Kizza, ‘‘Introduction to computer network vulnerabilities,’’ in Guide
+     the science of security and privacy in machine learning,’’ 2016,                     to Computer Network Security (Computer Communications and Net-
+     arXiv:1611.03814.                                                                    works), J. M. Kizza, Ed. Cham, Switzerland: Springer, 2020, pp. 87–103.
+[12] A. R. Rao and D. Samanta, ‘‘A real-time approach with deep learn-               [32] S. Zhang, D. Caragea, and X. Ou, ‘‘An empirical study on using the national
+     ing for pandemic management,’’ in Healthcare Informatics for Fighting                vulnerability database to predict software vulnerabilities,’’ in Database
+     COVID-19 and Future Epidemics (EAI/Springer Innovations in Commu-                    and Expert Systems Applications (Lecture Notes in Computer Science),
+     nication and Computing), L. Garg, C. Chakraborty, S. Mahmoudi, and                   A. Hameurlain, S. W. Liddle, K.-D. Schewe, and X. Zhou, Eds. Berlin,
+     V. S. Sohmen, Eds. Cham, Switzerland: Springer, 2022, pp. 113–139.                   Germany: Springer, 2011, pp. 217–231.
+[13] T. V. Hahn and C. K. Mechefske, ‘‘Self-supervised learning for tool             [33] Ú. Erlingsson, Y. Younan, and F. Piessens, ‘‘Low-level software security
+     wear monitoring with a disentangled-variational-autoencoder,’’ Int. J.               by example,’’ in Handbook of Information and Communication Security,
+     Hydromechatron, vol. 4, pp. 69–98, Mar. 2021.                                        P. Stavroulakis and M. Stamp, Eds. Berlin, Germany: Springer, 2010,
+[14] J. B. Fraley and J. Cannady, ‘‘The promise of machine learning in cyber-             pp. 633–658.
+     security,’’ in Proc. SoutheastCon, Mar. 2017, pp. 1–6.                          [34] L. Ben Othmane, G. Chehrazi, E. Bodden, P. Tsalovski, and A. D. Brucker,
+[15] I. Williams and X. Yuan, ‘‘Evaluating the effectiveness of Microsoft threat          ‘‘Time for addressing software security issues: Prediction models and
+     modeling tool,’’ in Proc. Inf. Secur. Curriculum Develop. Conf., Oct. 2015,          impacting factors,’’ Data Sci. Eng., vol. 2, no. 2, pp. 107–124, Jun. 2017.
+     pp. 1–6.                                                                        [35] F. Massacci, S. Neuhaus, and V. H. Nguyen, ‘‘After-life vulnerabilities:
+[16] D. S. Cruzes, M. G. Jaatun, K. Bernsmed, and I. A. Tøndel, ‘‘Challenges              A study on Firefox evolution, its vulnerabilities, and fixes,’’ in Engi-
+     and experiences with applying Microsoft threat modeling in agile devel-              neering Secure Software and Systems (Lecture Notes in Computer Sci-
+     opment projects,’’ in Proc. 25th Australas. Softw. Eng. Conf. (ASWEC),               ence), Ú. Erlingsson, R. Wieringa, and N. Zannone, Eds. Berlin, Germany:
+     Nov. 2018, pp. 111–120.                                                              Springer, 2011, pp. 195–208.
+[17] K. Goseva-Popstojanova and J. Tyo, ‘‘Experience report: Security vulner-        [36] CWE. Common Weakness Enumeration. Accessed: Oct. 20, 2021.
+     ability profiles of mission critical software: Empirical analysis of security        [Online]. Available: https://cwe.mitre.org/
+     related bug reports,’’ in Proc. IEEE 28th Int. Symp. Softw. Rel. Eng.           [37] P. Rodeghero, S. Jiang, A. Armaly, and C. McMillan, ‘‘Detecting user
+     (ISSRE), Oct. 2017, pp. 152–163.                                                     story information in developer-client conversations to generate extractive
+[18] M. Välja, F. Heiding, U. Franke, and R. Lagerström, ‘‘Automating threat              summaries,’’ in Proc. IEEE/ACM 39th Int. Conf. Softw. Eng. (ICSE),
+     modeling using an ontology framework,’’ Cybersecurity, vol. 3, no. 1,                May 2017, pp. 49–59.
+     pp. 1–20, Dec. 2020.                                                            [38] A. Ahmad, C. Feng, M. Khan, A. Khan, A. Ullah, S. Nazir, and A. Tahir,
+[19] R. R. Althar and D. Samanta, ‘‘Application of machine intelligence-based             ‘‘A systematic literature review on using machine learning algorithms for
+     knowledge graphs for software engineering,’’ in Methodologies and Appli-             software requirements identification on stack overflow,’’ Secur. Commun.
+     cations of Computational Statistics for Machine Intelligence. Hershey, PA,           Netw., vol. 2, pp. 107–124, Jun. 2017.
+     USA: IGI Global, 2021.                                                          [39] A. Ahmad, ‘‘Research on comprehending software requirements on
+[20] Y. Xu, Y. Li, and C. Li, ‘‘Electric window regulator based on intelligent            social media,’’ Technol. Res., School Comput. Sci. Technol., Austria,
+     control,’’ J. Artif. Intell. Technol., vol. 1, no. 4, pp. 198–206, Sep. 2021.        Tech. Rep. 42, 2018.
+
+VOLUME 10, 2022                                                                                                                                                 90607
+                                                             R. R. Althar et al.: Automated Risk Management Based Software Security Vulnerabilities Management
+
+
+
+
+[40] A. Ahmad, C. Feng, K. Li, S. M. Asim, and T. Sun, ‘‘Toward empirically                                   MANJIT KAUR (Senior Member, IEEE) received
+     investigating non-functional requirements of iOS developers on stack over-                               the Master of Engineering degree in information
+     flow,’’ IEEE Access, vol. 8, pp. 501–506, 2019.                                                          technology from Punjab University, Chandigarh,
+[41] M. Xiao, G. Yin, T. Wang, C. Yang, and M. Chen, ‘‘Requirement acquisi-                                   India, in 2011, and the Ph.D. degree from the
+     tion from social Q&A sites,’’ in Requirements Engineering in the Big Data                                Thapar Institute of Engineering and Technology,
+     Era. Cham, Switzerland: Springer, 2015, pp. 64–74.                                                       Patiala, India, in 2019. She worked as an Assis-
+                                                                                                              tant Professor in three well-known universities
+                           RAGHAVENDRA RAO ALTHAR received the                                                of India, such as Chandigarh University, Mohali,
+                           bachelor’s degree in mechanical engineering from                                   India; Manipal University Jaipur, Jaipur, India; and
+                           the VTU and the M.B.A. degree in operations                                        Bennett University, Greater Noida, India. In 2021,
+                           management from Indira Gandhi Open Univer-              she moved to the School of Electrical Engineering and Computer Science,
+                           sity. He is currently pursuing the Doctor of Phi-       Gwangju Institute of Science and Technology, Gwangju, South Korea, where
+                           losophy degree in data science from CHRIST              she is currently affiliated. She was in the top 2% list issues by ‘‘World
+                           (Deemed to be University), Bengaluru, India. He is      Ranking of Top 2% Scientists,’’ in 2021. She was part of the 14 Web
+                           also working as a Quality Management Specialist         of Science/Scopus indexed conferences. Her research interests include
+                           with the Software Development Team of Insurance         post-quantum cryptography, fully homomorphic encryption, and privacy-
+                           domain-based company. For last 15 years, he has         preserving machine learning, wireless sensor networks, digital image pro-
+been working on building quality management systems for various domains            cessing, and metaheuristic techniques.
+like manufacturing, retail, telecom and software industries, based on interna-
+tional standards like ISO, Six Sigma, and best global practices for industry.
+                                                                                                              DILBAG SINGH (Senior Member, IEEE) received
+Adopting best practices of data science to optimize software development
+                                                                                                              the Ph.D. degree in computer science and engi-
+processes and connected business processes has been the recent focus area.
+                                                                                                              neering from the Thapar Institute of Engineering
+He is a Six Sigma Black Belt Certified and a Quality Management & Infor-
+                                                                                                              and Technology, Patiala, India, in 2019. He worked
+mation Security Audit Standards Certified Practitioner. His research interest
+                                                                                                              as an Assistant Professor in three well-known uni-
+includes application of data science in software development processes.
+                                                                                                              versities of India, such as Chandigarh University,
+                                                                                                              Mohali, India; Manipal University Jaipur, Jaipur,
+                           DEBABRATA SAMANTA (Member, IEEE)                                                   India; and Bennett University, Greater Noida,
+                           received the Ph.D. degree in computer science and                                  India. In 2021, he moved to the School of Electri-
+                           engineering from the National Institute of Tech-                                   cal Engineering and Computer Science, Gwangju
+                           nology, Durgapur, India, in the area of SAR image       Institute of Science and Technology, Gwangju, South Korea, where he is
+                           processing. He is currently working as an Assis-        currently affiliated. He was in the top 2% list issues by ‘‘World Ranking of
+                           tant Professor with the Department of Computer          Top 2% Scientists,’’ in 2021. He was part of the 11 Web of Science/Scopus
+                           Science, CHRIST (Deemed to be University),              indexed conferences. He has published more than 80 research articles in
+                           Bengaluru, India, and he is also a Co-ordinator         SCI/SCIE indexed journals. He has also submitted five patents and has
+                           of the IPR Cell, since December 2019. He is             published three books and two book chapters. His H-index is 31. His research
+                           keenly interested in interdisciplinary research and     interests include image processing, computer vision, deep learning, meta-
+development and has experience spanning fields of SAR image analysis,              heuristic techniques, and information security. He has acted as a Lead Guest
+video surveillance, heuristic algorithm for image classification, deep learning    Editor/an Editorial Board Member of many SCI/SCIE indexed journals, such
+framework for detection and classification, blockchain, statistical modeling,      as Journal of Healthcare Engineering, Mathematical Problems in Engineer-
+wireless ad hoc networks, natural language processing, and V2I commu-              ing, and Journal of Intelligent and Fuzzy Systems.
+nication. He has successfully completed six consultancy projects. He has
+received funding 8,110 USD under Open Access, Publication Fund. He has
+received funding under the International Travel Support Scheme in 2019 for                                   HEUNG-NO LEE (Senior Member, IEEE)
+attending conference in Thailand. He has received the Travel Grant for                                       received the B.S., M.S., and Ph.D. degrees in
+Speaker in Conference, and Seminar, for two years, from July 2019. He is                                     electrical engineering from the University of Cal-
+the owner of 21 patents (three design Indian patent and two Australian                                       ifornia at Los Angeles, Los Angeles, CA, USA,
+patent granted, and 16 Indian patents published) and two copyright. He has                                   in 1993, 1994, and 1999, respectively. He was
+authored or coauthored over 197 research papers in international journals                                    with HRL Laboratories, LLC, Malibu, CA, USA,
+(SCI/SCIE/ESCI/Scopus) and conferences, including IEEE, Springer, and                                        as a Research Staff Member, from 1999 to 2002.
+Elsevier Conference proceeding. He is the coauthor of 13 books and the                                       From 2002 to 2008, he was an Assistant Profes-
+co-editor of 11 books, available for sale on Amazon and Flipkart. He has                                     sor with the University of Pittsburgh, Pittsburgh,
+presented various papers at international conferences and received best paper                                PA, USA. In 2009, he moved to the School of
+awards. He has authored or coauthored of eight book chapters. He also serves       Electrical Engineering and Computer Science, Gwangju Institute of Science
+as an Acquisition Editor for Springer, Wiley, CRC, Scrivener Publishing            and Technology, Gwangju, South Korea, where he is currently affiliated.
+LLC, Beverly, USA, and Elsevier. He is an Associate Life Member of                 His research interests include information theory, signal processing the-
+Computer Society of India (CSI) and a Life Member of the Indian Society            ory, blockchain, communications/networking theory, and their application
+for Technical Education (ISTE). He has received ‘‘Scholastic Award’’ at            to wireless communications and networking, compressive sensing, future
+the 2nd International Conference on Computer Science and IT Application,           internet, and brain–computer interface. He has received several prestigious
+CSIT-2011, Delhi, India. He is a convener, keynote speaker, session chair,         national awards, including the Top 100 National Research and Development
+co-chair, publicity chair, publication chair, advisory board, and technical        Award in 2012, the Top 50 Achievements of Fundamental Research Award
+program committee members in many prestigious international and national           in 2013, and the Science/Engineer of the Month (January 2014).
+conferences. He was an invited speaker at several institutions.
+
+
+
+
+90608                                                                                                                                            VOLUME 10, 2022
+

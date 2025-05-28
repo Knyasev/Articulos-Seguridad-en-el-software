@@ -1,0 +1,879 @@
+Intelligent and Converged Networks                                                                                                   ISSN 2708-6240
+2024, 5(3): 222−236                                                                                                  DOI: 10.23919/ICN.2024.0016
+
+
+
+ Automated and controlled patch generation for enhanced fixing
+         of communication software vulnerabilities
+                                     Shuo Feng, Shuai Yuan, Zhitao Guan*, and Xiaojiang Du
+
+    Abstract: Software is a crucial component in the communication systems, and its security is of paramount importance.
+    However, it is susceptible to different types of attacks due to potential vulnerabilities. Meanwhile, significant time and
+    effort is required to fix such vulnerabilities. We propose an automated program repair method based on controlled text
+    generation techniques. Specifically, we utilize a fine-tuned language model for patch generation and introduce a
+    discriminator to evaluate the generation process, selecting results that contribute most to vulnerability fixes.
+    Additionally, we perform static syntax analysis to expedite the patch verification process. The effectiveness of the
+    proposed approach is validated using QuixBugs and Defects4J datasets, demonstrating significant improvements in
+    generating correct patches compared to other existing methods.
+
+
+    Key words: automatic program repair; controlled text generation; communication software security; program language
+                   model
+
+
+
+1   Introduction                                                               services, or pilfer valuable assets[3, 4].
+                                                                                 To counteract these threats, a range of technical and
+Communication plays a pivotal role in contemporary
+                                                                               managerial approaches have been explored to bolster
+society, offering diverse channels for individuals and
+                                                                               communication        security.    This     includes  the
+organizations        to      connect.         Nevertheless,          as
+                                                                               implementation of advanced protocols and security
+communication’s significance grows, so does the
+                                                                               measures[5, 6] during the communication process.
+concurrent risk of security breaches. Analyzing the
+                                                                               However, attackers persistently refine their tactics,
+complexity and scale of modern software development
+                                                                               posing a challenge to maintaining integrity and
+underscores the undeniable emergence of security as an
+                                                                               confidentiality in these systems. One of the most
+escalating challenge[1,        2].    With the evolution and
+                                                                               effective methods employed by attackers is the
+expansion of software systems, the presence of
+                                                                               exploitation of vulnerabilities in communication
+vulnerabilities becomes inevitable. Criminals can
+                                                                               software, enabling them to bypass security measures[7].
+exploit communication systems to gain unauthorized
+                                                                               These vulnerabilities stem from the intricate nature of
+access to sensitive information, disrupt essential
+                                                                               communication software, thereby amplifying the
+ Shuo Feng and Zhitao Guan are with School of Control and                      difficulty in detection and resolution.
+ Computer Engineering, North China Electric Power University,
+                                                                                 In 2022, the BuTian Vulnerability Response
+ Beijing 100029, China. E-mail: {sxyqsure, guan}@ncepu.
+ edu.cn.                                                                       Platform gathered a total of 168 000 vulnerabilities
+ Shuai Yuan is with Department of Finance, Operations, and                     from websites and applications[8]. Despite the
+ Information Systems, Brock University, St. Catharines L2S3A1,                 identification of numerous vulnerabilities, the repair
+ Canada. E-mail: syuan@brocku.ca.
+ Xiaojiang Du is with Department of Electrical and Computer                    rate stands at only 69.8%. This can be attributed to the
+ Engineering, Stevens Institute of Technology, Hoboken, NJ                     fact that traditional vulnerability repair methods
+ 07030, USA. E-mail: dxj@ieee.org.                                             typically necessitate manual intervention, a process
+* To whom correspondence should be addressed.                                  prone to time-consuming efforts and errors, especially
+  Manuscript received: 2023-12-23; revised: 2024-02-28;
+  accepted: 2024-04-25                                                         within large-scale software systems. Moreover, the
+
+        © All articles included in the journal are copyrighted to the ITU and TUP. This work is available under the CC BY-NC-ND 3.0 IGO license:
+                                                    https://creativecommons.org/licenses/by-nc-nd/3.0/igo/.
+ Shuo Feng et al.: Automated and controlled patch generation for enhanced fixing of communication software...     223
+
+high level of expertise required for implementing these         understanding of code transformation relationships.
+repairs is often lacking in most enterprises. Therefore,          Acknowledging          the     disparities    between
+enhancing the efficiency of program repair techniques           programming language and natural language
+in such scenarios remains a primary concern for                 processing[15], particularly the distinctive naming
+professionals.                                                  conventions and features inherent in programming
+   Current automatic program repair (APR) methods               language, our approach focuses on Java program
+primarily concentrate on generating patches for                 development. Developers extensively define and utilize
+general-purpose software[9], emphasizing the analysis           identifiers containing rich syntactical information,
+of code leading to vulnerabilities. Their objective is to       along with API interfaces[16, 17]. To address this, we
+produce accurate patches and apply them to the source           introduce byte pair encoding (BPE) technology[18]. By
+code to achieve vulnerability remediation. In this              analyzing a vast quantity of Java code and breaking
+realm, various methods exist[10−12], with those based on        identifier sequences into subwords, we effectively
+deep learning attracting widespread attention and               reduce vocabulary size, while striving to ensure the
+demonstrating significant effectiveness. However, the           integrity of the original program information, making it
+interactive nature of the communication domain                  more consistent with the strict requirements for
+introduces a more complex interdependency among                 symbols and structures in programming. This operation
+codes. Existing general methods tend to focus                   significantly enhance the performance of the
+primarily on the vulnerabilities themselves, neglecting         generation model.
+the holistic and interrelated nature of code as an entity.        Subsequently, we train a discriminator using
+Additionally, generation models often face constraints          vulnerability context and post-repair outcomes.
+in comprehending intricate code structures and logical          Drawing inspiration from controlled text generation[19],
+relationships. These limitations impact the ability of          we consider the presence or absence of a vulnerability
+generation models to generate accurate patches,                 as a code attribute and employed the discriminator for
+potentially resulting in imprecise and syntactically            evaluation. Throughout the generation process, the
+incomplete code.                                                discriminator conduct a detailed analysis of
+   In response to the aforementioned challenges, we             intermediate results and make corresponding
+present a solution for automated program repair,                adjustments, ensuring that the model is more adept at
+leveraging controlled code generation techniques                generating accurate patches. This discriminator
+specifically tailored to address vulnerabilities in Java        comprehensively understands the relationship within
+source code. We conduct pretraining on GPT-2[13]                the communication software code context, enhancing
+utilizing an enormous programming language corpus               the model’s precision and reliability in patch
+that including commonly used communication                      generation.
+software. This approach empower the model to                      We subsequently implement and evaluate controlled
+transform code into high-dimensional features. This             of patch (CoP) on the QuixBugs[20] and Defests4J[21],
+process not only enable GPT-2 to learn programming              benchmark datasets specifically designed for
+conventions and rules but also heighten its                     vulnerability repair. We compare its performance with
+understanding of the code structure in communication            five existing techniques. The results highlight a
+software. Subsequently, we seamlessly integrate this            substantial improvement compared to other methods,
+pretrained model with a neural machine translation              as CoP generated 16 plausible patches and successfully
+(NMT)[14] model and fine-tune it using data consisting          addressed 5 vulnerabilities on QuixBugs. Additionally,
+of vulnerable code and corresponding patches. This              on Defects4J, CoP produce 6 correct patches along
+fine-tuning process further optimize the model,                 with 17 plausible patches. Our contribution can be
+resulting in smoother and more human-like code                  summarized as follows:
+generation while enhancing the model’s comprehensive              (1) We design a novel patch generation models a pre-
+    224                                                               Intelligent and Converged Networks, 2024, 5(3): 222−236
+
+trained programming language model with a neural                the validation of whether custom deserialization
+machine translation model. And we introduce BPE to              methods exist for values and keys, and introduced
+enhance the capability of patch generation.                     “_ignorableProperties” to validate data marked as
+   (2) We propose controlled patch generation, inspired         ignorable, effectively avoiding potential issues.
+by controlled text generation. During the generation            Simultaneously, the fix prevents attackers from
+process, we utilize a discriminator to assess the               exploiting redundant content in specific contexts for
+contribution of intermediate results to vulnerability           information gathering or other forms of attacks.
+fixes, aiming to enhance the effectiveness of repairing           When considering the utilization of a deep learning
+communication software vulnerabilities.                         model to automatically generate a patch for this
+   (3) We evaluate the performance of CoP by                    vulnerability, the model’s understanding of code
+conducting comparative analysis with five existing              functionality becomes crucial. Due to the lack of
+methods on the QuixBugs and Defects4J datasets. The             sufficient contextual information, the model requires
+experimental     results     demonstrate     substantial        extensive training data to grasp the logic of the code
+improvements in the effectiveness and accuracy of               and the meaning of identifiers. The model must
+repairs in comparison with existing solutions.                  comprehend specific patterns and logical structures in
+                                                                the code, learning about serialization-related
+2     Background                                                knowledge to generate viable patches.
+                                                                  Furthermore, the way code is processed influences
+2.1       Motivating example
+                                                                the model’s generation capability. If code is processed
+Let us closely examine a case of vulnerability fix and          on a word-by-word basis, identifiers like
+conduct an analysis. Figure 1 illustrates a vulnerability       “_valueDeserializer” and “_ignorableProperties” might
+in Jackson Databind that could potentially lead to              be labeled as out-of-vocabulary (OOV) words due to
+deserialization attacks. Jackson Databind serves as a           their infrequent occurrences. This processing approach
+critical module of the Jackson library, specifically            could result in the model being unable to accurately
+designed for managing the serialization and                     recognize the constituent parts of these identifiers.
+deserialization of Java objects and JSON data. In the           Models trained using this method may lack the precise
+communication field, it plays a pivotal role, supporting        generation ability for these identifiers. Considering the
+data transmission and parsing and enabling different            prevalence of such data structures in the development
+systems to communicate using a unified JSON format.             of communication systems, it becomes imperative to
+However, when dealing with JSON data from untrusted             explore new tokenization methods that better align with
+sources, a security risk arises, rendering it susceptible       the requirements of data processing in this context.
+to attacks.                                                     2.2    Related work
+  The original code including validation for values,
+                                                                Current patch generation methods can be categorized
+keys, and types of information during serialization.
+                                                                into three types: search-based, semantic-based, and
+However, such validation is often unnecessary in the
+                                                                learning-based APR.
+serialization process, where serialization information is
+                                                                  Search-based methods[22] operate on the premise that
+typically stored in values and keys. The fix removed
+                                                                all repair patches can be obtained by recombining
+                                                                existing code, addressing the repair task through
+                                                                combinatorial optimization methods. These methods
+                                                                explore the space of existing code to identify potential
+                                                                solutions for generating patches.
+                                                                  Semantic-based       methods[23]   necessitate    the
+    Fig. 1   A vulnerability repair case in Jackson Databind.   preparation of inputs that can trigger vulnerabilities,
+ Shuo Feng et al.: Automated and controlled patch generation for enhanced fixing of communication software...      225
+
+along with expected normal outputs. They extract                In addition, there is still much room for improvement
+requirements that the patch should meet from the                in identifier processing and training data construction.
+program’s runtime information. These constraints then
+                                                                2.3   Approach overview
+serve as specifications for generating patches through a
+constraint solver.                                              CoP takes Java source code and specific code
+   Given its openness and interactivity communication           behaviors leading to vulnerabilities as input, employing
+software is more susceptible to attacks, facing a higher        an automatic patch generation process facilitated by the
+number of vulnerabilities compared to other softwares.          generation model. Additionally, we introduce the
+However, existing remediation methods can only                  concept of controlled generation, adjusting the
+handle specific types of vulnerabilities, providing             direction of generating intermediate results by the
+limited protection for communication software. To               discriminator to enhance the accuracy of patch
+fully leverage the capabilities of remediation methods,         generation. We conduct test cases, comparing the
+profound vulnerability expertise is required.                   results before and after the replacement to verify that
+Nevertheless, the professional threshold in the field of        the patch successfully achieves the repair. Validated
+communication is high, and there is an urgent demand            patches are referred to as plausible patches. Manual
+for related knowledge. Additionally, search-based and           inspection is also performed on these plausible patches
+semantic-based methods encounter challenges when                to confirm the success of the repair. If the generated
+dealing with situations where the fundamental structure         patch produces the same or an equivalent outcome as
+of the code needs to be changed, a common occurrence            the official version from the developer, it is considered
+during the remediation process.                                 correct.
+   Furthermore, learning-based approaches have been               Our research is centered on one-line patches and
+proposed for software repair. Such repair is considered         vulnerabilities, specifically vulnerabilities caused by a
+as a text translation task, where deep learning models          single line of code that can be rectified with a one-line
+can translate defective code into normal code to                patch. This aligns with the general understanding that
+implement bug repair by learning the program                    most errors originate from line-specific problems. Our
+specifications and the relationship between the bugs            repair approach is based on the replacement of
+and patches. This process eliminates the need for               erroneous lines in the original code with generated
+human intervention and can improve the ability to               results, a methodology proven to be effective across the
+repair unknown vulnerabilities. The learning-based              majority of vulnerability scenarios.
+APR       alternatives   have     achieved     significant        It is crucial to emphasize that our model’s inputs
+advancements. DeepFix     [24]  applies a sequence-to-          consist of code segments with existing vulnerabilities
+sequence neural network with a multilevel structure to          and the specific lines where these vulnerabilities occur.
+predict locations of defects and correct repair lines,          In essence, the repair process begins only after the
+while White et al.[25], Tufano et al.[26], and Lutellier et     completion of thorough vulnerability detection and
+al.[27] have developed program repair methods using             localization.
+different deep learning models. CURE[28], proposed by             The model we construct comprises three pivotal sub-
+Jiang et al., introduces emerging techniques into APR           models: the GPT model, the generation model, and the
+tasks, such as pre-trained programming language                 discriminator model. Firstly, the GPT-2 model,
+models, subword tokenization, and code-aware search             representing the program language model, serves as a
+strategies, to improve the model’s learning ability and         feature extractor. It delves into programming language
+address the OOV problem. However, these methods                 norms and conventions through unsupervised learning
+lack attention to communication software, and the               tasks, establishing a robust foundation for subsequent
+model structure designed for general software faces             restorative tasks. Secondly, the generation model
+challenges when dealing with communication software.            adopts a neural machine translation architecture,
+  226                                                                          Intelligent and Converged Networks, 2024, 5(3): 222−236
+
+utilizing features processed by the GPT model as                        generation model and discriminator.
+training data. Through fine-tuning, it focuses on                          (3) Patch generation: The input consists of the code
+capturing the transformation relationship between                       containing vulnerabilities and the location of the bug,
+vulnerabilities and patches, as well as the intrinsic                   i.e., the line that causes the vulnerability. To eliminate
+connections between patches and contexts. Lastly, the                   any potential interference from redundant information,
+discriminator model, functioning as a convolutional                     the input is also processed and transformed into a
+neural network (CNN) model, is fine-tuned for                           desired format for the model. In the process of
+vulnerability detection. It evaluates the contribution of               generating candidate patches by identification, the
+intermediate results to the restoration process during                  discriminator analyzes the intermediate results and
+generation. The collaborative structure of these                        selects the result that is more likely to generate the
+multiple models is designed to significantly enhance                    correct patch.
+the efficacy of the restoration, ensuring that the                         (4) Validation: The candidate patch is compiled, and
+generated patches not only adhere to syntactic norms                    pre-prepared test suites are executed to verify
+but also effectively rectify vulnerabilities.                           effectiveness of the patch. Finally, the model outputs a
+   As shown in Fig. 2, our approach adheres to the                      list of plausible patches for the developer to review.
+general structure of the generation & verification
+(G&V) solution, comprising four stages: data                            3      Methodology
+preprocessing, training, patch generation, and
+                                                                        3.1     Data extraction
+validation. This ensures the accuracy and effectiveness
+of the vulnerability remediation results.                               A substantial corpus of Java programs obtained from
+   (1) Data preprocessing: We filter the collected data,                GitHub is utilized for the unsupervised training of
+excluding irrelevant content for training, and extract                  programming language models in our study. The other
+the vulnerability code along with its corresponding                     portion of the data is extracted from open-source
+repair patches. Additionally, we tokenize the data to                   projects on GitHub. We manually filter these
+assist the model in learning key features more                          submission records using keywords such as “defect”,
+effectively.                                                            “vulnerability”, and “fix” to extract vulnerability
+   (2) Model training: We train our models using                        information. Additionally, we perform data
+preprocessed data. Initially, we conduct unsupervised                   preprocessing, which involves formatting the code to
+training tasks on a large corpus to pretrain a program                  eliminate irrelevant annotations and other contents,
+language model. Subsequently, leveraging this                           extracting identifiers, and tokenizing.
+pretrained program language model, we fine-tune the                       Subsequently, the data is converted into the desired
+
+                                          Training
+                                                                                          Pre-trained
+                                                   Context                                 PL Model
+                                                                            Fine-tuning
+                          Formation               Buggy line
+                                                 Correct patch                                  CNNs
+        Training data
+                                                 Vulnearbility                                                          Plausible
+                          Identifier              program                                                               patches
+                          extraction
+                                              Repaired program
+     Buggy projects                                                                                                    Validation
+                                                                                  Generation
+                           Tokenizer                                                model
+                                                      Context                                          Static syntax   Candidated
+                                                     Buggy line                                          analysis       patches
+                                                                                   Evaluation
+                                                                                     model                              Validation
+                        Data extraction     Inference
+
+                                                       Fig. 2     Overview of CoP.
+ Shuo Feng et al.: Automated and controlled patch generation for enhanced fixing of communication software...           227
+
+format, and each instance containing vulnerability                 Specifically, we first collect information on character
+information is effectively segmented into its contextual        pairs in the code and then create subwords by merging
+details, including vulnerable lines and their respective        the most frequently occurring pairs. This process
+correct patches. This segmented data is then employed           gradually decomposes compound words in the code
+for fine-tuning the generation model. Furthermore, for          into smaller subwords, preserving semantic
+each piece of vulnerability data, we replace the                information while reducing the complexity of the
+vulnerability row with a corresponding patch to create          vocabulary. This makes it easier for the model to
+a pair of data. We then randomly select one from each           generate correct patches, as it can better comprehend
+group and label it as 1 or 0 (normal or defective) to           and handle the intricacies of the code’s language
+construct the training data for the discriminator.              structures.
+                                                                   Figure 3 illustrates a tokenization process. Figure 3a
+3.2   Tokenization
+                                                                documents tokenization at the word level, where the
+Before inputting data into the model for training and           code is segmented into shorter characters using spaces.
+inference, it is essential to tokenize the code sequence.       For instance, “PriorityQueue” is split into “Priority”,
+Initially, we employ word-level tokenization, breaking          “CAMEL” and “Queue”. However, if the process stops
+down code lines by spaces and dividing structures like          at this stage, the variable name “charno” cannot be
+camel case and underscores into relatively shorter              split. Additionally, it is not a common token; therefore,
+words. Concurrently, to better preserve the structural          it is marked as OOV token, making it impossible for
+information of the original identifiers, we introduce the       the model to generate the corresponding results. With
+“CAMEL” token. This token is used to record the                 the introduction of BPE tokenization, as depicted in
+connection relationships between camel case                     Fig. 3b, “charno” is further split into “char@@” and
+components. This additional tokenization step helps             “no” (where @@ indicates that this token is connected
+enhance the model’s accurate understanding of how               to the subsequent one), allowing the model to generate
+code identifiers are composed, thereby improving the            results accurately.
+grasp of the semantic meaning of the code.
+   Following tokenization at the vocabulary level on the        3.3   Model training
+programming language, the generated vocabulary may              Programing language model: A GPT model is firstly
+still be exceptionally large, with many words                   trained using the preprocessed data. As a feature
+potentially marked as OOV tokens. While such an                 extractor, it can transform code sequences into high-
+operation may have little impact in general natural             dimensional features. Through unsupervised learning
+language text, it is crucial in source code, where rare         tasks, GPT models can make full use of a large amount
+tokens could represent specific project variables or            of open-source data. On the other hand, GPT models
+method names essential for the proper functioning of            can learn the programming norms and habits of
+the program. Excluding these tokens poses a significant         programming language, so that the fine-tuning of the
+challenge, making it difficult for the model to generate        generated model is more effective.
+effective patches that can successfully compile.                   We denote a sequence of token segment as
+   Moreover, to effectively reduce the size of the              x = x1 x2 · · · xn , where xi is the i-th token in the sequence
+vocabulary and alleviate the impact of OOV tokens, we           x. And the objective of programming language model
+introduced the BPE tokenization method, a data
+compression-based algorithm. BPE constructs a
+                                                                                  (a) Word level tokenization
+vocabulary by iteratively merging the most frequently
+occurring character pairs. This method enhances our
+ability to flexibly capture the language structures                              (b) Subword level tokenization
+
+within the code.                                                                Fig. 3   Tokenization process.
+  228                                                                                  Intelligent and Converged Networks, 2024, 5(3): 222−236
+
+is to maximize the likelihood:                                                   generating y1 given the last token in the context before
+                   1∑
+                          n
+             LPL =       logP (xii | x0 x1 · · · xi−1 ; Φ)                 (1)   the correct patch. To retain the generalization
+                   n i=1
+                                                                                 capability of the pre-training model, we use the
+where Φ represents the weights of the programming                                probability of the GPT model LPL as an auxiliary index
+language model. And P (xi | x0 x1 · · · xi−1 ; Φ) is the                         in the optimization process. Therefore, during the fine-
+probability of the token xi is the following token, given                        tuning phase, the primary objective is to maximize
+a sequence of x0 , x1 , . . . , xi−1 .                                           LAPR as follows on all training data by adjusting the
+   The goal of GPT model training is to find the optimal                         parameters Φ and Θ .
+weights so that the output results have a higher                                                   LAPR = L + LPL (xcontext , y)                (3)
+probability of being the same as the real data. The                                Discriminator: The discriminator is a classification
+model can learn from this data to make the generation                            model, and its fine-tuning approach is similar to that of
+model produce more like human-written code.                                      the generation model. Initially, we input the well-
+   Generation model: The model accepts the processed                             organized data into the program language model to
+buggy line, patch, and context as inputs. Once the GPT                           extract features, followed by fine-tuning to learn the
+training is fulfilled, CoP fine-tunes the generation                             differences between normal code and vulnerable code,
+model by combining the GPT and NMT models to                                     determining the presence of vulnerabilities. The
+learn the transformation from bug to patch. The NMT                              discriminator employs a CNN model structure with
+model comprises two encoders and a decoder.                                      relatively lower complexity, which helps avoid
+Specifically, the outputs from the context and buggy                             overfitting issues in the data.
+line are fed into their respective encoders. The GPT                               Let x = x1 x2 · · · x j denote the data and the target label
+model then processes both the correct patch and                                  is denoted by y . All data is denoted as D =< X, Y > ,
+context, and the resulting output is transmitted to the                          where X = {x1 , x1 , . . . , xn } is the set of samples,
+decoder along with the encoder outputs to produce the                            Y = {y1 , y1 , . . . , yn } is the set of corresponding labels, and
+final result. By learning the context along with the                             n is the number of the element in the set. The weights
+corresponding vulnerability row and patch, the model                             of the GPT model and CNNs model are denoted as Φ
+not only focuses on the transformation relationship                              and Θ′ , respectively. Since it is a classification task,
+between the vulnerability and the patch, but also learns                         the cross-entropy loss function, denoted as C , is
+the relationship between the patch and the context.                              applied:
+   Let xbug = x1 x2 · · · xlb denote the buggy line,                                               1∑
+                                                                                                      n
+                                                                                                                                      ]
+                                                                                             C=        [yi lnpi + (1 − yi )ln(1 − pi )          (4)
+xcontext = x′1 x′2 · · · x′lc denote the context, and y = y1 y2 · · ·                              n i
+yl p denote correct patch, where li represents the
+                                                                                 where yi is the target label and pi is the probability
+position of token in the sequence, and lb , lc , and l p                         predicted by the model for that class. The objective is
+represent the lengths of xbug , xcontext , and y ,                               to adjust the parameters Φ and Θ′ to minimize the loss
+respectively. In addition, the weights of the GPT model
+                                                                                 function C on the entire dataset.
+and generation model are denoted by Φ and Θ ,
+respectively. Thus, the objective of fine-tuning is to                           3.4    Controlled patch generation
+update Φ and Θ such that L is maximized:                                         Our ultimate goal is to use the generation model to
+                                                                                 generate patches to effectively repair bugs. Therefore,
+          1∑
+              lp
+     L=           logP (yi | xbug , xcontext , y0 y1 · · · yi−1 ; Φ, Θ),         we use fine-tuned model for generation and evaluate
+          l p i=1
+                                                                                 the process with a discriminator to guide the direction
+                               y0 = xlb −1                                 (2)   of generation. And the output of the model is screened
+where yi is the next token in the correct line sequence                          by static analysis as candidate patches.
+y0 y1 · · · yi−1 , given the buggy lines and the context.                        3.4.1 Generation controller
+Particularly when i = 1 , it derives the probability of                          We introduce the discriminator to control the
+ Shuo Feng et al.: Automated and controlled patch generation for enhanced fixing of communication software...                  229
+
+generation process of the generation model by                              results. This integrated approach contributes to
+adjusting the direction of generation, as shown in Fig.                    optimizing the vulnerability repair generative model,
+4. When the generative model obtains intermediate                          making it more reliable and aligned with practical
+results, it assigns probabilities to each token as the next                repair requirements.
+token based on the existing sequences. The role of the                     3.4.2 Patch generation workflow
+discriminator is to assess these contents and provide                      During the patch generation phase, the CoP model
+corresponding scores that reflect the contribution of                      receives only the buggy line and the context
+each token to vulnerability repair in the current context.                 information as inputs and generate the corresponding
+  Subsequently, we integrate the scores from the                           patch. The generation workflow of CoP is illustrated in
+discriminator with the generative model’s own                              Fig. 5.
+confidence levels. This comprehensive consideration                           The buggy line and context information are firstly
+encompasses the knowledge acquired by the generative                       retrieved from the input. Then the buggy line and
+model during training regarding the transformation                         previous information are fed into the GPT model and
+between patches and defect codes. It also leverages the                    the encoder to obtain the code representation. To begin
+in-depth analysis of the discriminator on intermediate
+                                                                           token generation, a token <start> is added after the
+results. This controlled evaluation method allows us to
+                                                                           previous information and extended by one bit to signal
+guide the learning of the generative model more
+                                                                           the model to start generating tokens. The representation
+accurately, thereby enhancing the quality of generated
+                                                                           is then input into the decoder along with the outputs
+              x′=x1x2…xjxj+1                                               from the encoders, and the last token of the results is
+                                                                           the generated token. The previous code and the
+                                      Discriminator                        generated token are input into the discriminator to
+                                                                           determine which one is more likely to be included in
+                   Generation                                              the correct patch. CoP chooses the token with a higher
+                     model
+                                                                           probability. This process will be repeated until the end
+                                                                           flag <EOS> is generated.
+                   x=x1x2…xj
+                                                                              Figure 6 shows an intermediate step in the process of
+             Fig. 4        Role of the discriminator.                      generating and selecting tokens. In this example, the
+                                                                     Buggy
+                                                                 representation
+
+                                     GPT model                                         Bug lines
+                                                                       …
+
+
+
+
+                     public
+                                                                                       encoder
+        Previous                        Transformer block
+                      …
+
+
+
+
+         context
+                       }
+                                             Layer
+                                                                       …
+
+
+
+
+                      for                 normalization                                Context
+      Buggy line                                                                       encoder
+                      …
+
+
+
+
+                                                                       …
+
+
+
+
+                       {                  Feed forward
+           Later
+                      …
+
+
+
+
+                                             Layer                   Context
+         context       }
+                                          normalization           representation
+
+                     public
+        Previous                          Self-attention
+                      …
+
+
+
+
+         context                                                                                                         for
+                                                                       …
+
+
+
+
+                       {                                                                                     Token
+                                                                                       Decoder             generation
+                      for                                                                                                 (
+                                                                       …
+
+
+
+
+       Generated
+                      …
+
+
+
+
+          tokens
+                       (                  Embedding                 Generation
+                                                                  representation      Evaluation
+                                                                                                   Confidence
+                                                                                        model
+
+
+                                                      Fig. 5   Patch generation process.
+  230                                                                                                  Intelligent and Converged Networks, 2024, 5(3): 222−236
+
+                                                                                                   Syntax checking: In the results generated by the
+                                                                                                 model, many contents do not comply with grammar
+                       Step 2                        (                                           rules and exhibit noticeable syntax errors. The
+                                                                                                 validation phase requires a significant amount of time
+             Step 3           Integer     …       Array
+                                                             …        for
+                             98.2+84.6          97.4+80.3          94.2+60.5                     to identify these issues. To enhance efficiency, we have
+                                                                                                 introduced a static grammar check filtering mechanism.
+        Step 4     count
+                 97.5+86.1
+                                …           arr
+                                         96.9+70.6
+                                                         …       (
+                                                             93.2+43.5
+                                                                         …      Camel
+                                                                               84.2+56.7
+                                                                                                 This mechanism enables effective filtering of content
+ Step 5            …            Text       …                                                     potentially containing syntax errors before the
+                             98.7+90.8
+                                                                                                 validation stage, thereby significantly reducing the
+    Fig. 6   Intermediate results of the patch generation.                                       validation time. This grammar control approach not
+correct patch is “for (Integer count: counts) {”, whereas                                        only improves the overall quality of generated results
+“for (” is the one previously generated. The context and                                         but also alleviates the workload in the subsequent
+the generated content are input into the generation                                              validation process, making the entire workflow more
+model, which produces several possible next tokens                                               efficient and manageable.
+with their respective probabilities of occurrence, as                                            3.5    Validation
+shown in Step 3. CoP then combines each token with
+                                                                                                 Before conducting validation, we need to appropriately
+the existing content and derives confidence scores
+                                                                                                 preprocess the results generated by the model to restore
+using the discriminator. The scores are then added and
+                                                                                                 them to the normal code form. Initially, we focus on
+sorted, and the highest-ranking tokens are selected for
+                                                                                                 reconstructing the subwords generated by the tokenizer
+the next generation. In Fig. 6, for instance, “Integer” is
+                                                                                                 into words, paying special attention to words ending
+selected as the most probable token in Step 3.
+                                                                                                 with “@@”, connecting them with their corresponding
+   Length control: CoP does not impose a hard limit
+                                                                                                 subsequences, and organizing them into the original
+on the length of generated patches, which can be either
+                                                                                                 vocabulary.
+extremely long or short. However, our analysis of
+                                                                                                   In the process of word-level restoration, considering
+existing data has shown that the length of the correct
+                                                                                                 the characteristics of code structure, spaces between
+patch is not significantly different from that of the
+                                                                                                 different identifiers do not affect code functionality.
+original code. Hence, we have incorporated length
+                                                                                                 Therefore, our primary focus is on handling words with
+constraints in our approach to generate patches that are
+                                                                                                 camel case and underscore structures. During the
+similar in length to the buggy line. After each token is
+                                                                                                 underscore structure processing phase, we connect the
+generated, we adjust its probability based on the
+                                                                                                 preceding and succeeding subwords or words with
+current patch length. If the current length is less than
+                                                                                                 underscores to restore the original underscore structure.
+the original length, we decrease the probability of
+                                                                                                 As for camel case structures, utilizing the positional
+choosing the <EOS> token and increase it if the length
+                                                                                                 information from “CAMEL”, we connect the preceding
+is greater.
+                                                                                                 and succeeding subwords or words to restore the
+   The magnitude of this change is proportional to the                                           original camel case structure. This processing helps
+size of the deviation. And the penalty, denoted as F in                                          ensure that the final code representation aligns more
+Eg. 5, is determined by calculating the logarithmic                                              closely with the original form while preserving
+probability of the difference in length.                                                         contextual relationships between identifiers.
+                       {
+                              0,            if |lb − l p | < 5;                                    Subsequently, we inject the processed results into the
+           penalty =                                                                       (5)
+                              F(lb − l p ), otherwise                                            program, replacing the vulnerable lines, and utilize a
+where the length of the original code is lb , whereas the                                        test suite to verify the effectiveness of the generated
+length of the generated patch is l p . The threshold is set                                      patch.
+to 5 to provide more flexibility.                                                                  A plausible patch must satisfy two requirements
+ Shuo Feng et al.: Automated and controlled patch generation for enhanced fixing of communication software...          231
+
+when running when tested: (1) it should pass all test           convolution layers (range from 1 to 5), learning rate
+cases that the original code is able to pass; and (2) it        (range from 1×10−4 to 1×10−5), dropout rate (range
+should handle at least one test case that the vulnerable        from 0.01 to 0.7), number of training epochs (range
+code cannot. This ensures that potential correct patches        from 3 to 10). Consequently, the best configuration of
+are not neglected and also prevents the introduction of         the generation model is a single convolution layer with
+new vulnerabilities.                                            dimension of 384, a learning rate of 6.25×10−5, a
+  Note that we use the aforementioned approach to               dropout rate of 0.01 and one of discriminator is five
+validate candidate patches instead of comparing them            convolution layers with dimension of 384, a learning
+to manual patches. This is to prevent overlooking               rate of 6.25×10−5, and a dropout rate of 0.5. And we
+patches that may be equivalent in functionality but not         run for 5 and 10 rounds respectively of training to
+identical. For instance, if a manual patch is n = n &           ensure adequate learning of the model.
+(n – 1) and the model output is n = (n) & (n – 1), both         4.2   Performance of the repairs
+are functionally equivalent but have different string
+                                                                We compare FixGPT with five existing solutions,
+representations. In this paper, n = (n) & (n – 1) is
+                                                                including two search-based approaches (i.e.,
+considered a valid patch.
+                                                                (j)GenProg[29] and RSRepair[30]), two semantic-based
+4     Experiment                                                approaches (i.e., Nopol[31] and (J)Kali[32] ), and one
+                                                                DL-based approach (i.e., CODIT[33]). All of these
+4.1   Experimental setup                                        methods, including CoP, adopt the perfect location
+CoP models undergo training using a dataset derived             method to ensure that the repair effect is not influenced
+from 45 180 Java projects, focusing on vulnerabilities          by the localization of vulnerabilities. We generate 1000
+and their corresponding repair patches. And the                 candidate patches for each vulnerability and validate
+training and fine-tuning data length of more than 1024          and count the results.
+are eliminated to ensure the effectiveness of the                  Table 1 presents the performance comparisons
+training. We assess the effectiveness of our approach,          between CoP and other methods. CoP repair 5
+by conducting performance evaluations on two widely             vulnerabilities on QuixBugs by providing 16 plausible
+                                                                patches, as well as 6 vulnerabilities with 17 plausible
+recognized benchmark datasets: QuixBugs and
+                                                                patches. This is outperforming all other approaches
+Defects4J, utilizing respective test cases. Defects4J
+                                                                particularly    on     QuixBugs.       And     significant
+comprises authentic Java projects with known defects
+                                                                improvement can be observed when comparing
+and fixes, while QuixBugs features artificially crafted
+                                                                FixGPT with CODIT, another deep learning-based
+defective Java programs. Both datasets encompass
+                                                                approach. CoP provides the same number of correct
+prevalent vulnerability types in communication
+                                                                patches, with five more seemingly viable patches.
+software, such as buffer overflows and logic errors.
+                                                                   Through the analysis of the generated results the
+The validation process involves 124 vulnerabilities,
+                                                                difficulty in patches accuracy may be attributed to the
+including 39 from QuixBugs and 85 from Defects4J.
+For each candidate patch, we initialize by duplicating          Table 1 Comparisons on the repairs: x/y indicates the
+                                                                presence of x correct patches out of y plausible patches,
+the corresponding project and replacing the defective
+                                                                while “−” indicates that no evaluation is conducted.
+code. Subsequently, we conduct attempts to compile
+                                                                          Tool            QuixBugs              Defects4J
+and execute test cases to validate the plausibility of the               Nopol               1/4                  2/9
+patch.                                                                   (J)Kali             1/2                  2/8
+   In order to determine the optimal configuration for                (j)GenProg             0/2                  6/16
+generating better patches, multiple hyperparameters in                 RSRepair              2/4                   −
+CoP are explored. These hyperparameters include the                     CODIT                 −                   6/12
+                                                                          CoP               5/16                  6/17
+convolution dimension (range from 64 to 512),
+  232                                                                    Intelligent and Converged Networks, 2024, 5(3): 222−236
+
+model’s excessive focus on the transition between the              position, the discriminator raised the correct patch
+vulnerability and the patch, while neglecting the                  position from and 145.2 to 128.67 on Defects4J. The
+contextual connections. Consequently, the generated                discriminator improves the model repair ability and
+patches may pass all test cases but inadvertently                  improves the efficiency of feasible patches. In other
+impede the functionality of the program.                           words, the same fix can be achieved by generating
+                                                                   fewer candidate results. On QuixBugs, the approach
+4.3     Ablation studies
+                                                                   without a discriminator exhibits slightly better
+To further evaluate the impact of the discriminator on             performance in the top-k scenario compared to the
+scheme performance, we also conduct ablation                       controlled approach. This may be attributed to the
+experiments using the number of correct patches and                relatively simpler nature of the vulnerability data in
+top-k patch information. The latter assesses the average           QuixBugs, where the generative model alone proves
+position of the plausible patch given a limited number             sufficient for the corresponding repair tasks. However,
+of patches are generated, by varying k from 10 to 1000.            examining the data in Table 2 reveals that the
+Ideally, the lower the average position, the faster a              discriminator, in reality, enhances the overall repair
+plausible patch is generated. The results are recorded in          effectiveness on QuixBugs.
+Tables 2 and 3. In the table, CoP represents the
+proposed solution in this paper, while “Generation                 4.4    Example study
+model” refers to the process of generating patches                 By conducting an in-depth analysis of typical
+using only the generation model without analysis from              vulnerability examples, we can further understand the
+the discriminator.                                                 CoP’s generation ability.
+  Table 2 shows the vulnerability repair capabilities                Figure 7 illustrates the specific implementation of the
+with or without discriminators and Table 3 records the             next permutation algorithm, designed to identify the
+ratios of various components in CoP for the top 10,                lexicographically next permutation within a given
+100, 500, and 1000 patches. Same training data and                 arrangement. By comparing the elements in the current
+parameters are used to generate these 1000 patches,                permutation, the algorithm efficiently determines the
+and all generated results are validated.                           next permutation that is greater than the current one,
+  The results of Tables 2 and 3 show that the scheme               achieving an increment in lexicographic order. For
+with discriminator involved contains more viable                   instance, the permutation 1, 2, 3 results in the next
+patches when generating the same number of patches,                permutation 1, 3, 2. This algorithm finds extensive
+and the average position of viable patches is also                 applications in the field of communication, particularly
+higher. Meanwhile, by analyzing the correct patch                  in the processing of communication protocols. In
+Table 2 Effect of discriminator on repair effect: generation       scenarios where a series of elements needs to be
+model is a case where a discriminator is not used in the           arranged to comply with specific communication rules
+generation.                                                        or protocols, the next permutation algorithm proves to
+             Tool              QuixBugs           Defects4J        be highly beneficial. It ensures the correct derivation of
+              CoP                5/16               6/17           the next permutation according to lexicographical
+        Generation model         3/15               4/16
+                                                                   order, playing a crucial role in communication data
+                                      Table 3     Performance of CoP in top-k scenarios.
+                                    k = 10                    k = 100                  k = 500                 k = 1000
+      Tool        Dataset    Number of Average         Number of Average        Number of Average        Number of Average
+                              patches     position      patches     position     patches     position     patches     position
+                 Defects4J       4          1.5           10          34.4         15           77.4        17        157.88
+      CoP
+                 QuixBugs        8         1.13           13          7.46         14          37.93        16        129.81
+ Generation      Defects4J       4          1.5               10      41.1          14         82.78         16        165.07
+   model         QuixBugs       10          2.5               13       7            15         22.47         15         22.47
+ Shuo Feng et al.: Automated and controlled patch generation for enhanced fixing of communication software...             233
+
+                                                                it is noteworthy that the improvement in repair
+                                                                effectiveness, moving from a score of 3 to 5 as
+                                                                indicated in Table 2, justifies the reasonable acceptance
+                                                                of this additional time.
+                                                                   To address efficiency concerns, we introduct static
+                                                                syntax analysis as a countermeasure. This strategic
+      Fig. 7   Patch for next permutation algorithm.
+                                                                addition result in a substantial reduction in the
+processing.                                                     validation phase’s time overhead. Without static syntax
+  During the sorting process, the algorithm determines          analysis, the average validation time for each patch
+the next permutation by examining whether the                   stand at 1.5 hours. With the integration of static syntax
+element at position j is smaller than the element at            analysis, the validation time is significantly shortened
+position i. However, an error in the original code              to just 20 minutes. Concurrently, the introduction of
+involves mistakenly writing the condition for greater           the discriminator not only improve the generation
+than as less than. Such errors are relatively common in         capability but also strategically position effective
+software development and may lead to unexpected                 patches earlier in the process, contributing to a notable
+outcomes.                                                       reduction in the time required for patch validation.
+  In the phases of pre-training and fine-tuning, the               Therefore, our approach does not overall
+deep learning model adeptly acquires the correct                compromise the efficiency of patch generation; rather,
+coding rules and logic, effectively rectifying defects          it accelerates the process, aligning seamlessly with the
+within the program. Through thorough contextual                 imperative for timely and effective vulnerability fixes.
+analysis, the model comprehends the anticipated                    Multiline vulnerability: Despite the fact that our
+functionality of the program and applies knowledge              approach has primarily focused on the replacement of
+obtained from training data to reason through the repair        single-line vulnerabilities and has achieved certain
+process. The introduced discriminator plays a pivotal           results, there still exist some vulnerabilities during
+role during the generation process, assisting the               normal development processes that require the addition
+generative model in producing patches in the correct            of code lines or modifications to multiple lines for
+direction. In comparison to solutions without a                 repair. In theory, the presence or absence of code line
+discriminator, the inclusion of the discriminator               breaks does not influence the functionality of the
+ensures more accurate patch generation. Through a               program. Therefore, in order to explore the repair
+controlled generation process, the model efficiently            capabilities of CoP for these types of vulnerabilities,
+utilizes acquired knowledge, ultimately generating              we conduct some experiments, the results of which are
+correct patches aligned with the expected functionality.        documented in Fig. 8.
+                                                                   We approach the vulnerabilities that required
+5   Discussion
+Time cost: The introduction of the controlled
+generation scheme has significantly enhanced the
+model’s ability to generate repair patches, but it has
+also raised concerns about the efficiency of the                      CoP’s patch:
+generation process. To thoroughly assess these
+concerns, we conduct a detailed evaluation of time
+                                                                      Developer’s patch:
+overhead on the QuixBugs dataset.
+  During the process of generating 1000 candidate
+results for a single vulnerability, the generation time
+increased from 36.2 minutes to 57.5 minutes. However,                  Fig. 8   Multiple lines of vulnerability repair.
+    234                                                             Intelligent and Converged Networks, 2024, 5(3): 222−236
+
+modifications to multiple lines of code and the               based automated patch generation approach named
+generation of multiple-line patches in the same manner        CoP. We combine a programming language model
+as the single-line vulnerabilities. Specifically, we          with an NMT model to perform patch generation tasks
+remove the line breaks from the lines that needed to be       and introduce a discriminator during the generation
+modified and treat them as single-line vulnerability          process to evaluate intermediate results, selecting the
+lines. From an analysis of the results, although CoP          top-scoring      ones      for  further     generation.
+failed to provide the correct patch, it generate a feasible   Simultaneously, we integrate static syntax analysis to
+patch. Compared with the target of the generation, this       expedite the validation process. Experimental studies
+feasible patch has an identical code structure and            demonstrate significant improvements in generating
+logical relationship. This indicates that CoP has the         correct patches compared to existing methods. Future
+potential to repair multi-line vulnerabilities, but there     research could explore the effectiveness of CoP on a
+may be some constraints on this ability due to issues         broader range of benchmarks and extend its application
+with the training data or model structure. Extending          to multi-line vulnerabilities.
+CoP to a wider range of applications will be our future
+improvement direction.                                        Acknowledgment
+                                                              This work was supported by the National Natural
+6     Limitation
+                                                              Science Foundation of China (No. 62372173).
+Upon analyzing CoP results, particularly in cases
+where vulnerabilities persist, certain limitations have       References
+been identified. Firstly, CoP exhibits insufficient           [1]   Y. Xiao, H. H. Chen, X. Du, and M. Guizani, Stream-
+proficiency in addressing rare vulnerabilities. If the              based cipher feedback mode in wireless error channel,
+training dataset lacks comprehensive information about              IEEE Trans. Wirel. Commun., vol. 8, no. 2, pp. 622–626,
+a specific vulnerability type, CoP may struggle to                  2009.
+                                                              [2]   M. T. Baldassarre, V. S. Barletta, D. Caivano, and M.
+generate corresponding patches. To address this, we
+                                                                    Scalera, Integrating security and privacy in software
+plan to improve the scale and quality of the training
+                                                                    development, Softw. Qual. J., vol. 28, no. 3, pp. 987–1018,
+data through continuous collection and maintenance.                 2020.
+   Secondly, CoP faces challenges in handling multi-          [3]   J. Brown and X. Du, Detection of selective forwarding
+line vulnerabilities, exhibiting suboptimal performance.            attacks in heterogeneous sensor networks, in Proc. IEEE
+Given its sequential code representation during                     Int. Conf. Communications, Beijing, China, 2008, pp.
+                                                                    1583–1587.
+training, the generative model may encounter
+                                                              [4]   J. Xu, M. Li, Z. He, and T. Anwlnkom, Security and
+difficulties with lengthy sequences when addressing                 privacy protection communication protocol for Internet of
+multi-line vulnerabilities. Our future efforts involve              vehicles in smart cities, Comput. Electr. Eng., vol. 109, p.
+exploring alternative code representation methods and               108778, 2023.
+model structures to enhance the ability to repair multi-      [5]   X. Du, M. Guizani, Y. Xiao, and H. H. Chen, Defending
+                                                                    DoS attacks on broadcast authentication in wireless sensor
+line vulnerabilities.
+                                                                    networks, in Proc. IEEE Int. Conf. Communications,
+   Additionally, the effectiveness of CoP is impacted by
+                                                                    Beijing, China, 2008, pp. 1653–1657.
+fault localization, a challenging task to achieve             [6]   A. Romdhana, A. Merlo, M. Ceccato, and P. Tonella,
+perfection in real-world scenarios. As part of our                  Assessing the security of inter-app communications in
+ongoing research, we aim to integrate vulnerability                 android through reinforcement learning, Comput. Secur.,
+detection and localization techniques to improve the                vol. 131, p. 103311, 2023.
+                                                              [7]   Y. Xiao, Q. Du, W. Cheng, and N. Lu, Secure
+practicality of the repair process.
+                                                                    communication guarantees for diverse extended-reality
+7     Conclusions                                                   applications: A unified statistical security model, IEEE J.
+                                                                    Sel. Top. Signal Process., vol. 17, no. 5, pp. 1007–1021,
+In this study, we introduce and evaluate a generative-              2023.
+ Shuo Feng et al.: Automated and controlled patch generation for enhanced fixing of communication software...                   235
+
+[8]    BuTian Vulnerability Response Platform, 2022 Annual                  Proc. 61st Annual Meeting of the Association for
+       analysis report of patching vulnerability response                   Computational Linguistics, Toronto, Canada, 2023, pp.
+       platform,      https://www.qianxin.com/threat/reportdetail?          186–200.
+       report_id=289, 2023.                                          [20]   D. Lin, J. Koppel, A. Chen, and A. Solar-Lezama,
+[9]    Z. Shen and S. Chen, A survey of automatic software                  QuixBugs: A multi-lingual program repair benchmark set
+       vulnerability detection, program repair, and defect                  based on the quixey challenge, in Proc. Proceedings
+       prediction techniques, Secur. Commun. Netw., vol. 2020,              Companion of the 2017 ACM SIGPLAN Int. Conf.
+       no. 1, p. 8858010, 2020.                                             Systems, Programming, Languages, and Applications:
+[10]   S. Mechtaev, M. D. Nguyen, Y. Noller, L. Grunske, and                Software for Humanity, Vancouver, Canada, 2017, pp.
+       A. Roychoudhury, Semantic program repair using a                     55–56.
+       reference implementation, in Proc. 40th Int. Conf.            [21]   R. Just, D. Jalali, and M. D. Ernst, Defects4J: A database
+       Software Engineering, Gothenburg, Sweden, 2018, pp.                  of existing faults to enable controlled testing studies for
+       129–139.                                                             Java programs, in Proc. 2014 Int. Symp. Software Testing
+[11]   M. Kim, Y. Kim, J. Heo, H. Jeong, S. Kim, and E. Lee,                and Analysis, San Jose, CA USA, 2014, pp. 437–440.
+       Impact of defect instances for successful deep learning-      [22]   O. M. Villanueva, L. Trujillo, and D. E. Hernandez,
+       based automatic program repair, in Proc. IEEE Int. Conf.             Novelty search for automatic bug repair, in Proc. 2020
+       Software Maintenance and Evolution (ICSME), Limassol,                Genetic and Evolutionary Computation Conf., Cancún,
+       Cyprus, 2022, pp. 419–423.                                           Mexico, 2020, pp. 1021–1028.
+[12]   W. Ye, J. Xia, S. Feng, X. Zhong, S. Yuan, and Z. Guan,       [23]   X. Gao, B. Wang, G. J. Duck, R. Ji, Y. Xiong, and A.
+       FixGPT: A novel three-tier deep learning model for                   Roychoudhury, Beyond tests: Program vulnerability repair
+       automated program repair, in Proc. 8th Int. Conf. Data               via crash constraint extraction, ACM Trans. Softw. Eng.
+       Science in Cyberspace (DSC), Hefei, China, 2023, pp.                 Methodol., vol. 30, no. 2, p. 14, 2021.
+       499–505.                                                      [24]   R. Gupta, S. Pal, A. Kanade, and S. Shevade, DeepFix:
+[13]   A. Radford and K. Narasimhan, Improving language                     fixing common C language errors by deep learning, in
+       understanding by generative pre-training, https://cdn.               Proc. 31st AAAI Conf. Artificial Intelligence (AAAI'17),
+       openai.com/research-covers/language-unsupervised/                    San Francisco, CA, USA, pp. 1345–1351.
+       language_understanding_paper.pdf, 2018.                       [25]   M. White, M. Tufano, M. Martínez, M. Monperrus, and D.
+[14]   M. Mahanty, B. Vamsi, and D. Madhavi, A corpus-based                 Poshyvanyk, Sorting and transforming program repair
+       auto-encoder-and-decoder machine translation using deep              ingredients via deep learning code similarities, in Proc.
+       neural network for translation from English to Telugu                IEEE 26th Int. Conf. Software Analysis, Evolution and
+       language, SN Comput. Sci., vol. 4, no. 4, p. 354, 2023.              Reengineering (SANER), Hangzhou, China, 2019, pp.
+[15]   Y. Wang, W. Wang, S. Joty, and S. C. H. Hoi, CodeT5:                 479–490.
+       Identifier-aware unified pre-trained encoder-decoder          [26]   M. Tufano, C. Watson, G. Bavota, M. Di Penta, M. White,
+       models for code understanding and generation, in Proc.               and D. Poshyvanyk, An empirical study on learning bug-
+       2021 Conf. Empirical Methods in Natural Language                     fixing patches in the wild via neural machine translation,
+       Processing, Punta Cana, Dominican Republic, 2021, pp.                ACM Trans. Softw. Eng. Methodol., vol. 28, no. 4, p. 19,
+       8696–8708.                                                           2019.
+[16]   X. Du and D. Wu, Adaptive cell relay routing protocol for     [27]   T. Lutellier, H. V. Pham, L. Pang, Y. Li, M. Wei, and L.
+       mobile ad hoc networks, IEEE Trans. Veh. Technol., vol.              Tan, CoCoNuT: Combining context-aware neural
+       55, no. 1, pp. 278–285, 2006.                                        translation models using ensemble for program repair, in
+[17]   X. Du and Y. Xiao, Energy efficient Chessboard                       Proc. 29th ACM SIGSOFT Int. Symp. on Software Testing
+       Clustering and routing in heterogeneous sensor networks,             and Analysis, virtual, 2020, pp. 101–114.
+       Int. J. Wirel. Mob. Comput., vol. 1, no. 2, p. 121, 2006.     [28]   N. Jiang, T. Lutellier, and L. Tan, CURE: Code-aware
+[18]   J. Devlin, M. W. Chang, K. Lee, and K. Toutanova,                    neural machine translation for automatic program repair,
+       BERT: Pre-training of Deep Bidirectional Transformers                in Proc. IEEE/ACM 43rd Int. Conf. Software Engineering
+       for Language Understanding, in Proc. 2019 Conf. North                (ICSE), Madrid, Spain, 2021, pp. 1161–1173.
+       American Chapter of the Association for Computational         [29]   C. Le Goues, T. Nguyen, S. Forrest, and W. Weimer,
+       Linguistics: Human Language Technologies, Minneapolis,               GenProg: A generic method for automatic software repair,
+       MN, USA, 2019, pp. 4171–4186.                                        IEEE Trans. Softw. Eng., vol. 38, no. 1, pp. 54–72, 2012.
+[19]   X. Liu, M. Khalifa, and L. Wang, BOLT: Fast energy-           [30]   Y. Qi, X. Mao, Y. Lei, Z. Dai, and C. Wang, Does genetic
+       based controlled text generation with tunable biases, in             programming work well on automated program repair? in
+  236                                                                  Intelligent and Converged Networks, 2024, 5(3): 222−236
+
+     Proc. Int. Conf. Computational and Information Sciences,          patch plausibility and correctness for generate-and-
+     Shiyang, China, 2013, pp. 1875–1878.                              validate patch generation systems, in Proc. 2015 Int.
+[31] J. Xuan, M. Martinez, F. DeMarco, M. Clément, S. L.               Symp. on Software Testing and Analysis, Baltimore, MD
+     Marcote, T. Durieux, D. Le Berre, and M. Monperrus,               USA, 2015, pp. 24–36.
+     Nopol: automatic repair of conditional statement bugs in     [33] S. Chakraborty, Y. Ding, M. Allamanis, and B. Ray,
+     Java programs, IEEE Trans. Softw. Eng., vol. 43, no. 1,           CODIT: code editing with tree-based neural models,
+     pp. 34–55, 2017.                                                  IEEE Trans. Softw. Eng., vol. 48, no. 4, pp. 1385–1399,
+[32] Z. Qi, F. Long, S. Achour, and M. Rinard, An analysis of          2022.
+
+                    Shuo Feng received the BS degree in                                 Shuai Yuan is an assistant professor in the
+                    information security from the School of                             Department of Finance, Operations, and
+                    Control and Computer Engineering, North                             Information Systems at Brock University,
+                    China Electric Power University in 2022.                            Canada. He received the PhD degree in
+                    He is currently pursuing the MS degree                              management science and systems from
+                    with North China Electric Power                                     State University of New York at Buffalo.
+                    University. His research focuses on                                 His current research interests include
+                    automated program repair.                                           business analytics, resource management
+                                                                  in the cloud, and high-performance computing.
+                     Xiaojiang Du is the Anson Wood
+                     Burchard Endowed-Chair professor in the                          Zhitao Guan is currently a professor at the
+                     Department of Electrical and Computer                            School of Control and Computer
+                     Engineering at Stevens Institute of                              Engineering, North China Electric Power
+                     Technology, USA. He was a professor at                           University. He received the BEng and PhD
+                     Temple University, USA. He received the                          degrees in computer application from
+                     BS degree from Tsinghua University,                              Beijing Institute of Technology, China, in
+                     Beijing, China in 1996. He received the                          2002 and 2008, respectively. He was a
+MS and PhD degrees in electrical engineering from the                                 researcher with the Security and
+University of Maryland, USA in 2002 and 2003, respectively.       Networking Lab, Temple University, USA, from 2014 to 2015.
+His research interests are security, wireless networks, and       His current research focuses on blockchain, AI security, and
+systems. He has authored over 500 journal and conference          privacy computing. He has authored over 100 refereed journal
+papers in these areas, as well as a book published by Springer.   and conference papers in these areas. He is a member of IEEE.
+He has been awarded more than 8 million U.S. dollars in
+research grants from the U.S. National Science Foundation
+(NSF), Army Research Office, Air Force Research Lab, the
+State of Pennsylvania, and Amazon. He won the best paper
+award at IEEE ICC 2020, IEEE Globecom 2014, and the best
+poster runner-up award at ACM MobiHoc 2014. He serves on
+the editorial boards of three IEEE journals. He is a fellow of
+IEEE and a distinguished member of ACM.
+
